@@ -19,12 +19,10 @@ public class CleanArchitectureDepencencyTests
 
         // act
         var result = Types.InAssembly(assembly)
-                          .Should()
-                          .NotHaveDependencyOn("Thisisnabi.Blog.Application")
-                          .And()                
-                          .NotHaveDependencyOn("Thisisnabi.Blog.APIs")
-                          .And()                
-                          .NotHaveDependencyOn("Thisisnabi.Blog.Infrastructure")
+                          .ShouldNot()
+                          .HaveDependencyOnAll("Thisisnabi.Blog.Application",
+                                               "Thisisnabi.Blog.APIs",
+                                               "Thisisnabi.Blog.Infrastructure")
                           .GetResult();
          
         // assert
@@ -40,12 +38,10 @@ public class CleanArchitectureDepencencyTests
 
         // act
         var result = Types.InAssembly(assembly)
-                          .Should()
+                          .That()
                           .HaveDependencyOn("Thisisnabi.Blog.Domain")
-                          .And()
-                          .NotHaveDependencyOn("Thisisnabi.Blog.APIs")
-                          .And()
-                          .NotHaveDependencyOn("Thisisnabi.Blog.Infrastructure")
+                          .ShouldNot()
+                          .HaveDependencyOnAll("Thisisnabi.Blog.APIs", "Thisisnabi.Blog.Infrastructure")
                           .GetResult();
 
         // assert
@@ -60,10 +56,10 @@ public class CleanArchitectureDepencencyTests
 
         // act
         var result = Types.InAssembly(assembly)
-                          .Should()
+                          .That()
                           .HaveDependencyOn("Thisisnabi.Blog.Application")
-                          .And()
-                          .NotHaveDependencyOn("Thisisnabi.Blog.APIs")
+                          .ShouldNot()
+                          .HaveDependencyOn("Thisisnabi.Blog.APIs")
                           .GetResult();
 
         // assert
@@ -78,10 +74,10 @@ public class CleanArchitectureDepencencyTests
         
         // act
         var result = Types.InAssembly(assembly)
-                          .Should()
+                          .That()
                           .HaveDependencyOn("Thisisnabi.Blog.Application")
-                          .And()
-                          .NotHaveDependencyOn("Thisisnabi.Blog.Infrastructure")
+                          .ShouldNot()
+                          .HaveDependencyOn("Thisisnabi.Blog.Infrastructure")
                           .GetResult();
 
         // assert
