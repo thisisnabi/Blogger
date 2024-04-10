@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Blogger.Infrastructure\Blogger.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
