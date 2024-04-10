@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -14,6 +14,13 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Blogger.APIs\Blogger.APIs.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Application\Blogger.Application.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Domain\Blogger.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Infrastructure\Blogger.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

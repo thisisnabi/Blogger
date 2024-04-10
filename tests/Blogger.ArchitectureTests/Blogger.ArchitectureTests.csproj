@@ -17,6 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Blogger.APIs\Blogger.APIs.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Application\Blogger.Application.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Domain\Blogger.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Blogger.Infrastructure\Blogger.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
