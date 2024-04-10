@@ -11,22 +11,23 @@ public abstract class EntityBase<Tkey>
 
     public override bool Equals(object? obj)
     {
+        if (obj is null) return false;
+
+        if (!IsTypeEquals(obj, this)) return false;
+
         var entity = obj as EntityBase<Tkey>;
 
         if (entity is null) return false;
 
-        return  IsTypeEquals(entity, this) &&
-                EqualityComparer<Tkey>.Default.Equals(Id, entity.Id);
+        return EqualityComparer<Tkey>.Default.Equals(Id, entity.Id);
     }
 
-    private static bool IsTypeEquals(EntityBase<Tkey> left, EntityBase<Tkey> right) 
+    private static bool IsTypeEquals(object left, object right) 
         => left.GetType() == right.GetType();
 
     public static bool operator ==(EntityBase<Tkey> left, EntityBase<Tkey> right)
-    {
-        return  IsTypeEquals(left, right) &&
-                EqualityComparer<Tkey>.Default.Equals(left.Id, right.Id);
-    }
+        => IsTypeEquals(left, right) &&
+           EqualityComparer<Tkey>.Default.Equals(left.Id, right.Id);
 
     public static bool operator !=(EntityBase<Tkey> left, EntityBase<Tkey> right) 
         => !(left == right);
