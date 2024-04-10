@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F10530A2-8E3A-4E7F-8057-2FA0A23E1838}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Blogger.UnitTests\Blogger.UnitTests.csproj = tests\Blogger.UnitTests\Blogger.UnitTests.csproj
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Domain", "src\Blogger.Domain\Blogger.Domain.csproj", "{90C456BB-B200-4386-94DC-B971084AA2CD}"
 EndProject
@@ -14,6 +17,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Infrastructure", "src\Blogger.Infrastructure\Blogger.Infrastructure.csproj", "{1C59E001-D440-4CF6-BD00-8D31F24F461F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.APIs", "src\Blogger.APIs\Blogger.APIs.csproj", "{D6D064B7-80EB-4D1A-9942-FB705C5095D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.ArchitectureTests", "tests\Blogger.ArchitectureTests\Blogger.ArchitectureTests.csproj", "{6652F99E-5CFE-47D6-8A27-CCDDC223889A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.FunctionalTests", "tests\Blogger.FunctionalTests\Blogger.FunctionalTests.csproj", "{96C26B22-037D-433C-A2B6-088875C5DCEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +44,14 @@ Global
 		{D6D064B7-80EB-4D1A-9942-FB705C5095D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D064B7-80EB-4D1A-9942-FB705C5095D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D064B7-80EB-4D1A-9942-FB705C5095D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6652F99E-5CFE-47D6-8A27-CCDDC223889A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6652F99E-5CFE-47D6-8A27-CCDDC223889A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6652F99E-5CFE-47D6-8A27-CCDDC223889A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6652F99E-5CFE-47D6-8A27-CCDDC223889A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96C26B22-037D-433C-A2B6-088875C5DCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96C26B22-037D-433C-A2B6-088875C5DCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96C26B22-037D-433C-A2B6-088875C5DCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96C26B22-037D-433C-A2B6-088875C5DCEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +61,8 @@ Global
 		{5ACBF1E8-8C5B-43F6-BA1D-B34C8B4A821D} = {F10530A2-8E3A-4E7F-8057-2FA0A23E1838}
 		{1C59E001-D440-4CF6-BD00-8D31F24F461F} = {F10530A2-8E3A-4E7F-8057-2FA0A23E1838}
 		{D6D064B7-80EB-4D1A-9942-FB705C5095D2} = {F10530A2-8E3A-4E7F-8057-2FA0A23E1838}
+		{6652F99E-5CFE-47D6-8A27-CCDDC223889A} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
+		{96C26B22-037D-433C-A2B6-088875C5DCEC} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79594A78-23A6-4103-92DA-71BD4586160D}
