@@ -7,8 +7,8 @@ public class EntityBaseTests
     {
         // Arrange
         var id = Guid.NewGuid();
-        var entityA = new TestClassA(id);
-        var entityB = new TestClassB(id);
+        var entityA = new ConcreteEntity(id);
+        var entityB = new OtherConcreteEntity(id);
 
         // Act & Assert
         (entityA == entityB).Should().BeFalse();
@@ -25,8 +25,8 @@ public class EntityBaseTests
     {
         // Arrange
         var id = Guid.NewGuid();
-        var entityA = new TestClassA(id);
-        var entityB = new TestClassA(id);
+        var entityA = new ConcreteEntity(id);
+        var entityB = new ConcreteEntity(id);
 
         // Act & Assert
         (entityA == entityB).Should().BeTrue();
@@ -42,8 +42,8 @@ public class EntityBaseTests
     public void entities_of_same_type_should_not_be_equal_when_ids_different()
     {
         // Arrange
-        var entityA = new TestClassA(Guid.NewGuid());
-        var entityB = new TestClassA(Guid.NewGuid());
+        var entityA = new ConcreteEntity(Guid.NewGuid());
+        var entityB = new ConcreteEntity(Guid.NewGuid());
 
         // Act & Assert
         (entityA == entityB).Should().BeFalse();
@@ -55,6 +55,6 @@ public class EntityBaseTests
         (entityA.GetHashCode() == entityB.GetHashCode()).Should().BeFalse();
     }
 
-    private class TestClassA(Guid id) : EntityBase<Guid>(id) { }
-    private class TestClassB(Guid id) : EntityBase<Guid>(id) { }
+    private class ConcreteEntity(Guid id) : EntityBase<Guid>(id) { }
+    private class OtherConcreteEntity(Guid id) : EntityBase<Guid>(id) { }
 }
