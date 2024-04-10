@@ -1,7 +1,5 @@
-﻿using Blogger.Domain.Common;
-using FluentAssertions;
+﻿namespace Blogger.UnitTests.Domain;
 
-namespace Blogger.UnitTests.Domain;
 public class EntityBaseTests
 {
     [Fact]
