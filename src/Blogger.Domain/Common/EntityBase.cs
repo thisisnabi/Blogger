@@ -1,36 +1,26 @@
 ﻿namespace Blogger.Domain.Common;
 
-public abstract class EntityBase<Tkey>
+public abstract class EntityBase<TId> where TId : notnull
 {
-    public Tkey Id { get; private set; } = default!;
+    public TId Id { get; private set; }
 
-    protected EntityBase(Tkey id)
+    protected EntityBase(TId id)
     {
         Id = id;
     }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is null) return false;
+    public override bool Equals(object? obj) 
+        => obj is not null &&
+           obj is EntityBase<TId> entity &&
+           obj.GetType() == GetType() &&
+           Id.Equals(entity.Id);
 
-        if (!IsTypeEquals(obj, this)) return false;
+    public static bool operator ==(EntityBase<TId> left, EntityBase<TId> right) 
+        => left.Equals(right);
 
-        var entity = obj as EntityBase<Tkey>;
+    public static bool operator !=(EntityBase<TId> left, EntityBase<TId> right)
+        => !left.Equals(right);
 
-        if (entity is null) return false;
-
-        return EqualityComparer<Tkey>.Default.Equals(Id, entity.Id);
-    }
-
-    private static bool IsTypeEquals(object left, object right) 
-        => left.GetType() == right.GetType();
-
-    public static bool operator ==(EntityBase<Tkey> left, EntityBase<Tkey> right)
-        => IsTypeEquals(left, right) &&
-           EqualityComparer<Tkey>.Default.Equals(left.Id, right.Id);
-
-    public static bool operator !=(EntityBase<Tkey> left, EntityBase<Tkey> right) 
-        => !(left == right);
-
-    public override int GetHashCode() => HashCode.Combine(GetType(), Id);
+    public override int GetHashCode() 
+        => HashCode.Combine(GetType(), Id);
 }
