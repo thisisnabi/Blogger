@@ -76,6 +76,21 @@ public class AggregateRootBaseTests
         entityA.Events.Should().HaveCount(1);
     }
 
+    [Fact]
+    public void events_should_be_empty_after_clean_up()
+    {
+        // Arrange
+        var entityA = new ConcreteAggregateRoot(10);
+        entityA.RaiseCreatedEvent();
+
+        // Act
+        entityA.ClearEvents();
+
+        // Act & Assert
+        entityA.Events.Should().BeEmpty();
+    }
+
+
     private class ConcreteAggregateRoot(int id) : AggregateRootBase<int>(id)
     {
         public void RaiseCreatedEvent() => AddEvent(new CreatedRootEvent { });
