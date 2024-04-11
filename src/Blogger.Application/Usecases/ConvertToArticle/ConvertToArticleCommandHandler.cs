@@ -1,6 +1,6 @@
 ﻿using Blogger.Application.UpdateDraft;
 
-namespace Blogger.Application.ConvertToArticle;
+namespace Blogger.Application.Usecases.ConvertToArticle;
 
 public class ConvertToArticleCommandHandler(IArticleRepository articleRepository) : IRequestHandler<ConvertToArticleCommand>
 {

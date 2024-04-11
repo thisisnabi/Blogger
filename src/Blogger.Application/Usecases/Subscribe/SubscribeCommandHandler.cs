@@ -1,6 +1,6 @@
 ﻿using Blogger.Domain.SubscriberAggregate;
 
-namespace Blogger.Application.Subscribe;
+namespace Blogger.Application.Usecases.Subscribe;
 public class SubscribeCommandHandler(ISubscruiberRepository subscruiberRepository,
     ISubscriberService subscriberService) : IRequestHandler<SubscribeCommand>
 {

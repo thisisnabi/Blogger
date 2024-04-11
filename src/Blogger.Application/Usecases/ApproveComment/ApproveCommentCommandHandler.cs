@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.ApproveComment;
+﻿namespace Blogger.Application.Usecases.ApproveComment;
 public class ApproveCommentCommandHandler(IArticleRepository articleRepository) : IRequestHandler<ApproveCommentCommand>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;

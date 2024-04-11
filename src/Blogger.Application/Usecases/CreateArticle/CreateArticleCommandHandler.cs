@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.CreateArticle;
+﻿namespace Blogger.Application.Usecases.CreateArticle;
 
 public class CreateArticleCommandHandler(IArticleRepository articleRepository) : IRequestHandler<CreateArticleCommand, CreateArticleCommandResponse>
 {

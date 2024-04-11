@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.UpdateDraft;
+﻿namespace Blogger.Application.Usecases.UpdateDraft;
 
 public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<UpdateDraftCommand>
 {
