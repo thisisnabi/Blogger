@@ -75,6 +75,12 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         _tags.Clear();
         AddTags(tags);
     }
+
+    public void ConvertToArticle()
+    {
+        Status = ArticleStatus.Published;
+        ReadOn = GetReadOnTimeSpan(Body);
+    }
 }
 
 public enum ArticleStatus
