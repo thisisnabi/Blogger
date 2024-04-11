@@ -17,7 +17,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public string Summery { get; private set; }
 
-    public TimeSpan ReadOn { get; private set; }
+    public TimeSpan? ReadOn { get; private set; }
 
     public ArticleStatus Status { get; private set; }
 
@@ -29,7 +29,20 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
                 Body = body,
                 Status = ArticleStatus.Draft,
                 Summery = summery,
-                ReadOn = GetReadOnTimeSpan(body)
+                Title = title,
+        };
+    }
+
+    public static Article CreateArticle (string title, string body, string summery)
+    {
+        return new Article(ArticleId.CreateUniqueId(title))
+        {
+            Author = Author.CreateDefaultAuthor(),
+            Body = body,
+            Status = ArticleStatus.Published,
+            Summery = summery,
+            Title = title,
+            ReadOn = GetReadOnTimeSpan(body)
         };
     }
 
