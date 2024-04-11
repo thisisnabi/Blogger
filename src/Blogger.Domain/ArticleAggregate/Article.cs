@@ -58,8 +58,10 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     private static TimeSpan GetReadOnTimeSpan(string body)
     {
-        // TODO: Calculate base on paragraph and lines of body
-        return TimeSpan.FromSeconds(20);
+        // The number of words divided by the average reading of words per minute
+        var readingTime = Math.Round(((double)body.Split(" ").Length / 200) * 60);
+
+        return TimeSpan.FromSeconds(readingTime);
     }
 
     public void UpdateDraft(string title, string summery, string body)
