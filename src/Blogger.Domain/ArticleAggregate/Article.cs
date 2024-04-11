@@ -11,7 +11,20 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public Author Author { get; init; }
 
-     
+    public string Title { get; set; }
 
+    public string Body { get; set; }
 
+    public string Summery { get; set; }
+
+    public TimeSpan ReadOn { get; set; }
+
+    public ArticleStatus Status { get; set; }
+ 
+}
+
+public enum ArticleStatus
+{ 
+    Draft = 1,
+    Published = 2
 }

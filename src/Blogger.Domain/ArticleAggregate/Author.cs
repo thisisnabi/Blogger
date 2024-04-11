@@ -3,17 +3,25 @@ public class Author : ValueObject<Author>
 {
     public string FullName { get; init; }
 
-    private Author(string fullName)
+    public string Avatar { get; set; }
+
+    public string JobTitle { get; set; }
+
+    private Author(string fullName, string avatar, string jobTitle)
     {
         FullName = fullName;
+        Avatar = avatar;
+        JobTitle = jobTitle;
     }
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
         yield return FullName;
+        yield return Avatar;
+        yield return JobTitle;
     }
 
-    public static Author CreateDefaultAuthor() => new("Nabi Karampour");
+    public static Author CreateDefaultAuthor() => new("Nabi Karampour", "/images/avatars/thisisnabi.png", "Senior Software Engineer");
 
-    public static Author Create(string fullName) => new(fullName);
+    public static Author Create(string fullName, string avatar, string jobTitle) => new(fullName, avatar, jobTitle);
 }
