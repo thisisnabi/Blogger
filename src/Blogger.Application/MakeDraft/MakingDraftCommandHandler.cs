@@ -1,10 +1,10 @@
-﻿namespace Blogger.Application.MakingDraft;
+﻿namespace Blogger.Application.MakeDraft;
 
-public class MakingDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<MakingDraftCommand, MakingDraftCommandResponse>
+public class MakeDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<MakeDraftCommand, MakeDraftCommandResponse>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
 
-    public async Task<MakingDraftCommandResponse> Handle(MakingDraftCommand request, CancellationToken cancellationToken)
+    public async Task<MakeDraftCommandResponse> Handle(MakeDraftCommand request, CancellationToken cancellationToken)
     {
         var article = Article.CreateDraft(request.title, request.body, request.summery);
         article.AddTags(request.Tags);
@@ -13,6 +13,6 @@ public class MakingDraftCommandHandler(IArticleRepository articleRepository) : I
 
         await _articleRepository.SaveChangesAsync(cancellationToken);
 
-        return new MakingDraftCommandResponse(article.Id);
+        return new MakeDraftCommandResponse(article.Id);
     }
 }
