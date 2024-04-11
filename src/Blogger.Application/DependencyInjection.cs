@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blogger.Application;
-public static class DependencyInjecytion
+public static class DependencyInjection
 {
     public static IServiceCollection ConfigureApplicationLayer(this IServiceCollection services, IConfiguration configuration)
     {
