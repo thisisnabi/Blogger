@@ -8,6 +8,8 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
     {
         var draft = _articleRepository.GetDraftById(request.ArticleId);
 
+        if (draft is null) throw new NotFoundDraftException();
+
         draft.UpdateDraft(request.title, request.summery, request.body);
 
         draft.UpdateTags(request.Tags);
