@@ -11,6 +11,8 @@ public class MakingDraftCommandHandler(IArticleRepository articleRepository) : I
 
         await _articleRepository.CreateAsync(article, cancellationToken);
 
+        await _articleRepository.SaveChangesAsync(cancellationToken);
+
         return new MakingDraftCommandResponse(article.Id);
     }
 }

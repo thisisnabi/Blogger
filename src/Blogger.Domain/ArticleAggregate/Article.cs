@@ -21,19 +21,19 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public ArticleStatus Status { get; private set; }
 
-    public static Article CreateDraft(string title,string body, string summery)
+    public static Article CreateDraft(string title, string body, string summery)
     {
         return new Article(ArticleId.CreateUniqueId(title))
         {
-                Author = Author.CreateDefaultAuthor(),
-                Body = body,
-                Status = ArticleStatus.Draft,
-                Summery = summery,
-                Title = title,
+            Author = Author.CreateDefaultAuthor(),
+            Body = body,
+            Status = ArticleStatus.Draft,
+            Summery = summery,
+            Title = title,
         };
     }
 
-    public static Article CreateArticle (string title, string body, string summery)
+    public static Article CreateArticle(string title, string body, string summery)
     {
         return new Article(ArticleId.CreateUniqueId(title))
         {
@@ -48,7 +48,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void AddTags(string[] tags)
     {
-        _tags ??= new List<Tag>();  
+        _tags ??= new List<Tag>();
 
         foreach (var tag in tags)
         {
@@ -61,10 +61,24 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         // TODO: Calculate base on paragraph and lines of body
         return TimeSpan.FromSeconds(20);
     }
+
+    public void UpdateDraft(string title, string summery, string body)
+    {
+        Title = title;
+        Body = body;
+        Summery = summery;
+    }
+
+    public void UpdateTags(string[] tags)
+    {
+        _tags ??= new List<Tag>();
+        _tags.Clear();
+        AddTags(tags);
+    }
 }
 
 public enum ArticleStatus
-{ 
+{
     Draft = 1,
     Published = 2
 }

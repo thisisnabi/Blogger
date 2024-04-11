@@ -11,6 +11,8 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
 
         await _articleRepository.CreateAsync(article, cancellationToken);
 
+        await _articleRepository.SaveChangesAsync(cancellationToken);
+
         return new CreateArticleCommandResponse(article.Id);
     }
 }
