@@ -20,4 +20,6 @@ public class Comment(CommentId id) : EntityBase<CommentId>(id)
             ClientId = clientId,
             IsApproved = false
         };
+
+    public void Approve() => IsApproved = true;
 }

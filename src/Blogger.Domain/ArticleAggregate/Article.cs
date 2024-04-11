@@ -87,10 +87,23 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         _comments ??= new List<Comment>();  
         _comments.Add(comment);
     }
+
+    public void ApproveComment(CommentId commentId)
+    {
+        if (Status == ArticleStatus.Deleted)
+        {
+            // TODO: // add new costum exception in Article aggregate
+            throw new Exception("Invalid action in deleted status");
+        }
+
+        var comment = _comments.First(x => x.Id == commentId);
+        comment.Approve();
+    }
 }
 
 public enum ArticleStatus
 {
     Draft = 1,
-    Published = 2
+    Published = 2,
+    Deleted
 }
