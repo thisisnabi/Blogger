@@ -81,6 +81,12 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         Status = ArticleStatus.Published;
         ReadOn = GetReadOnTimeSpan(Body);
     }
+
+    public void AddComment(Comment comment)
+    {
+        _comments ??= new List<Comment>();  
+        _comments.Add(comment);
+    }
 }
 
 public enum ArticleStatus
