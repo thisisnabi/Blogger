@@ -19,6 +19,6 @@ public class SubscribeCommandHandler(ISubscruiberRepository subscruiberRepositor
         var subscriber = Subscriber.Create(request.SubscriberId);
         await _subscruiberRepository.CreateAsync(subscriber, cancellationToken);
 
-        _subscruiberRepository.SavaChangesAsync(cancellationToken);
+        await _subscruiberRepository.SavaChangesAsync(cancellationToken);
     }
 }
