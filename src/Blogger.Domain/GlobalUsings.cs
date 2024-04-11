@@ -5,3 +5,4 @@ global using System.Collections.Immutable;
 
 
 // solution
+global using Blogger.Domain.Common;
