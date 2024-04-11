@@ -1,10 +1,10 @@
-﻿using Blogger.Domain.UserAggregate;
+﻿using Blogger.Domain.ClientAggregate;
 
 namespace Blogger.Domain.ArticleAggregate;
 
 public class Comment(CommentId id) : EntityBase<CommentId>(id)
 {
-    public UserId UserId { get; init; }
+    public ClientId ClientId { get; init; }
 
     public DateTime CreatedOnUtc { get; set; }
 
@@ -12,12 +12,12 @@ public class Comment(CommentId id) : EntityBase<CommentId>(id)
 
     public bool IsApproved { get; set; }
 
-    public static Comment Create(UserId userId, string content) =>
+    public static Comment Create(ClientId clientId, string content) =>
         new Comment(CommentId.CreateUniqueId())
         {
             Content = content,
             CreatedOnUtc = DateTime.UtcNow,
-            UserId = userId,
+            ClientId = clientId,
             IsApproved = false
         };
 }
