@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.MakeComment;
+﻿namespace Blogger.Application.Usecases.MakeComment;
 
 public class NotValidClientException : Exception
 {
@@ -6,6 +6,6 @@ public class NotValidClientException : Exception
 
     public NotValidClientException() : base(_messages)
     {
-        
+
     }
 }

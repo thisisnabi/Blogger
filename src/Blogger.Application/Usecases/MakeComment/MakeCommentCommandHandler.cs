@@ -1,12 +1,12 @@
 ﻿using Blogger.Domain.ClientAggregate;
 
-namespace Blogger.Application.MakeComment;
+namespace Blogger.Application.Usecases.MakeComment;
 public class MakeCommentCommandHandler(
     IArticleRepository articleRepository,
     IClientService clientService) : IRequestHandler<MakeCommentCommand>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
-    private readonly IClientService _clientService= clientService;
+    private readonly IClientService _clientService = clientService;
     public async Task Handle(MakeCommentCommand request, CancellationToken cancellationToken)
     {
         if (!await _clientService.IsValid(request.ClientId))

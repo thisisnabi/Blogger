@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.MakeDraft;
+﻿namespace Blogger.Application.Usecases.MakeDraft;
 
 public class MakeDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<MakeDraftCommand, MakeDraftCommandResponse>
 {
