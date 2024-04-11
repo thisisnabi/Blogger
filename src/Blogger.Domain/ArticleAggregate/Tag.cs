@@ -13,5 +13,9 @@ public class Tag : ValueObject<Tag>
         yield return Value;
     }
 
-    public static Tag Create(string tagValue) => new(tagValue);
+    public static Tag Create(string tagValue)
+    {
+        // TODO: convert tags into the kebab case
+        return new(tagValue);
+    }
 }
