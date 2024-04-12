@@ -85,6 +85,12 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void AddComment(Comment comment)
     {
+        if (Status != ArticleStatus.Published)
+        {
+            // TODO: // add new costum exception in Article aggregate
+            throw new Exception("Invalid action in commenting status");
+        }
+
         _comments ??= new List<Comment>();  
         _comments.Add(comment);
     }
