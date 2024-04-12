@@ -1,5 +1,5 @@
 ﻿namespace Blogger.Domain.SubscriberAggregate;
 public interface ISubscriberService
 {
-    Task<bool> IsDuplicated(SubscriberId subscriberId);
+    Task<bool> IsDuplicated(SubscriberId subscriberId, CancellationToken cancellationToken);
 }
