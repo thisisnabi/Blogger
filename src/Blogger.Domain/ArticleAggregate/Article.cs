@@ -46,13 +46,13 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         };
     }
 
-    public void AddTags(string[] tags)
+    public void AddTags(IReadOnlyList<Tag> tags)
     {
         _tags ??= new List<Tag>();
 
         foreach (var tag in tags)
         {
-            _tags.Add(Tag.Create(tag));
+            _tags.Add(tag);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿namespace Blogger.Application.Usecases.MakeDraft;
 
-public class MakeDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<MakeDraftCommand, MakeDraftCommandResponse>
+public class MakeDraftCommandHandler(IArticleRepository articleRepository) 
+    : IRequestHandler<MakeDraftCommand, MakeDraftCommandResponse>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
 
