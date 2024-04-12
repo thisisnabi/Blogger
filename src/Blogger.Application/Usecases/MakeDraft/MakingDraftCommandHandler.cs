@@ -7,13 +7,13 @@ public class MakeDraftCommandHandler(IArticleRepository articleRepository)
 
     public async Task<MakeDraftCommandResponse> Handle(MakeDraftCommand request, CancellationToken cancellationToken)
     {
-        var article = Article.CreateDraft(request.title, request.body, request.summery);
-        article.AddTags(request.Tags);
+        var draft = Article.CreateDraft(request.title, request.body, request.summery);
+        draft.AddTags(request.Tags);
 
-        await _articleRepository.CreateAsync(article, cancellationToken);
+        await _articleRepository.CreateAsync(draft, cancellationToken);
 
         await _articleRepository.SaveChangesAsync(cancellationToken);
 
-        return new MakeDraftCommandResponse(article.Id);
+        return new MakeDraftCommandResponse(draft.Id);
     }
 }
