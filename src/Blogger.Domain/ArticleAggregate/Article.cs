@@ -3,19 +3,19 @@
 public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 {
 
-    private IList<Comment> _comments;
+    private IList<Comment> _comments = null!;
     public IReadOnlyCollection<Comment> Commnets => _comments.ToImmutableList();
 
-    private IList<Tag> _tags;
+    private IList<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
 
-    public Author Author { get; private set; }
+    public Author Author { get; private set; } = null!;
 
-    public string Title { get; private set; }
+    public string Title { get; private set; } = null!;
 
-    public string Body { get; private set; }
+    public string Body { get; private set; } = null!;
 
-    public string Summery { get; private set; }
+    public string Summery { get; private set; } = null!;
 
     public DateTime PublishedOnUtc { get; set; }
 
@@ -76,7 +76,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
     {
-        if(_tags is not null) 
+        if (_tags is not null)
             _tags.Clear();
 
         AddTags(tags);
@@ -97,7 +97,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
             throw new Exception("Invalid action in commenting status");
         }
 
-        _comments ??= new List<Comment>();  
+        _comments ??= new List<Comment>();
         _comments.Add(comment);
     }
 

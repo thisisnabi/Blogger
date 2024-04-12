@@ -6,7 +6,7 @@ public class MakeCommentCommandHandler(
     private readonly IArticleRepository _articleRepository = articleRepository;
     public async Task Handle(MakeCommentCommand request, CancellationToken cancellationToken)
     {
-        var article = await _articleRepository.GetArticleById(request.ArticleId, cancellationToken);
+        var article = await _articleRepository.GetArticleByIdAsync(request.ArticleId, cancellationToken);
 
         if (article is null) throw new NotFoundArticleException();
 

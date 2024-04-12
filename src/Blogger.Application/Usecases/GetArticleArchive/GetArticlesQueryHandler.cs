@@ -7,7 +7,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository)
 
     public async Task<IReadOnlyList<GetArticleArchiveQueryResponse>> Handle(GetArticleArchiveQuery request, CancellationToken cancellationToken)
     {
-        var articles = await _articleRepository.GetArchiveArticles(cancellationToken);
+        var articles = await _articleRepository.GetArchiveArticlesAsync(cancellationToken);
 
         // TODO: using mapster for mapping 
         var groupedArticles = articles.GroupBy(x => new { x.PublishedOnUtc.Year , x.PublishedOnUtc.Month})

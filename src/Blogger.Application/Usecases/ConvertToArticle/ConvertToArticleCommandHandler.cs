@@ -8,7 +8,7 @@ public class ConvertToArticleCommandHandler(IArticleRepository articleRepository
 
     public async Task Handle(ConvertToArticleCommand request, CancellationToken cancellationToken)
     {
-        var draft = await _articleRepository.GetDraftById(request.ArticleId, cancellationToken);
+        var draft = await _articleRepository.GetDraftByIdAsync(request.ArticleId, cancellationToken);
 
         if (draft is null) throw new NotFoundDraftException();
 

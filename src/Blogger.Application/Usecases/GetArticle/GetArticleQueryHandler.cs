@@ -8,7 +8,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository) : IRe
 
     public async Task<GetArticleQueryResponse> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var article = await _articleRepository.GetArticleById(request.articleId, cancellationToken);
+        var article = await _articleRepository.GetArticleByIdAsync(request.articleId, cancellationToken);
 
         if (article is null)
         {
