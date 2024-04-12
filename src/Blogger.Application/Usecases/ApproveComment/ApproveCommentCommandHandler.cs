@@ -5,7 +5,7 @@ public class ApproveCommentCommandHandler(IArticleRepository articleRepository) 
 
     public async Task Handle(ApproveCommentCommand request, CancellationToken cancellationToken)
     {
-        var article = await _articleRepository.GetArticleByCommentId(request.CommentId);
+        var article = await _articleRepository.GetArticleByCommentId(request.CommentId, cancellationToken);
 
         article.ApproveComment(request.CommentId);
 
