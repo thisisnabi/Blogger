@@ -58,9 +58,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     private static TimeSpan GetReadOnTimeSpan(string body)
     {
-        // The number of words divided by the average reading of words per minute
         var readingTime = Math.Round(((double)body.Split(" ").Length / 200) * 60);
-
         return TimeSpan.FromSeconds(readingTime);
     }
 
@@ -71,7 +69,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         Summery = summery;
     }
 
-    public void UpdateTags(string[] tags)
+    public void UpdateTags(IReadOnlyList<Tag> tags)
     {
         _tags ??= new List<Tag>();
         _tags.Clear();
