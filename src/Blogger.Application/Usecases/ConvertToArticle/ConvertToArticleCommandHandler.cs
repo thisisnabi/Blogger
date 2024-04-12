@@ -1,4 +1,4 @@
-﻿using Blogger.Application.UpdateDraft;
+﻿using Blogger.Application.Usecases.UpdateDraft;
 
 namespace Blogger.Application.Usecases.ConvertToArticle;
 
@@ -8,7 +8,7 @@ public class ConvertToArticleCommandHandler(IArticleRepository articleRepository
 
     public async Task Handle(ConvertToArticleCommand request, CancellationToken cancellationToken)
     {
-        var draft = _articleRepository.GetDraftById(request.ArticleId);
+        var draft = await _articleRepository.GetDraftById(request.ArticleId, cancellationToken);
 
         if (draft is null) throw new NotFoundDraftException();
 
