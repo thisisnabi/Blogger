@@ -10,7 +10,7 @@ public class SubscribeCommandHandler(ISubscruiberRepository subscruiberRepositor
     public async Task Handle(SubscribeCommand request, CancellationToken cancellationToken)
     {
 
-        if (await _subscriberService.IsDuplicated(request.SubscriberId))
+        if (await _subscriberService.IsDuplicated(request.SubscriberId, cancellationToken))
         {
             // TODO: Create custom exception on this feateur
             throw new Exception("Duplicated registration!");

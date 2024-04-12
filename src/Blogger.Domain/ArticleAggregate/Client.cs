@@ -24,9 +24,9 @@ public class Client : ValueObject<Client>
     {
         if (MailAddress.TryCreate(email, out _))
         {
-            throw new ArgumentException("Invalid email address");
+            return new Client(fullName, email);
         }
-
-        return new Client(fullName, email);
+        
+        throw new ArgumentException("Invalid email address");
     }
 }
