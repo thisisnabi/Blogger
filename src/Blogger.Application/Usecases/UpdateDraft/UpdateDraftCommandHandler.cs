@@ -6,7 +6,7 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
 
     public async Task Handle(UpdateDraftCommand request, CancellationToken cancellationToken)
     {
-        var draft = _articleRepository.GetDraftById(request.ArticleId);
+        var draft = await _articleRepository.GetDraftById(request.ArticleId);
 
         if (draft is null) throw new NotFoundDraftException();
 

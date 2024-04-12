@@ -71,8 +71,9 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
     {
-        _tags ??= new List<Tag>();
-        _tags.Clear();
+        if(_tags is not null) 
+            _tags.Clear();
+
         AddTags(tags);
     }
 
