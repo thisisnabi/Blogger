@@ -2,7 +2,7 @@
 
 namespace Blogger.Application.Usecases.GetArticle;
 
-public class GetArticleQueryHandler(IArticleRepository articleRepository) : IRequestHandler<GetArticleQuery, GetArticleQueryResponse>
+public class GetArticlesQueryHandler(IArticleRepository articleRepository) : IRequestHandler<GetArticleQuery, GetArticleQueryResponse>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
 
