@@ -1,6 +1,5 @@
-﻿using Blogger.Domain.ClientAggregate;
+﻿namespace Blogger.Application.Usecases.MakeComment;
 
-namespace Blogger.Application.Usecases.MakeComment;
 public class MakeCommentCommandHandler(
     IArticleRepository articleRepository) : IRequestHandler<MakeCommentCommand>
 {
