@@ -2,11 +2,11 @@
 
 public class Comment(CommentId id) : EntityBase<CommentId>(id)
 {
-    public Client ClientId { get; init; }
+    public Client Client { get; init; } = null!;
 
     public DateTime CreatedOnUtc { get; init; }
 
-    public string Content { get; init; }
+    public string Content { get; init; } = null!;
 
     public bool IsApproved { get; private set; }
 
@@ -15,7 +15,7 @@ public class Comment(CommentId id) : EntityBase<CommentId>(id)
         {
             Content = content,
             CreatedOnUtc = DateTime.UtcNow,
-            ClientId = client,
+            Client = client,
             IsApproved = false
         };
 
