@@ -17,9 +17,13 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public string Summery { get; private set; }
 
-    public TimeSpan? ReadOn { get; private set; }
+    public DateTime PublishedOnUtc { get; set; }
 
     public ArticleStatus Status { get; private set; }
+
+    public TimeSpan? ReadOn { get; private set; }
+
+    public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
 
     public static Article CreateDraft(string title, string body, string summery)
     {
@@ -42,7 +46,8 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
             Status = ArticleStatus.Published,
             Summery = summery,
             Title = title,
-            ReadOn = GetReadOnTimeSpan(body)
+            ReadOn = GetReadOnTimeSpan(body),
+            PublishedOnUtc = DateTime.UtcNow
         };
     }
 
@@ -81,6 +86,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
     {
         Status = ArticleStatus.Published;
         ReadOn = GetReadOnTimeSpan(Body);
+        PublishedOnUtc = DateTime.UtcNow;
     }
 
     public void AddComment(Comment comment)
