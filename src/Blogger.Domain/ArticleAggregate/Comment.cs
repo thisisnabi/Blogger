@@ -1,4 +1,6 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using System.Xml.Linq;
+
+namespace Blogger.Domain.ArticleAggregate;
 
 public class Comment(CommentId id) : EntityBase<CommentId>(id)
 {
@@ -10,6 +12,9 @@ public class Comment(CommentId id) : EntityBase<CommentId>(id)
 
     public bool IsApproved { get; private set; }
 
+    private IList<CommentReplay> _comments = null!;
+    public IReadOnlyCollection<CommentReplay> Comments => _comments.ToImmutableList();
+
     public static Comment Create(Client client, string content) =>
         new Comment(CommentId.CreateUniqueId())
         {
@@ -20,4 +25,16 @@ public class Comment(CommentId id) : EntityBase<CommentId>(id)
         };
 
     public void Approve() => IsApproved = true;
+
+    public void Replay(CommentReplay commentReplay)
+    {
+        if (!IsApproved)
+        {
+            // TODO: // add new costum exception in Article aggregate
+            throw new Exception("Invalid action in this status");
+        }
+
+        _comments ??= new List<CommentReplay>();
+        _comments.Add(commentReplay);
+    }
 }
