@@ -15,7 +15,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository)
         return articles.Select(x => new GetArticlesQueryResponse(
             x.Id,
             x.Title,
-            x.Summery,
+            x.Summary,
             x.PublishedOnUtc,
             x.GetReadOnInMinutes,
             string.Join(",", x.Tags)

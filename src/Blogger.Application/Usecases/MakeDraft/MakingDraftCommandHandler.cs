@@ -7,7 +7,7 @@ public class MakeDraftCommandHandler(IArticleRepository articleRepository)
 
     public async Task<MakeDraftCommandResponse> Handle(MakeDraftCommand request, CancellationToken cancellationToken)
     {
-        var draft = Article.CreateDraft(request.title, request.body, request.summery);
+        var draft = Article.CreateDraft(request.title, request.body, request.summary);
         draft.AddTags(request.Tags);
 
         await _articleRepository.CreateAsync(draft, cancellationToken);

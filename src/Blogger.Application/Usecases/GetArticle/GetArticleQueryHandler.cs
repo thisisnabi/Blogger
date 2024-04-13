@@ -19,7 +19,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository) : IRe
            article.Id,
            article.Title,
            article.Body,
-           article.Summery,
+           article.Summary,
            article.GetReadOnInMinutes,
            article.Author,
            article.PublishedOnUtc,

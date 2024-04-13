@@ -6,7 +6,7 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
 
     public async Task<CreateArticleCommandResponse> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
     {
-        var article = Article.CreateArticle(request.title, request.body, request.summery);
+        var article = Article.CreateArticle(request.title, request.body, request.summary);
         article.AddTags(request.Tags);
 
         await _articleRepository.CreateAsync(article, cancellationToken);
