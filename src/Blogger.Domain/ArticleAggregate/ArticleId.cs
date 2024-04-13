@@ -1,4 +1,5 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using Humanizer;
+namespace Blogger.Domain.ArticleAggregate;
 
 public class ArticleId : ValueObject<ArticleId>
 {
@@ -16,8 +17,7 @@ public class ArticleId : ValueObject<ArticleId>
 
     public static ArticleId CreateUniqueId(string title)
     {
-        // TODO generate kebab case from the title
-        var slug = title;
+        var slug = title.Kebaberize();
         return new(slug);
     }
 }
