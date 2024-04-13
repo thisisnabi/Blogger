@@ -4,7 +4,7 @@ public record GetArticleQueryResponse(
     ArticleId ArticleId,
     string Title, 
     string Body,
-    string Summery,
+    string Summary,
     int ReadOnMinutes,
     Author Author,
     DateTime PublishedOnUtc,

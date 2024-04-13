@@ -10,7 +10,7 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
 
         if (draft is null) throw new NotFoundDraftException();
 
-        draft.UpdateDraft(request.title, request.summery, request.body);
+        draft.UpdateDraft(request.title, request.summary, request.body);
 
         draft.UpdateTags(request.Tags);
 

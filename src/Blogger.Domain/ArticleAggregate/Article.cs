@@ -15,7 +15,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public string Body { get; private set; } = null!;
 
-    public string Summery { get; private set; } = null!;
+    public string Summary { get; private set; } = null!;
 
     public DateTime PublishedOnUtc { get; set; }
 
@@ -25,26 +25,26 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
 
-    public static Article CreateDraft(string title, string body, string summery)
+    public static Article CreateDraft(string title, string body, string summary)
     {
         return new Article(ArticleId.CreateUniqueId(title))
         {
             Author = Author.CreateDefaultAuthor(),
             Body = body,
             Status = ArticleStatus.Draft,
-            Summery = summery,
+            Summary = summary,
             Title = title,
         };
     }
 
-    public static Article CreateArticle(string title, string body, string summery)
+    public static Article CreateArticle(string title, string body, string summary)
     {
         return new Article(ArticleId.CreateUniqueId(title))
         {
             Author = Author.CreateDefaultAuthor(),
             Body = body,
             Status = ArticleStatus.Published,
-            Summery = summery,
+            Summary = summary,
             Title = title,
             ReadOn = GetReadOnTimeSpan(body),
             PublishedOnUtc = DateTime.UtcNow
@@ -67,11 +67,11 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         return TimeSpan.FromSeconds(readingTime);
     }
 
-    public void UpdateDraft(string title, string summery, string body)
+    public void UpdateDraft(string title, string summary, string body)
     {
         Title = title;
         Body = body;
-        Summery = summery;
+        Summary = summary;
     }
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
@@ -88,13 +88,16 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         ReadOn = GetReadOnTimeSpan(Body);
         PublishedOnUtc = DateTime.UtcNow;
     }
+    public void Remove()
+    {
+        Status = ArticleStatus.Deleted;
+    }
 
     public void AddComment(Comment comment)
     {
         if (Status != ArticleStatus.Published)
         {
-            // TODO: // add new costum exception in Article aggregate
-            throw new Exception("Invalid action in commenting status");
+            throw new InvalidArticleActionException(Status);
         }
 
         _comments ??= new List<Comment>();
@@ -105,8 +108,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
     {
         if (Status == ArticleStatus.Deleted)
         {
-            // TODO: // add new costum exception in Article aggregate
-            throw new Exception("Invalid action in deleted status");
+            throw new InvalidArticleActionException(Status);
         }
 
         var comment = _comments.First(x => x.Id == commentId);

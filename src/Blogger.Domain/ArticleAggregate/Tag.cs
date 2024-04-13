@@ -1,4 +1,6 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using Humanizer;
+
+namespace Blogger.Domain.ArticleAggregate;
 public class Tag : ValueObject<Tag>
 {
     public string Value { get; init; }
@@ -15,7 +17,7 @@ public class Tag : ValueObject<Tag>
 
     public static Tag Create(string tagValue)
     {
-        // TODO: convert tags into the kebab case
-        return new(tagValue);
+        var value = tagValue.Kebaberize();
+        return new(value);
     }
 }

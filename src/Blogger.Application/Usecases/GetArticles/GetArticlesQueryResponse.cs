@@ -3,7 +3,7 @@
 public record GetArticlesQueryResponse(
     ArticleId ArticleId,
     string Title, 
-    string Summery,
+    string Summary,
     DateTime PublishedOnUtc,
     int ReadOnMinutes,
     string Tags);
