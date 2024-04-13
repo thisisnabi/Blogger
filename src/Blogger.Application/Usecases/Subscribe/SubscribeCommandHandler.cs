@@ -10,8 +10,7 @@ public class SubscribeCommandHandler(ISubscruiberRepository subscruiberRepositor
 
         if (await _subscriberService.IsDuplicated(request.SubscriberId, cancellationToken))
         {
-            // TODO: Create custom exception on this feateur
-            throw new Exception("Duplicated registration!");
+            throw new DuplicateSubscribtionException();
         }
 
         var subscriber = Subscriber.Create(request.SubscriberId);
