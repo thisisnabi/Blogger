@@ -115,6 +115,18 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         var comment = _comments.First(x => x.Id == commentId);
         comment.Approve();
     }
+
+    public void ReplayComment(CommentId commentId, CommentReplay commentReplay)
+    {
+        if (Status == ArticleStatus.Deleted)
+        {
+            // TODO: // add new costum exception in Article aggregate
+            throw new Exception("Invalid action in deleted status");
+        }
+
+        var comment = _comments.First(x => x.Id == commentId);
+        comment.Replay(commentReplay);
+    }
 }
 
 public enum ArticleStatus
