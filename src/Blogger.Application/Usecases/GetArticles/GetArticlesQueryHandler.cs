@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using Mapster;
 
 namespace Blogger.Application.Usecases.GetArticles;
 
@@ -11,14 +11,6 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository)
     {
         var articles = await _articleRepository.GetLatestArticlesAsync(request.PageNumber, request.PageSize, cancellationToken);
 
-        // TODO: using mapster for mapping 
-        return articles.Select(x => new GetArticlesQueryResponse(
-            x.Id,
-            x.Title,
-            x.Summary,
-            x.PublishedOnUtc,
-            x.GetReadOnInMinutes,
-            string.Join(",", x.Tags)
-            )).ToImmutableArray();
+        return articles.Adapt<IReadOnlyList<GetArticlesQueryResponse>>();
     }
 }

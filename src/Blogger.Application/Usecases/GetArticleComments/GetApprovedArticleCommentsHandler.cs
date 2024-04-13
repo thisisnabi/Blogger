@@ -1,4 +1,6 @@
-﻿namespace Blogger.Application.Usecases.GetApprovedArticleComments;
+﻿using Mapster;
+
+namespace Blogger.Application.Usecases.GetApprovedArticleComments;
 
 public class GetApprovedArticleCommentsHandler(IArticleRepository articleRepository)
     : IRequestHandler<GetApprovedArticleCommentsQuery, IReadOnlyList<GetApprovedArticleCommentsResponse>>
@@ -8,9 +10,6 @@ public class GetApprovedArticleCommentsHandler(IArticleRepository articleReposit
     public async Task<IReadOnlyList<GetApprovedArticleCommentsResponse>> Handle(GetApprovedArticleCommentsQuery request, CancellationToken cancellationToken)
     {
         var comments = await _articleRepository.GetApprovedArticleCommentsAsync(request.ArticleId, cancellationToken);
-
-        // TODO: using mapster for mapping 
-        return comments.Select(x => new GetApprovedArticleCommentsResponse(x.Client.FullName, x.CreatedOnUtc, x.Content))
-                       .ToImmutableArray();
+        return comments.Adapt<IReadOnlyList<GetApprovedArticleCommentsResponse>>();
     }
 }
