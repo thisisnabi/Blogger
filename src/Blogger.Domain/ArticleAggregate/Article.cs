@@ -3,11 +3,11 @@
 public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 {
 
-    private IList<Comment> _comments = null!;
-    public IReadOnlyCollection<Comment> Commnets => (_comments ?? Enumerable.Empty<Comment>()).ToImmutableList();
+    private readonly IList<Comment> _comments = Enumerable.Empty<Comment>().ToList();
+    public IReadOnlyCollection<Comment> Commnets => _comments.ToImmutableList();
 
-    private IList<Tag> _tags = null!;
-    public IReadOnlyCollection<Tag> Tags => (_tags ?? Enumerable.Empty<Tag>()).ToImmutableList();
+    private readonly IList<Tag> _tags = Enumerable.Empty<Tag>().ToList();
+    public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
 
     public Author Author { get; private set; } = null!;
 
@@ -54,7 +54,6 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void AddTags(IReadOnlyList<Tag> tags)
     {
-        _tags ??= new List<Tag>(tags.Count);
 
         foreach (var tag in tags)
         {
@@ -101,7 +100,6 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
             throw new InvalidArticleActionException(Status);
         }
 
-        _comments ??= new List<Comment>(1);
         _comments.Add(comment);
     }
 
