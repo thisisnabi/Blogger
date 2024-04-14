@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Domain.ArticleAggregate;
 
-public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
+public class Article : AggregateRootBase<ArticleId>
 {
 
     private IList<Comment> _comments = null!;
@@ -8,6 +8,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     private IList<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
+
 
     public Author Author { get; private set; } = null!;
 
@@ -24,6 +25,12 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
     public TimeSpan? ReadOn { get; private set; }
 
     public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
+
+    public Article(ArticleId slug):base(slug)
+    {
+        _tags = [];
+        _comments = [];
+    }
 
     public static Article CreateDraft(string title, string body, string summary)
     {
@@ -53,8 +60,6 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public void AddTags(IReadOnlyList<Tag> tags)
     {
-        _tags ??= new List<Tag>();
-
         foreach (var tag in tags)
         {
             _tags.Add(tag);
@@ -99,8 +104,6 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
         {
             throw new InvalidArticleActionException(Status);
         }
-
-        _comments ??= new List<Comment>();
         _comments.Add(comment);
     }
 
