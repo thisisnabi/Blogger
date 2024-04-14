@@ -1,7 +1,6 @@
 ﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
 using Blogger.Application.Usecases.GetArticleArchive;
 using Blogger.Application.Usecases.GetArticles;
-using Mapster;
 
 namespace Blogger.Application;
 

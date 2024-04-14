@@ -1,24 +1,16 @@
-﻿using Blogger.Application;
-using Blogger.Application.Usecases.GetArticles;
+﻿using Blogger.Application.Usecases.GetArticles;
 using Blogger.Domain.ArticleAggregate;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace Blogger.UnitTests.Usaceses.GetArticles;
 
-public class GetArticlesQueryHandlerTests
+public class GetArticlesQueryHandlerTests : IClassFixture<TestFixture>
 {
-    public GetArticlesQueryHandlerTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        var configuration = new ConfigurationBuilder().Build();
-        serviceCollection.ConfigureApplicationLayer(configuration);
-        serviceCollection.BuildServiceProvider();
-    }
+
     [Fact]
     public async void GetArticleQuery_Should_Return_ImmutableArray_QueryResponse()
     {
+
         //Arrange
         var mockRepository = new Mock<IArticleRepository>();
         var client = Client.Create("fullname", "a@a.com");

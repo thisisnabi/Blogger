@@ -1,21 +1,12 @@
-﻿using Blogger.Application;
-using Blogger.Application.Usecases.GetArticleArchive;
+﻿using Blogger.Application.Usecases.GetArticleArchive;
 using Blogger.Domain.ArticleAggregate;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace Blogger.UnitTests.Usaceses.GetArticleArchive;
 
-public class GetArticlesQueryHandlerTests
+public class GetArticlesQueryHandlerTests : IClassFixture<TestFixture>
 {
-    public GetArticlesQueryHandlerTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        var configuration = new ConfigurationBuilder().Build();
-        serviceCollection.ConfigureApplicationLayer(configuration);
-        serviceCollection.BuildServiceProvider();
-    }
+
     [Fact]
     public async void ArticleArchiveQuery_Should_Return_ImmutableArray_QueryResponse()
     {

@@ -1,21 +1,12 @@
-﻿using Blogger.Application;
-using Blogger.Application.Usecases.GetApprovedArticleComments;
+﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
 using Blogger.Domain.ArticleAggregate;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace Blogger.UnitTests.Usaceses.GetArticleComments;
 
-public class GetApprovedArticleCommentsHandlerTests
+public class GetApprovedArticleCommentsHandlerTests : IClassFixture<TestFixture>
 {
-    public GetApprovedArticleCommentsHandlerTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        var configuration = new ConfigurationBuilder().Build();
-        serviceCollection.ConfigureApplicationLayer(configuration);
-        serviceCollection.BuildServiceProvider();
-    }
+
     [Fact]
     public async void ApproveArticleCommentQuery_Should_Return_ImmutableArray_QueryResponse()
     {

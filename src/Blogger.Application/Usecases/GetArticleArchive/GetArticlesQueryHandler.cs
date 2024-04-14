@@ -1,5 +1,4 @@
-﻿using Mapster;
-
+﻿
 namespace Blogger.Application.Usecases.GetArticleArchive;
 
 public class GetArticlesQueryHandler(IArticleRepository articleRepository)
