@@ -14,6 +14,6 @@ public class ArticleIdTests
     {
         var articleId = ArticleId.CreateUniqueId(actual);
 
-        articleId.Value.Should().Be(expected);
+        articleId.Slug.Should().Be(expected);
     }
 }

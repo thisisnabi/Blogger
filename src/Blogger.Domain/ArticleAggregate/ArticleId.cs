@@ -3,16 +3,16 @@ namespace Blogger.Domain.ArticleAggregate;
 
 public class ArticleId : ValueObject<ArticleId>
 {
-    public string Value { get; set; }
+    public string Slug { get; set; }
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
-        yield return Value;
+        yield return Slug;
     }
 
     private ArticleId(string slug)
     {
-        Value = slug;
+        Slug = slug;
     }
 
     public static ArticleId CreateUniqueId(string title)
