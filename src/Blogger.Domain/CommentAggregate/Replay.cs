@@ -1,22 +1,23 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿namespace Blogger.Domain.CommentAggregate;
 
-public class CommentReplay(CommentReplayId id) : EntityBase<CommentReplayId>(id)
+public class Replay(ReplayId id) : EntityBase<ReplayId>(id)
 {
     public Client Client { get; init; } = null!;
-
+    public ApproveLink ApproveLink { get; init; } = null!;
     public DateTime CreatedOnUtc { get; init; }
 
     public string Content { get; init; } = null!;
 
     public bool IsApproved { get; private set; }
 
-    public static CommentReplay Create(Client client, string content) =>
-        new CommentReplay(CommentReplayId.CreateUniqueId())
+    public static Replay Create(Client client, string content, ApproveLink approveLink) =>
+        new Replay(ReplayId.CreateUniqueId())
         {
             Content = content,
             CreatedOnUtc = DateTime.UtcNow,
             Client = client,
-            IsApproved = false
+            IsApproved = false,
+            ApproveLink = approveLink
         };
 
     public void Approve() => IsApproved = true;

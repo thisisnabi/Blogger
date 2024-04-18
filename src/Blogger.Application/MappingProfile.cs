@@ -1,6 +1,7 @@
 ﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
 using Blogger.Application.Usecases.GetArticleArchive;
 using Blogger.Application.Usecases.GetArticles;
+using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.Application;
 

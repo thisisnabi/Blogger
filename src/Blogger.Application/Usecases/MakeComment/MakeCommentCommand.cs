@@ -1,3 +1,5 @@
-﻿namespace Blogger.Application.Usecases.MakeComment;
+﻿using Blogger.Domain.CommentAggregate;
 
-public record MakeCommentCommand(ArticleId ArticleId, Client Client, string content) : IRequest;
+namespace Blogger.Application.Usecases.MakeComment;
+
+public record MakeCommentCommand(ArticleId ArticleId, Client Client, string content) : IRequest<MakeCommentCommandResponse>;

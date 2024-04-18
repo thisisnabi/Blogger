@@ -1,14 +1,17 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Domain.CommentAggregate;
 
-public class Article : AggregateRootBase<ArticleId>
+namespace Blogger.Domain.ArticleAggregate;
+
+public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 {
+    //_tags = [];
+    //_commentIds = [];
 
-    private IList<Comment> _comments = null!;
-    public IReadOnlyCollection<Comment> Commnets => _comments.ToImmutableList();
+    private IList<CommentId> _commentIds = null!;
+    public IReadOnlyCollection<CommentId> CommnetIds => _commentIds.ToImmutableList();
 
     private IList<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
-
 
     public Author Author { get; private set; } = null!;
 
@@ -25,12 +28,6 @@ public class Article : AggregateRootBase<ArticleId>
     public TimeSpan? ReadOn { get; private set; }
 
     public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
-
-    public Article(ArticleId slug):base(slug)
-    {
-        _tags = [];
-        _comments = [];
-    }
 
     public static Article CreateDraft(string title, string body, string summary)
     {
@@ -96,38 +93,6 @@ public class Article : AggregateRootBase<ArticleId>
     public void Remove()
     {
         Status = ArticleStatus.Deleted;
-    }
-
-    public void AddComment(Comment comment)
-    {
-        if (Status != ArticleStatus.Published)
-        {
-            throw new InvalidArticleActionException(Status);
-        }
-        _comments.Add(comment);
-    }
-
-    public void ApproveComment(CommentId commentId)
-    {
-        if (Status == ArticleStatus.Deleted)
-        {
-            throw new InvalidArticleActionException(Status);
-        }
-
-        var comment = _comments.First(x => x.Id == commentId);
-        comment.Approve();
-    }
-
-    public void ReplayComment(CommentId commentId, CommentReplay commentReplay)
-    {
-        if (Status == ArticleStatus.Deleted)
-        {
-            // TODO: // add new costum exception in Article aggregate
-            throw new Exception("Invalid action in deleted status");
-        }
-
-        var comment = _comments.First(x => x.Id == commentId);
-        comment.Replay(commentReplay);
     }
 }
 

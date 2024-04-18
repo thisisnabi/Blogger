@@ -10,7 +10,6 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
         article.AddTags(request.Tags);
 
         await _articleRepository.CreateAsync(article, cancellationToken);
-
         await _articleRepository.SaveChangesAsync(cancellationToken);
 
         return new CreateArticleCommandResponse(article.Id);

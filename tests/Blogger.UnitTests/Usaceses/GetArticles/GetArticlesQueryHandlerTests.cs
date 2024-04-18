@@ -1,5 +1,6 @@
 ﻿using Blogger.Application.Usecases.GetArticles;
 using Blogger.Domain.ArticleAggregate;
+using Blogger.Domain.CommentAggregate;
 using Moq;
 
 namespace Blogger.UnitTests.Usaceses.GetArticles;

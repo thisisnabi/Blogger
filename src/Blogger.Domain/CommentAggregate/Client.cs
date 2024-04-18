@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace Blogger.Domain.ArticleAggregate;
+namespace Blogger.Domain.CommentAggregate;
 
 public class Client : ValueObject<Client>
 {
@@ -26,7 +26,7 @@ public class Client : ValueObject<Client>
         {
             return new Client(fullName, email);
         }
-        
+
         throw new ArgumentException("Invalid email address");
     }
 }

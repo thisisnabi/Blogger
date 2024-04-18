@@ -1,5 +1,6 @@
 ﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
 using Blogger.Domain.ArticleAggregate;
+using Blogger.Domain.CommentAggregate;
 using Moq;
 
 namespace Blogger.UnitTests.Usaceses.GetArticleComments;

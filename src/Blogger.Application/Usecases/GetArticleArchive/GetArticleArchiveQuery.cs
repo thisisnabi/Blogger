@@ -1,3 +1,3 @@
 ﻿namespace Blogger.Application.Usecases.GetArticleArchive;
-public record GetArticleArchiveQuery(int PageNumber = 1, int PageSize = 10) 
+public record GetArticleArchiveQuery() 
     : IRequest<IReadOnlyList<GetArticleArchiveQueryResponse>>;

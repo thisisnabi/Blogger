@@ -11,7 +11,6 @@ public class MakeDraftCommandHandler(IArticleRepository articleRepository)
         draft.AddTags(request.Tags);
 
         await _articleRepository.CreateAsync(draft, cancellationToken);
-
         await _articleRepository.SaveChangesAsync(cancellationToken);
 
         return new MakeDraftCommandResponse(draft.Id);

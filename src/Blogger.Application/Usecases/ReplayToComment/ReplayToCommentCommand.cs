@@ -1,3 +1,5 @@
-﻿namespace Blogger.Application.Usecases.ReplayToComment;
+﻿using Blogger.Domain.CommentAggregate;
 
-public record ReplayToCommentCommand(CommentId CommentId, Client Client, string content) : IRequest;
+namespace Blogger.Application.Usecases.ReplayToComment;
+
+public record ReplayToCommentCommand(CommentId CommentId, Client Client, string content) : IRequest<ReplayToCommentCommandResponse>;

@@ -1,20 +1,30 @@
-﻿using Blogger.Application.Usecases.MakeComment;
+﻿using Blogger.Application.Common;
+using Blogger.Application.Services;
+using Blogger.Application.Usecases.MakeComment;
+using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.Application.Usecases.ReplayToComment;
 
 public class ReplayToCommentCommandHandler(
-    IArticleRepository articleRepository) : IRequestHandler<ReplayToCommentCommand>
+    ICommentRepository commentRepository,
+    ILinkGenerator linkGenerator) : IRequestHandler<ReplayToCommentCommand, ReplayToCommentCommandResponse>
 {
-    private readonly IArticleRepository _articleRepository = articleRepository;
-    public async Task Handle(ReplayToCommentCommand request, CancellationToken cancellationToken)
+    private readonly ICommentRepository _commentRepository = commentRepository;
+    private readonly ILinkGenerator _linkGenerator = linkGenerator;
+
+    public async Task<ReplayToCommentCommandResponse> Handle(ReplayToCommentCommand request, CancellationToken cancellationToken)
     {
-        var article = await _articleRepository.GetArticleByCommentIdAsync(request.CommentId, cancellationToken);
+        var comment = await _commentRepository.GetCommentByIdAsync(request.CommentId, cancellationToken);
 
-        if (article is null) throw new NotFoundArticleException();
+        // change into the NotFoundCommentException
+        if (comment is null) throw new NotFoundArticleException();
 
-        var replayComment = CommentReplay.Create(request.Client, request.content);
-        article.ReplayComment(request.CommentId, replayComment);
+        var link = _linkGenerator.Generate();
+        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+    
+        var replay = comment.ReplayComment(request.Client, request.content, approveLink);
 
-        await _articleRepository.SaveChangesAsync(cancellationToken);
+        await _commentRepository.SaveChangesAsync(cancellationToken);
+        return new ReplayToCommentCommandResponse(replay.Id);
     }
 }
