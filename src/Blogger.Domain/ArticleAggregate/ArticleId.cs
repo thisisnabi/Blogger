@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+
 namespace Blogger.Domain.ArticleAggregate;
 
 public class ArticleId : ValueObject<ArticleId>
@@ -20,4 +21,6 @@ public class ArticleId : ValueObject<ArticleId>
         var slug = title.Kebaberize();
         return new(slug);
     }
+
+    public static ArticleId Create(string value) => new(value);
 }

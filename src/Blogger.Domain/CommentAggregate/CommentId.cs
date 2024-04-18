@@ -14,5 +14,7 @@ public class CommentId : ValueObject<CommentId>
         Value = id;
     }
 
-    public static CommentId CreateUniqueId() => new CommentId(Guid.NewGuid());
+    public static CommentId CreateUniqueId() => new(Guid.NewGuid());
+
+    public static CommentId Create(Guid value) => new(value);
 }

@@ -25,4 +25,7 @@ public class SubscriberId : ValueObject<SubscriberId>
 
         throw new ArgumentException("Invalid email address");
     }
+
+    public static SubscriberId Create(string value) =>
+        new SubscriberId(value);
 }
