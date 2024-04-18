@@ -1,10 +1,13 @@
 using Blogger.APIs;
 using Blogger.Application;
+using Blogger.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureApplicationLayer(builder.Configuration);
 builder.Services.ConfigurePresentationLayer(builder.Configuration);
+builder.Services.ConfigureInfrastructureLayer(builder.Configuration);
+
 
 builder.Services.AddControllers();
 

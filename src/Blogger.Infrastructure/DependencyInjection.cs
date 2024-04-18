@@ -10,16 +10,16 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Blogger.Infrastructure;
 public static class DependencyInjection
 {
-    public static IServiceCollection ConfigureApplicationLayer(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<BloggerDbContext>(options => {
 
             options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefualtConnectionStringName));
         });
 
-        services.AddScoped<IArticleRepository, ArticleRepository>();
-        services.AddScoped<ICommentRepository, CommentRepository>();
-        services.AddScoped<ISubscruiberRepository, SubscriberRepository>();
+        services.AddTransient<IArticleRepository, ArticleRepository>();
+        services.AddTransient<ICommentRepository, CommentRepository>();
+        services.AddTransient<ISubscruiberRepository, SubscriberRepository>();
 
         return services;
     }

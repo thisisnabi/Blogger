@@ -7,8 +7,8 @@ public static class DependencyInjection
     public static IServiceCollection ConfigureApplicationLayer(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<ILinkGenerator, LinkGenerator>();
-        services.AddSingleton<IArticleService, ArticleService>();
-        services.AddSingleton<ISubscriberService, SubscriberService>();
+        services.AddTransient<IArticleService, ArticleService>();
+        services.AddTransient<ISubscriberService, SubscriberService>();
 
         var application = typeof(IAssemblyMarker);
 
