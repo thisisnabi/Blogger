@@ -18,6 +18,11 @@ public class ApproveLink : ValueObject<Client>
         ExpirationOnUtc = expairedOn;
     }
 
+    private ApproveLink()
+    {
+        
+    }
+
     public static ApproveLink Create(string approvedId, DateTime expairedOn) =>
          new ApproveLink(approvedId, expairedOn);
 }

@@ -2,17 +2,20 @@
 
 public class ReplayId : ValueObject<ReplayId>
 {
-    public Guid Value { get; set; }
+    public Guid Value { get; init; }
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
         yield return Value;
     }
-
-    private ReplayId(Guid id)
+     
+    public static ReplayId CreateUniqueId() => new ReplayId
     {
-        Value = id;
-    }
+        Value = Guid.NewGuid()
+    };
 
-    public static ReplayId CreateUniqueId() => new(Guid.NewGuid());
+    public static ReplayId Create(Guid value) => new ReplayId
+    {
+        Value = value
+    };
 }

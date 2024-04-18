@@ -22,7 +22,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository) : IRe
            article.Summary,
            article.GetReadOnInMinutes,
            article.Author,
-           article.PublishedOnUtc,
+           article.PublishedOnUtc.Value,
            article.Tags);
     }
 }

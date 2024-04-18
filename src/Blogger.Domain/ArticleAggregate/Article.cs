@@ -2,10 +2,17 @@
 
 namespace Blogger.Domain.ArticleAggregate;
 
-public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
+public class Article : AggregateRootBase<ArticleId>
 {
-    //_tags = [];
-    //_commentIds = [];
+
+    public Article(ArticleId slug):base(slug)
+    {  
+        _tags = [];
+        _commentIds = [];
+    }
+
+    private Article()  : this(null) { }
+
 
     private IList<CommentId> _commentIds = null!;
     public IReadOnlyCollection<CommentId> CommnetIds => _commentIds.ToImmutableList();
@@ -21,7 +28,7 @@ public class Article(ArticleId slug) : AggregateRootBase<ArticleId>(slug)
 
     public string Summary { get; private set; } = null!;
 
-    public DateTime PublishedOnUtc { get; set; }
+    public DateTime? PublishedOnUtc { get; set; }
 
     public ArticleStatus Status { get; private set; }
 

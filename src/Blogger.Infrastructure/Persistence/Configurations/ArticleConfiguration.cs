@@ -45,20 +45,27 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
         {
             ab.Property(x => x.Avatar)
                        .IsRequired()
+                       .HasMaxLength(1024)
                        .HasColumnName(BloggerDbContextSchema.Article.AuthorAvatar);
 
             ab.Property(x => x.JobTitle)
                         .IsRequired()
+                        .HasMaxLength(40)
                         .HasColumnName(BloggerDbContextSchema.Article.AuthorJobTitle);
 
             ab.Property(x => x.FullName)
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnName(BloggerDbContextSchema.Article.AuthorFullName);
         });
          
         builder.OwnsMany(x => x.CommnetIds, cb =>
         {
             cb.ToTable(BloggerDbContextSchema.Article.CommentIdTableName);
+
+            cb.Property(x => x.Value)
+                .HasColumnName(BloggerDbContextSchema.Comment.ForeignKey);
+
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(x => x.CommnetIds)

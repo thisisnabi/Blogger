@@ -2,8 +2,17 @@
 
 namespace Blogger.Domain.CommentAggregate;
 
-public class Comment(CommentId id) : AggregateRootBase<CommentId>(id)
+public class Comment: AggregateRootBase<CommentId>
 {
+
+    public Comment(CommentId id):base(id)
+    {
+        _replaies = [];
+    }
+    public Comment() : base(null)
+    {
+    }
+
     public Client Client { get; init; } = null!;
     public ApproveLink ApproveLink { get; init; } = null!;
     public ArticleId ArticleId{ get; init; } = null!;
@@ -14,7 +23,7 @@ public class Comment(CommentId id) : AggregateRootBase<CommentId>(id)
 
     public bool IsApproved { get; private set; }
 
-    private IList<Replay> _replaies = null!;
+    private IList<Replay> _replaies;
     public IReadOnlyCollection<Replay> Replaies => _replaies.ToImmutableList();
 
     public static Comment Create(ArticleId articleId,  Client client, string content, ApproveLink approveLink) =>

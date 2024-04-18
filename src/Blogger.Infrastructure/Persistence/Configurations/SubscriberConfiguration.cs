@@ -23,6 +23,10 @@ internal class SubscriberConfiguration : IEntityTypeConfiguration<Subscriber>
         builder.OwnsMany(x => x.ArticleIds, sb =>
         {
             sb.ToTable(BloggerDbContextSchema.Subscriber.ArticleIdTableName);
+
+            sb.Property(x => x.Slug)
+                .HasColumnName(BloggerDbContextSchema.Article.ForeignKey);
+
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(x => x.ArticleIds)

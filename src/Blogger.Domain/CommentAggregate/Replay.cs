@@ -2,6 +2,11 @@
 
 public class Replay(ReplayId id) : EntityBase<ReplayId>(id)
 {
+    public Replay() : this(null)
+    {
+        
+    }
+
     public Client Client { get; init; } = null!;
     public ApproveLink ApproveLink { get; init; } = null!;
     public DateTime CreatedOnUtc { get; init; }

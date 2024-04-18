@@ -2,19 +2,19 @@
 
 public class CommentId : ValueObject<CommentId>
 {
-    public Guid Value { get; set; }
+    public Guid Value { get; init; }
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
         yield return Value;
     }
+    public static CommentId CreateUniqueId() => new CommentId {
 
-    private CommentId(Guid id)
+        Value = Guid.NewGuid()
+    };
+
+    public static CommentId Create(Guid value) => new CommentId
     {
-        Value = id;
-    }
-
-    public static CommentId CreateUniqueId() => new(Guid.NewGuid());
-
-    public static CommentId Create(Guid value) => new(value);
+        Value = value
+    };
 }

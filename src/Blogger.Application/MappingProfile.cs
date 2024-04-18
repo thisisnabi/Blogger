@@ -26,7 +26,7 @@ internal class MappingProfile : IRegister
     {
         return new GetArticleArchiveQueryResponse(src.Key.Year,
                                                   src.Key.Month,
-                                                  src.Select(m => new ArticleOnArchive(m.Id, m.Title, m.PublishedOnUtc.Day))
+                                                  src.Select(m => new ArticleOnArchive(m.Id, m.Title, m.PublishedOnUtc.Value.Day))
                                                     .ToImmutableArray());
     }
     private IReadOnlyList<GetApprovedArticleCommentsResponse> MapCommentToCommentResponse(IReadOnlyList<Comment>? src)
@@ -40,7 +40,7 @@ internal class MappingProfile : IRegister
             x.Id,
             x.Title,
             x.Summary,
-            x.PublishedOnUtc,
+            x.PublishedOnUtc.Value,
             x.GetReadOnInMinutes,
             string.Join(",", x.Tags)
             )).ToImmutableArray();

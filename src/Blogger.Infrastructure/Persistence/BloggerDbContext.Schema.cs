@@ -2,6 +2,7 @@
 public static class BloggerDbContextSchema
 {
     public const string DefualtSchema = "blog";
+    public const string DefualtConnectionStringName = "SvcDbContext";
 
     public static class Subscriber 
     {
@@ -14,6 +15,7 @@ public static class BloggerDbContextSchema
     public static class Article
     { 
         public const string TableName = "Articles";
+        public const string ForeignKey = "ArticleId";
         public const string CommentIdTableName = "ArticleCommentIds";
         public const string TagTableName = "Tags";
         public const string CommentIdBackendField = "_commentIds";
@@ -27,6 +29,7 @@ public static class BloggerDbContextSchema
     public static class Comment
     { 
         public const string TableName = "Comments";
+        public const string ForeignKey = "CommentId";
         public const string ReplaiesTableName = "Replaies";
         public const string ReplaiesBackendField = "_replaies";
         public const string ClientFullName = "Client_FullName";
