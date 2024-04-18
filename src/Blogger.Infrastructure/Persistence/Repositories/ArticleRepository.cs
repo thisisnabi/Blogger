@@ -1,46 +1,46 @@
 ﻿using Blogger.Domain.ArticleAggregate;
-using Blogger.Domain.CommentAggregate;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Immutable;
 
 namespace Blogger.Infrastructure.Persistence.Repositories;
-internal class ArticleRepository : IArticleRepository
+internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
-    public Task CreateAsync(Article article, CancellationToken cancellationToken)
+    public async Task CreateAsync(Article article, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await bloggerDbContext.Articles.AddAsync(article, cancellationToken);
     }
 
-    public Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
+                                           .ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
     }
 
-    public Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken)
+    public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return bloggerDbContext.Articles
+                                    .Where(x => x.Status == ArticleStatus.Published)
+                                    .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
     }
 
-    public Task<Article> GetArticleByCommentIdAsync(CommentId commentId, CancellationToken cancellationToken)
+    public Task<Article?> GetDraftByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return bloggerDbContext.Articles
+                                    .Where(x => x.Status == ArticleStatus.Draft)
+                                    .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
     }
 
-    public Task<Article> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var que = await bloggerDbContext.Articles.ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
     }
 
-    public Task<Article> GetDraftByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task SaveChangesAsync(CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
 }

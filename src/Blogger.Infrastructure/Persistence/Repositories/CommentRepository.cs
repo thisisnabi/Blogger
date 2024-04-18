@@ -1,25 +1,37 @@
-﻿using Blogger.Domain.CommentAggregate;
+﻿using Blogger.Domain.ArticleAggregate;
+using Blogger.Domain.CommentAggregate;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Immutable;
 
 namespace Blogger.Infrastructure.Persistence.Repositories;
-internal class CommentRepository : ICommentRepository
+internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepository
 {
-    public Task CreateAsync(Comment comment, CancellationToken cancellationToken)
+    public async Task CreateAsync(Comment comment, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await bloggerDbContext.Comments.AddAsync(comment, cancellationToken);
     }
 
-    public Task<Comment> GetCommentByApprovedLinkAsync(ApproveLink approveLink, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+       var que = await bloggerDbContext.Comments.Where(x => x.ArticleId == articleId)
+                                                .Where(c => c.IsApproved)
+                                                .ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
     }
 
-    public Task<Comment> GetCommentByIdAsync(CommentId commentId, CancellationToken cancellationToken)
+    public Task<Comment?> GetCommentByApprovedLinkAsync(ApproveLink approveLink, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.ApproveLink == approveLink, cancellationToken);
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    public Task<Comment?> GetCommentByIdAsync(CommentId commentId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
+    }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
 }

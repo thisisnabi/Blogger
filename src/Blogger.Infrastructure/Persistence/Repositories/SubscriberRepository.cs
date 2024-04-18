@@ -1,23 +1,22 @@
-﻿using Blogger.Application.Services;
-using Blogger.Domain.SubscriberAggregate;
+﻿using Blogger.Domain.SubscriberAggregate;
 
 namespace Blogger.Infrastructure.Persistence.Repositories;
-internal class SubscriberRepository : ISubscruiberRepository
+internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscruiberRepository
 {
-    private static List<Subscriber> Subscribers = new List<Subscriber>();
 
-    public Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken)
+    public async Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await bloggerDbContext.Subscribers.AddAsync(subscriber, cancellationToken);
     }
 
-    public Task<Subscriber> FindById(SubscriberId subscriberId)
+    public async Task<Subscriber> FindById(SubscriberId subscriberId)
     {
-        throw new NotImplementedException();
+        var subscriber = await bloggerDbContext.Subscribers.FindAsync(subscriberId);
+        return subscriber;
     }
 
-    public Task SavaChangesAsync(CancellationToken cancellationToken)
+    public async Task SavaChangesAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
 }
