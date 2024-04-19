@@ -1,21 +1,21 @@
 ﻿using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.Application.Usecases.ApproveComment;
-public class ApproveCommentCommandHandler(ICommentRepository commentRepository) : IRequestHandler<ApproveCommentCommand>
+public class ApproveCommentCommandHandler(ICommentRepository commentRepository) : IRequestHandler<ApproveCommentCommand, ApproveCommentCommandResponse>
 {
     private readonly ICommentRepository _commentRepository = commentRepository;
 
-    public async Task Handle(ApproveCommentCommand request, CancellationToken cancellationToken)
+    public async Task<ApproveCommentCommandResponse> Handle(ApproveCommentCommand request, CancellationToken cancellationToken)
     {
-        var comment = await _commentRepository.GetCommentByApprovedLinkAsync(request.ApproveLink, cancellationToken);
-
+        var comment = await _commentRepository.GetCommentByApproveLinkAsync(request.Link, cancellationToken);
         if (comment is null)
         {
-            // to do use custom exception
-            throw new Exception("Invalid approved linl///");
+            throw new InvalidApprovalLinkException();
         }
  
         comment.Approve();
         await _commentRepository.SaveChangesAsync(cancellationToken);
+
+        return new ApproveCommentCommandResponse(comment.ArticleId);
     }
 }

@@ -1,4 +1,3 @@
-﻿using Blogger.Domain.CommentAggregate;
+﻿namespace Blogger.Application.Usecases.ApproveComment;
 
-namespace Blogger.Application.Usecases.ApproveComment;
-public record ApproveCommentCommand(ApproveLink ApproveLink) : IRequest;
+public record ApproveCommentCommand(string Link) : IRequest<ApproveCommentCommandResponse>;
