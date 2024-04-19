@@ -1,4 +1,4 @@
 ﻿namespace Blogger.Application.Usecases.MakeDraft;
 
-public record MakeDraftCommand(string title, string body, string summary, IReadOnlyList<Tag> Tags) 
+public record MakeDraftCommand(string Title, string Body, string Summary, IReadOnlyList<Tag> Tags) 
     : IRequest<MakeDraftCommandResponse>;

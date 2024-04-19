@@ -32,7 +32,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
                .IsUnicode(true);
 
         builder.Property(x => x.PublishedOnUtc)
-                .IsRequired(false);
+                .IsRequired(true);
 
         builder.Property(x => x.ReadOn)
                 .IsRequired(false);

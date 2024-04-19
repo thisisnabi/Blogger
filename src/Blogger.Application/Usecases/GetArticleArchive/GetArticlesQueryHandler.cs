@@ -10,7 +10,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository)
     {
         var articles = await _articleRepository.GetArchiveArticlesAsync(cancellationToken);
 
-        var groupedArticles = articles.GroupBy(x => new { x.PublishedOnUtc.Value.Year, x.PublishedOnUtc.Value.Month })
+        var groupedArticles = articles.GroupBy(x => new { x.PublishedOnUtc.Year, x.PublishedOnUtc.Month })
                                       .Select(z => z.Adapt<GetArticleArchiveQueryResponse>())
                                       .ToImmutableArray();
 

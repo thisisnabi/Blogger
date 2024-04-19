@@ -28,7 +28,7 @@ public class Article : AggregateRootBase<ArticleId>
 
     public string Summary { get; private set; } = null!;
 
-    public DateTime? PublishedOnUtc { get; set; }
+    public DateTime PublishedOnUtc { get; set; } = DateTime.MinValue;
 
     public ArticleStatus Status { get; private set; }
 

@@ -2,6 +2,7 @@
 global using System.Net;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Reflection;
+global using System.Collections.Immutable;
 
 // third-party
 global using Mapster;
@@ -16,7 +17,8 @@ global using Blogger.APIs.Filters;
 global using Blogger.Infrastructure;
 global using Blogger.Application.Usecases.CreateArticle;
 global using Blogger.APIs.Abstractions;
+global using Blogger.Domain.ArticleAggregate;
 global using Blogger.APIs.Endpoints.GetPopularTags;
 global using Blogger.Application.Usecases.GetPopularTags;
-
+global using Blogger.Application.Usecases.MakeDraft;
 

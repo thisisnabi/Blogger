@@ -2,14 +2,10 @@
 
 public class CreateArticleCommandHandler(IArticleRepository articleRepository) : IRequestHandler<CreateArticleCommand, CreateArticleCommandResponse>
 {
-    private readonly IArticleRepository _articleRepository = articleRepository;
-
     public async Task<CreateArticleCommandResponse> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
     {
         var articleId = ArticleId.CreateUniqueId(request.Title);
-        var oldArticle = await _articleRepository.GetArticleByIdAsync(articleId, cancellationToken);
-
-        if (oldArticle is not null)
+        if (await articleRepository.HasIdAsync(articleId, cancellationToken))
         {
             throw new ArticleAlreadyExistsException(articleId.ToString());
         }
@@ -17,8 +13,8 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
         var article = Article.CreateArticle(request.Title, request.Body, request.Summary);
         article.AddTags(request.Tags);
          
-        await _articleRepository.CreateAsync(article, cancellationToken);
-        await _articleRepository.SaveChangesAsync(cancellationToken);
+        await articleRepository.CreateAsync(article, cancellationToken);
+        await articleRepository.SaveChangesAsync(cancellationToken);
     
         return new CreateArticleCommandResponse(article.Id);
     }

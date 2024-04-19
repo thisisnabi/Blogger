@@ -12,9 +12,11 @@ internal class MappingProfile : IRegister
         TypeAdapterConfig<IGrouping<dynamic, Article>, GetArticleArchiveQueryResponse>
            .NewConfig()
            .MapWith(src => MapArticleGroupToArticleQueryResponse(src));
+
         TypeAdapterConfig<IReadOnlyList<Comment>?, IReadOnlyList<GetApprovedArticleCommentsResponse>>
            .NewConfig()
            .MapWith(src => MapCommentToCommentResponse(src));
+
         TypeAdapterConfig<IReadOnlyList<Article>?, IReadOnlyList<GetArticlesQueryResponse>>
            .NewConfig()
            .MapWith(src => MapArticleToArticleQueryResponse(src));
@@ -26,7 +28,7 @@ internal class MappingProfile : IRegister
     {
         return new GetArticleArchiveQueryResponse(src.Key.Year,
                                                   src.Key.Month,
-                                                  src.Select(m => new ArticleOnArchive(m.Id, m.Title, m.PublishedOnUtc.Value.Day))
+                                                  src.Select(m => new ArticleOnArchive(m.Id, m.Title, m.PublishedOnUtc.Day))
                                                     .ToImmutableArray());
     }
     private IReadOnlyList<GetApprovedArticleCommentsResponse> MapCommentToCommentResponse(IReadOnlyList<Comment>? src)
@@ -40,7 +42,7 @@ internal class MappingProfile : IRegister
             x.Id,
             x.Title,
             x.Summary,
-            x.PublishedOnUtc.Value,
+            x.PublishedOnUtc,
             x.GetReadOnInMinutes,
             string.Join(",", x.Tags)
             )).ToImmutableArray();

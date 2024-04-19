@@ -21,7 +21,11 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
                                  .ToImmutableList();
     }
 
-
+    public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken)
+    {
+        return bloggerDbContext.Articles.AnyAsync(x => x.Id == articleId, cancellationToken);
+    }
+     
     public async Task CreateAsync(Article article, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Articles.AddAsync(article, cancellationToken);
@@ -60,4 +64,6 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
+
+
 }
