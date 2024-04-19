@@ -4,7 +4,7 @@ public class PublishDraftEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPatch("/articles/{DraftId}/publish", async (
+        app.MapPatch("/articles/{draft-id}/publish", async (
                 [AsParameters] PublishDraftRequest request,
                 IMapper mapper,
                 IMediator mediator,
