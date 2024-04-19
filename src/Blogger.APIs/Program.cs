@@ -20,8 +20,4 @@ if (app.Environment.IsDevelopment())
 
 app.MapEndpoints(); 
 
-app.MapPost("/articles/", CreateArticleEndpoint.CreateArticle)
-   .Validator<CreateArticleRequest>();
-
-
 app.Run();

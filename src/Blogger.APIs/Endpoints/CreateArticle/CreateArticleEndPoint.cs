@@ -1,16 +1,19 @@
 ﻿namespace Blogger.APIs.Contracts.CreateArticle;
 
-public static class CreateArticleEndpoint
+public class CreateArticleEndpoint : IEndpoint
 {
-    public static async Task<CreateArticleResponse> CreateArticle(
-        [FromBody] CreateArticleRequest request,
-        IMapper mapper,
-        IMediator mediator,
-        CancellationToken cancellationToken)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        var command = mapper.Map<CreateArticleCommand>(request);
-        var response = await mediator.Send(command, cancellationToken);
+        app.MapPost("/articles/", async (
+                [FromBody] CreateArticleRequest request,
+                IMapper mapper,
+                IMediator mediator,
+                CancellationToken cancellationToken) =>
+        {
+            var command = mapper.Map<CreateArticleCommand>(request);
+            var response = await mediator.Send(command, cancellationToken);
 
-        return mapper.Map<CreateArticleResponse>(response);
+            return mapper.Map<CreateArticleResponse>(response);
+        }).Validator<CreateArticleRequest>();
     }
 }

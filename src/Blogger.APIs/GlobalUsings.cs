@@ -14,7 +14,9 @@ global using Blogger.APIs;
 global using Blogger.Application;
 global using Blogger.APIs.Filters;
 global using Blogger.Infrastructure;
-global using Blogger.APIs.Contracts.CreateArticle;
 global using Blogger.Application.Usecases.CreateArticle;
-global using Blogger.APIs.Contracts.GetPopularTags;
+global using Blogger.APIs.Abstractions;
+global using Blogger.APIs.Endpoints.GetPopularTags;
+global using Blogger.Application.Usecases.GetPopularTags;
+
 

@@ -1,8 +1,4 @@
-﻿using Blogger.APIs.Abstractions;
-using Blogger.APIs.Endpoints.GetPopularTags;
-using Blogger.Application.Usecases.GetPopularTags;
-
-namespace Blogger.APIs.Contracts.GetPopularTags;
+﻿namespace Blogger.APIs.Contracts.GetPopularTags;
 
 public class GetPopularTagsEndpoint : IEndpoint
 {
