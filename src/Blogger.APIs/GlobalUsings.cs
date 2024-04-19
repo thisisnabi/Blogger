@@ -1,6 +1,20 @@
 ﻿// built-in
+global using System.Net;
+global using Microsoft.AspNetCore.Mvc;
 
 // third-party
 global using Mapster;
+global using MapsterMapper;
+global using MediatR;
+global using FluentValidation;
 
 // solution
+global using Blogger.APIs;
+global using Blogger.Application;
+global using Blogger.APIs.Filters;
+global using Blogger.Infrastructure;
+global using Blogger.APIs.Contracts.CreateArticle;
+global using Blogger.Application.Usecases.CreateArticle;
+global using System.Reflection;
+
+

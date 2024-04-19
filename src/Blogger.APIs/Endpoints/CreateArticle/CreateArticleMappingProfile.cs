@@ -9,8 +9,7 @@ public class CreateArticleMappingProfile : IRegister
     public void Register(TypeAdapterConfig config)
     {
         config.ForType<CreateArticleRequest, CreateArticleCommand>()
-                   .Map(x => x.Tags, src => src.Tags.Split(',',StringSplitOptions.RemoveEmptyEntries)
-                                                    .Select(x => Tag.Create(x))
+                   .Map(x => x.Tags, src => src.Tags.Select(x => Tag.Create(x))
                                                     .ToImmutableList());
 
         config.ForType<CreateArticleCommandResponse, CreateArticleResponse>()
