@@ -16,7 +16,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/articles/", CreateArticleEndPoint.CreateArticle)
+app.MapGet("/tags/popular", GetPopularTagsEndpoint.GetPopularTags);
+
+app.MapPost("/articles/", CreateArticleEndpoint.CreateArticle)
    .Validator<CreateArticleRequest>();
+
 
 app.Run();

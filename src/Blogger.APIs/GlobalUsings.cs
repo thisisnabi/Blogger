@@ -1,6 +1,7 @@
 ﻿// built-in
 global using System.Net;
 global using Microsoft.AspNetCore.Mvc;
+global using System.Reflection;
 
 // third-party
 global using Mapster;
@@ -15,6 +16,5 @@ global using Blogger.APIs.Filters;
 global using Blogger.Infrastructure;
 global using Blogger.APIs.Contracts.CreateArticle;
 global using Blogger.Application.Usecases.CreateArticle;
-global using System.Reflection;
-
+global using Blogger.APIs.Contracts.GetPopularTags;
 

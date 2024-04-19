@@ -1,6 +1,6 @@
 ﻿namespace Blogger.APIs.Contracts.CreateArticle;
 
-public static class CreateArticleEndPoint
+public static class CreateArticleEndpoint
 {
     public static async Task<CreateArticleResponse> CreateArticle(
         [FromBody] CreateArticleRequest request,

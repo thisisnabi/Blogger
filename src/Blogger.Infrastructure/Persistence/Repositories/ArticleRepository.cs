@@ -1,10 +1,27 @@
-﻿using Blogger.Domain.ArticleAggregate;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Immutable;
+﻿namespace Blogger.Infrastructure.Persistence.Repositories;
 
-namespace Blogger.Infrastructure.Persistence.Repositories;
 internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
+
+    public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int Size, CancellationToken cancellationToken)
+    {
+        var topSizeTags = bloggerDbContext.Articles
+                                          .AsNoTracking()
+                                          .SelectMany(x => x.Tags)
+                                          .GroupBy(x => x.Value)
+                                          .Select(x => new
+                                          {
+                                              Tag = x.Key,
+                                              Count = x.Count()
+                                          }).OrderByDescending(x => x.Count)
+                                            .Take(Size);
+
+        return (await topSizeTags.ToListAsync(cancellationToken))
+                                 .Select(x => Tag.Create(x.Tag))   
+                                 .ToImmutableList();
+    }
+
+
     public async Task CreateAsync(Article article, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Articles.AddAsync(article, cancellationToken);

@@ -1,9 +1,10 @@
-﻿
-using Blogger.Domain.CommentAggregate;
+﻿namespace Blogger.Domain.ArticleAggregate;
 
-namespace Blogger.Domain.ArticleAggregate;
 public interface IArticleRepository
 {
+    Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int Size,CancellationToken cancellationToken);
+     
+    
     Task CreateAsync(Article article, CancellationToken cancellationToken);
     Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken);
     Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken);
