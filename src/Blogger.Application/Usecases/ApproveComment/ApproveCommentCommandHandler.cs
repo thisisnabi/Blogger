@@ -10,7 +10,7 @@ public class ApproveCommentCommandHandler(ICommentRepository commentRepository) 
         var comment = await _commentRepository.GetCommentByApproveLinkAsync(request.Link, cancellationToken);
         if (comment is null)
         {
-            throw new InvalidApprovalLinkException();
+            throw new InvalidCommentApprovalLinkException();
         }
  
         comment.Approve();

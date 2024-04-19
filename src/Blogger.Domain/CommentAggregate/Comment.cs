@@ -54,4 +54,15 @@ public class Comment: AggregateRootBase<CommentId>
 
         return replay;
     }
+
+    public void ApproveReplay(string link)
+    {
+        var replay = _replaies.FirstOrDefault(x => x.ApproveLink.ApproveId == link);
+        if (replay is null)
+        {
+            throw new InvalidReplayApprovalLinkException();
+        }
+
+        replay.Approve();
+    }
 }
