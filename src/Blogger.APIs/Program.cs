@@ -5,6 +5,8 @@ builder.Services.ConfigureInfrastructureLayer(builder.Configuration);
 builder.Services.ConfigureMapster();
 builder.Services.ConfigureValidator();
 
+builder.Services.AddEndpoints();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,7 +18,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/tags/popular", GetPopularTagsEndpoint.GetPopularTags);
+app.MapEndpoints(); 
 
 app.MapPost("/articles/", CreateArticleEndpoint.CreateArticle)
    .Validator<CreateArticleRequest>();
