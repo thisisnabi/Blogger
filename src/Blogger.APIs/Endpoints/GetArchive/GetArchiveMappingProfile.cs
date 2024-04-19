@@ -6,7 +6,7 @@ public class GetArchiveMappingProfile : IRegister
     {
         config.ForType<GetArchiveQueryResponse, GetArchiveResponse>()
                     .Map(x => x.Date, src => $"{src.Year} {GetMonthName(src.Month)}")
-                    .Map(x => x.Items, src => src.Articles.ToImmutableArray());
+                    .Map(x => x.Items, src => src.Articles);
     }
 
     private string GetMonthName(int monthNumber)

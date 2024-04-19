@@ -12,7 +12,7 @@ public class GetArchiveEndpoint : IEndpoint
             var command = new GetArchiveQuery();
             var result = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<GetArchiveResponse>(result);
+            return mapper.Map<IEnumerable<GetArchiveResponse>>(result);
         });
     }
 }
