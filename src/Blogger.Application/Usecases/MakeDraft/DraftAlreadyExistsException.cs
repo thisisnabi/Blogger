@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.Usecases.CreateArticle;
+﻿namespace Blogger.Application.Usecases.MakeDraft;
 
 public sealed class DraftAlreadyExistsException : Exception
 {

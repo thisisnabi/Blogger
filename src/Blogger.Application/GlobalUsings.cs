@@ -8,3 +8,4 @@ global using Mapster;
 global using Blogger.Domain.ArticleAggregate;
 global using Blogger.Domain.SubscriberAggregate;
 global using Blogger.Application.Services;
+global using Blogger.Application.Usecases.MakeDraft;

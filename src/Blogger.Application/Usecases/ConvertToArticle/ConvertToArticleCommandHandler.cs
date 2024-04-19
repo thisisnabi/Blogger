@@ -10,7 +10,7 @@ public class ConvertToArticleCommandHandler(IArticleRepository articleRepository
     {
         var draft = await _articleRepository.GetDraftByIdAsync(request.ArticleId, cancellationToken);
 
-        if (draft is null) throw new NotFoundDraftException();
+        if (draft is null) throw new DraftNotFoundException();
 
         draft.ConvertToArticle();
 

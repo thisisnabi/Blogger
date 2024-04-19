@@ -1,9 +1,9 @@
 ﻿namespace Blogger.Application.Usecases.UpdateDraft;
-public class NotFoundDraftException : Exception
+public class DraftNotFoundException : Exception
 {
-    private const string _message = "Invalid draft!";
+    private const string _message = "Draft not found.";
 
-    public NotFoundDraftException() : base(_message)
+    public DraftNotFoundException() : base(_message)
     {
 
     }

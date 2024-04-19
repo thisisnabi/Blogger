@@ -2,18 +2,23 @@
 
 public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<UpdateDraftCommand>
 {
-    private readonly IArticleRepository _articleRepository = articleRepository;
-
     public async Task Handle(UpdateDraftCommand request, CancellationToken cancellationToken)
     {
-        var draft = await _articleRepository.GetDraftByIdAsync(request.ArticleId, cancellationToken);
+        var draft = await articleRepository.GetDraftByIdAsync(request.DraftId, cancellationToken);
+        if (draft is null)
+        {
+            throw new DraftNotFoundException();
+        }
 
-        if (draft is null) throw new NotFoundDraftException();
+        var draftId = ArticleId.CreateUniqueId(request.Title);
+        if (await articleRepository.HasIdAsync(draftId, cancellationToken))
+        {
+            throw new DraftTitleDuplicatedException(draftId.ToString());
+        }
 
-        draft.UpdateDraft(request.title, request.summary, request.body);
-
+        draft.UpdateDraft(request.Title, request.Summary, request.Body);
         draft.UpdateTags(request.Tags);
 
-        await _articleRepository.SaveChangesAsync(cancellationToken);
+        await articleRepository.SaveChangesAsync(cancellationToken);
     }
 }

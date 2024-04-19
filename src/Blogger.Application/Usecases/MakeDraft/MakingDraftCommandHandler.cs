@@ -8,10 +8,10 @@ public class MakeDraftCommandHandler(IArticleRepository articleRepository)
  
     public async Task<MakeDraftCommandResponse> Handle(MakeDraftCommand request, CancellationToken cancellationToken)
     {
-        var articleId = ArticleId.CreateUniqueId(request.Title);
-        if (await articleRepository.HasIdAsync(articleId, cancellationToken))
+        var draftId = ArticleId.CreateUniqueId(request.Title);
+        if (await articleRepository.HasIdAsync(draftId, cancellationToken))
         {
-            throw new DraftAlreadyExistsException(articleId.ToString());
+            throw new DraftAlreadyExistsException(draftId.ToString());
         }
 
         var draft = Article.CreateDraft(request.Title, request.Body, request.Summary);

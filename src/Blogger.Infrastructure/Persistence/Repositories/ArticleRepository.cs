@@ -31,6 +31,22 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
         await bloggerDbContext.Articles.AddAsync(article, cancellationToken);
     }
 
+    public Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken)
+    {
+        return bloggerDbContext.Articles
+                               .Where(x => x.Status == ArticleStatus.Draft)
+                                .FirstOrDefaultAsync(x => x.Id == draftId, cancellationToken);
+    }
+
+
+
+
+
+
+
+
+
+
     public async Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken)
     {
         var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
@@ -46,12 +62,7 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
                                     .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
     }
 
-    public Task<Article?> GetDraftByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
-    {
-        return bloggerDbContext.Articles
-                                    .Where(x => x.Status == ArticleStatus.Draft)
-                                    .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
-    }
+
 
     public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
