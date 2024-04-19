@@ -23,5 +23,5 @@ global using Blogger.Application.Usecases.GetPopularTags;
 global using Blogger.Application.Usecases.MakeDraft;
 global using Blogger.Application.Usecases.UpdateDraft;
 global using Blogger.Application.Usecases.PublishDraft;
-
+global using Blogger.Application.Usecases.GetArchive;
 

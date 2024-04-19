@@ -6,7 +6,7 @@ public class GetArticleEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPatch("/articles/{article-id}", async (
+        app.MapGet("/articles/{article-id}", async (
                 [AsParameters] GetArticleRequest request,
                 IMapper mapper,
                 IMediator mediator,

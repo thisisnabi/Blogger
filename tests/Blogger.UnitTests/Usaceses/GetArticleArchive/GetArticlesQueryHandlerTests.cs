@@ -19,11 +19,11 @@ public class GetArticlesQueryHandlerTests : IClassFixture<TestFixture>
         }.AsReadOnly();
         mockRepository.Setup(s => s.GetArchiveArticlesAsync(It.IsAny<CancellationToken>()))
                       .ReturnsAsync(mockArticles);
-        var handler = new GetArticlesQueryHandler(mockRepository.Object);
+        var handler = new GetArchiveQueryHandler(mockRepository.Object);
 
 
         //Act
-        var result = await handler.Handle(new GetArticleArchiveQuery(), CancellationToken.None);
+        var result = await handler.Handle(new GetArchiveQuery(), CancellationToken.None);
 
         //Assert
         result.Should().NotBeEmpty();

@@ -6,10 +6,10 @@ public interface IArticleRepository
     Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken);
     Task CreateAsync(Article article, CancellationToken cancellationToken);
     Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken);
-
-
-    Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken);
     Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken);
+    Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken);
+
+
 
 
 

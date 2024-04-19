@@ -38,22 +38,21 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
                                 .FirstOrDefaultAsync(x => x.Id == draftId, cancellationToken);
     }
 
-
-
-
-
-
-
-
-
-
     public async Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken)
     {
         var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
-                                           .ToListAsync(cancellationToken);
+                                                 .ToListAsync(cancellationToken);
 
         return que.ToImmutableList();
     }
+
+
+
+
+
+
+
+
 
     public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
