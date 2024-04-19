@@ -91,8 +91,13 @@ public class Article : AggregateRootBase<ArticleId>
         AddTags(tags);
     }
 
-    public void ConvertToArticle()
+    public void Publish()
     {
+        if (!_tags.Any())
+        {
+            throw new DraftTagsMissingException();
+        }
+
         Status = ArticleStatus.Published;
         ReadOn = GetReadOnTimeSpan(Body);
         PublishedOnUtc = DateTime.UtcNow;

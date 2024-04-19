@@ -22,5 +22,6 @@ global using Blogger.APIs.Endpoints.GetPopularTags;
 global using Blogger.Application.Usecases.GetPopularTags;
 global using Blogger.Application.Usecases.MakeDraft;
 global using Blogger.Application.Usecases.UpdateDraft;
-global using Blogger.Application.Usecases.ConvertToArticle;
+global using Blogger.Application.Usecases.PublishDraft;
+
 

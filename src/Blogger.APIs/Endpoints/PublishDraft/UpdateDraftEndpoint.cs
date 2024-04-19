@@ -1,18 +1,17 @@
-﻿
-namespace Blogger.APIs.Contracts.ConvertToArticle;
+﻿namespace Blogger.APIs.Contracts.PublishDraft;
 
-public class ConvertToArticleEndpoint : IEndpoint
+public class PublishDraftEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPatch("/articles/{DraftId}/publish", async (
-                [AsParameters] ConvertToArticleRequest request,
+                [AsParameters] PublishDraftRequest request,
                 IMapper mapper,
                 IMediator mediator,
                 CancellationToken cancellationToken) =>
         {
-            var command = mapper.Map<ConvertToArticleCommand>(request);
+            var command = mapper.Map<PublishDraftCommand>(request);
             await mediator.Send(command, cancellationToken);
-        }).Validator<ConvertToArticleRequest>();
+        }).Validator<PublishDraftRequest>();
     }
 }
