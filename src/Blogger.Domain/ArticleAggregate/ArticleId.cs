@@ -23,4 +23,9 @@ public class ArticleId : ValueObject<ArticleId>
     }
 
     public static ArticleId Create(string value) => new(value);
+
+    public override string ToString()
+    {
+        return Slug;
+    }
 }
