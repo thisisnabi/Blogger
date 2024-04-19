@@ -1,4 +1,4 @@
 ﻿namespace Blogger.Application.Usecases.ConvertToArticle;
 
-public record ConvertToArticleCommand(ArticleId ArticleId)
+public record ConvertToArticleCommand(ArticleId DraftId)
     : IRequest;
