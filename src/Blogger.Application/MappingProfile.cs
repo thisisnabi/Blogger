@@ -9,7 +9,7 @@ internal class MappingProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        TypeAdapterConfig<IReadOnlyList<Comment>?, IReadOnlyList<GetApprovedArticleCommentsResponse>>
+        TypeAdapterConfig<IReadOnlyList<Comment>?, IReadOnlyList<GetApprovedArticleCommentsQueryResponse>>
            .NewConfig()
            .MapWith(src => MapCommentToCommentResponse(src));
 
@@ -20,9 +20,9 @@ internal class MappingProfile : IRegister
     }
 
 
-    private IReadOnlyList<GetApprovedArticleCommentsResponse> MapCommentToCommentResponse(IReadOnlyList<Comment>? src)
+    private IReadOnlyList<GetApprovedArticleCommentsQueryResponse> MapCommentToCommentResponse(IReadOnlyList<Comment>? src)
     {
-        return src.Select(x => new GetApprovedArticleCommentsResponse(x.Client.FullName, x.CreatedOnUtc, x.Content))
+        return src.Select(x => new GetApprovedArticleCommentsQueryResponse(x.Client.FullName, x.CreatedOnUtc, x.Content))
                        .ToImmutableArray();
     }
     private IReadOnlyList<GetArticlesQueryResponse> MapArticleToArticleQueryResponse(IReadOnlyList<Article>? src)
