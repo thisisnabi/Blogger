@@ -12,6 +12,19 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
         return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.ApproveLink.ApproveId == link, cancellationToken);
     }
 
+    public async Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
+    {
+        var que = await bloggerDbContext.Comments.Where(x => x.ArticleId == articleId)
+                                                 .Where(c => c.IsApproved)
+                                                 .ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
+    }
+
+
+
+
+
 
 
     public async Task CreateAsync(Comment comment, CancellationToken cancellationToken)
@@ -19,14 +32,7 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
         await bloggerDbContext.Comments.AddAsync(comment, cancellationToken);
     }
 
-    public async Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
-    {
-       var que = await bloggerDbContext.Comments.Where(x => x.ArticleId == articleId)
-                                                .Where(c => c.IsApproved)
-                                                .ToListAsync(cancellationToken);
 
-        return que.ToImmutableList();
-    }
 
 
     public Task<Comment?> GetCommentByIdAsync(CommentId commentId, CancellationToken cancellationToken)
