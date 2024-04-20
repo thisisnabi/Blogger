@@ -6,4 +6,4 @@ public record GetArticlesQueryResponse(
     string Summary,
     DateTime PublishedOnUtc,
     int ReadOnMinutes,
-    string Tags);
+    IReadOnlyList<Tag> Tags);

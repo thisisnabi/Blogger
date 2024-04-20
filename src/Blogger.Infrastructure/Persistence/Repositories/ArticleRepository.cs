@@ -46,22 +46,12 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
         return que.ToImmutableList();
     }
 
-
-
-
-
-
-
-
-
     public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
         return bloggerDbContext.Articles
                                     .Where(x => x.Status == ArticleStatus.Published)
                                     .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
     }
-
-
 
     public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
@@ -74,6 +64,4 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
-
-
 }
