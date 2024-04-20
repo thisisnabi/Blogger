@@ -6,7 +6,7 @@ public class ReplayToCommetEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("Articles/{article-id}/comments", async (
+        app.MapPost("comments/{article-id}", async (
                 [FromBody] ReplayToCommetRequest request,
                 IMapper mapper,
                 IMediator mediator,
