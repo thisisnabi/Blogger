@@ -1,10 +1,10 @@
-﻿namespace Blogger.APIs.Contracts.MakeComment;
+﻿namespace Blogger.APIs.Contracts.ReplayToCommet;
 
-public class ReplayToCommetRequestValidator : AbstractValidator<ReplayToCommetRequest>
+public class ReplayToCommentRequestValidator : AbstractValidator<ReplayToCommentRequest>
 {
-    public ReplayToCommetRequestValidator()
+    public ReplayToCommentRequestValidator()
     {
-        RuleFor(x => x.ArticleId)
+        RuleFor(x => x.CommentId)
             .NotEmpty()
             .NotNull();
 

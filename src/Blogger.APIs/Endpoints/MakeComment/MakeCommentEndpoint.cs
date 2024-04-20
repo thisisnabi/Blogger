@@ -2,12 +2,12 @@
 
 namespace Blogger.APIs.Contracts.MakeComment;
 
-public class MakeCommentEndpoint : IEndpoint
+public class ReplayToCommetEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("Articles/{article-id}/comments", async (
-                [FromBody] MakeCommentRequest request,
+                [FromBody] ReplayToCommetRequest request,
                 IMapper mapper,
                 IMediator mediator,
                 CancellationToken cancellationToken) =>
@@ -15,7 +15,7 @@ public class MakeCommentEndpoint : IEndpoint
             var command = mapper.Map<MakeCommentCommand>(request);
             var response = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<MakeCommentResponse>(response);
-        }).Validator<MakeCommentRequest>();
+            return mapper.Map<ReplayToCommetResponse>(response);
+        }).Validator<ReplayToCommetRequest>();
     }
 }
