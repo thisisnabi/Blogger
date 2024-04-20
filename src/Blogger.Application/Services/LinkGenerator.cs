@@ -3,7 +3,7 @@ public class LinkGenerator : ILinkGenerator
 {
     public string Generate()
     {
-        // implement a generator algorithm
+        // TODO: implement a generator algorithm
         return Guid.NewGuid().ToString();
     }
 }

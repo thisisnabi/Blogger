@@ -1,14 +1,14 @@
 ﻿namespace Blogger.APIs.Contracts.MakeDraft;
 
-public class MakeDraftMappingProfile : IRegister
+public class MakeCommentMappingProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.ForType<MakeDraftRequest, MakeDraftCommand>()
+        config.ForType<MakeCommentRequest, MakeDraftCommand>()
                    .Map(x => x.Tags, src => src.Tags.Select(x => Tag.Create(x))
                                                     .ToImmutableList());
 
-        config.ForType<MakeDraftCommandResponse, MakeDraftResponse>()
+        config.ForType<MakeDraftCommandResponse, MakeCommentResponse>()
                   .Map(x => x.DraftId, src => src.DraftId.Slug);
     }
 }
