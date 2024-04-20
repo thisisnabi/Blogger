@@ -6,7 +6,7 @@ public class GetApprovedArticleCommentsEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/comments/{article-id}/approved", async (
+        app.MapGet("/articles/{article-id}/comments", async (
                 [AsParameters] GetApprovedArticleCommentsRequest request,
                 IMapper mapper,
                 IMediator mediator,
