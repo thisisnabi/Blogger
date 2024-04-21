@@ -29,16 +29,14 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
             articleRepository.Delete(draft);
             
             var newDraft = Article.CreateDraft(request.Title, request.Body, request.Summary);
-            await articleRepository.CreateAsync(newDraft, cancellationToken);
-
             if (request.Tags.Any())
             {
-                draft.AddTags(request.Tags);
+                newDraft.AddTags(request.Tags);
             }
+
+            await articleRepository.CreateAsync(newDraft, cancellationToken);
         }
-
-
-
+         
         await articleRepository.SaveChangesAsync(cancellationToken);
     }
 }
