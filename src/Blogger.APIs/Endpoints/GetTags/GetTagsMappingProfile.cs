@@ -9,6 +9,6 @@ public class GetTagsMappingProfile : IRegister
     {
         config.ForType<GetTagsQueryResponse, GetTagsResponse>()
                   .Map(x => x.Count, src => src.Count)
-                  .Map(x => x.Name, src => src.Tag);
+                  .Map(x => x.Name, src => src.Tag.ToString());
     }
 }
