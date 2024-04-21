@@ -1,4 +1,7 @@
-﻿namespace Blogger.APIs.Contracts.GetPopularTags;
+﻿using Blogger.APIs.Endpoints.GetPopularTags;
+using Blogger.Application.Usecases.GetPopularTags;
+
+namespace Blogger.APIs.Contracts.GetPopularTags;
 
 public class GetPopularTagsMappingProfile : IRegister
 {

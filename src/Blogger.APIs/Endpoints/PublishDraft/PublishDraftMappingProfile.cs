@@ -1,4 +1,7 @@
-﻿namespace Blogger.APIs.Contracts.PublishDraft;
+﻿using Blogger.Application.Usecases.PublishDraft;
+using Blogger.Domain.ArticleAggregate;
+
+namespace Blogger.APIs.Contracts.PublishDraft;
 
 public class PublishDraftMappingProfile : IRegister
 {

@@ -1,4 +1,6 @@
-﻿namespace Blogger.APIs.Contracts.CreateArticle;
+﻿using Blogger.Application.Usecases.CreateArticle;
+
+namespace Blogger.APIs.Contracts.CreateArticle;
 
 public class CreateArticleEndpoint : IEndpoint
 {

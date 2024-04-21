@@ -1,4 +1,5 @@
-﻿using Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Application.Usecases.CreateArticle;
+using Blogger.Domain.ArticleAggregate;
 using System.Collections.Immutable;
 
 namespace Blogger.APIs.Contracts.CreateArticle;

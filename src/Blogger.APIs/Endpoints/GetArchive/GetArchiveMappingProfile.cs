@@ -1,4 +1,6 @@
-﻿namespace Blogger.APIs.Contracts.GetArchive;
+﻿using Blogger.Application.Usecases.GetArchive;
+
+namespace Blogger.APIs.Contracts.GetArchive;
 
 public class GetArchiveMappingProfile : IRegister
 {

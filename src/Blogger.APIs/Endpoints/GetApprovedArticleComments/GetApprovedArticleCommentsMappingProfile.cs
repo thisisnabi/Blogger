@@ -1,4 +1,5 @@
 ﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
+using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.GetApprovedArticleComments;
 

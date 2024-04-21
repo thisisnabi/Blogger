@@ -1,4 +1,7 @@
-﻿namespace Blogger.APIs.Contracts.MakeDraft;
+﻿using Blogger.Application.Usecases.MakeDraft;
+using Blogger.Domain.ArticleAggregate;
+
+namespace Blogger.APIs.Contracts.MakeDraft;
 
 public class MakeCommentMappingProfile : IRegister
 {

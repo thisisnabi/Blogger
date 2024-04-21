@@ -1,4 +1,5 @@
 ﻿using Blogger.Application.Usecases.MakeComment;
+using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.APIs.Contracts.MakeComment;
