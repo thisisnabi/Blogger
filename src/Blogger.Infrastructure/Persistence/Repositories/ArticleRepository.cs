@@ -17,15 +17,25 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
                                             .Take(Size);
 
         return (await topSizeTags.ToListAsync(cancellationToken))
-                                 .Select(x => Tag.Create(x.Tag))   
+                                 .Select(x => Tag.Create(x.Tag))
                                  .ToImmutableList();
+    }
+
+    public async Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken)
+    {
+        var tags = await bloggerDbContext.Articles
+                                         .AsNoTracking()
+                                         .SelectMany(x => x.Tags)
+                                         .ToListAsync(cancellationToken);
+
+        return tags.ToImmutableList();
     }
 
     public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
         return bloggerDbContext.Articles.AnyAsync(x => x.Id == articleId, cancellationToken);
     }
-     
+
     public async Task CreateAsync(Article article, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Articles.AddAsync(article, cancellationToken);
@@ -64,4 +74,6 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
+
+
 }

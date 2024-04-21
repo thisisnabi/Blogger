@@ -6,15 +6,15 @@ public class GetPopularTagsEndpoint : IEndpoint
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/tags/popular", async (
-        IMapper mapper,
-        IMediator mediator,
-        CancellationToken cancellationToken) =>
-        {
-            var command = new GetPopularTagsQuery(SizeOfTopPopular);
-            var response = await mediator.Send(command, cancellationToken);
+        //app.MapGet("/tags/popular", async (
+        //IMapper mapper,
+        //IMediator mediator,
+        //CancellationToken cancellationToken) =>
+        //{
+        //    var command = new GetPopularTagsQuery(SizeOfTopPopular);
+        //    var response = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<GetPopularTagsResponse>(response);
-        });
+        //    return mapper.Map<GetPopularTagsResponse>(response);
+        //});
     }
 }
