@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Usecases.CreateArticle;
-
-namespace Blogger.Application.Usecases.MakeDraft;
+﻿namespace Blogger.Application.Usecases.MakeDraft;
 
 public class MakeDraftCommandHandler(IArticleRepository articleRepository)
     : IRequestHandler<MakeDraftCommand, MakeDraftCommandResponse>

@@ -21,6 +21,6 @@ public class MakeCommentRequestValidator : AbstractValidator<MakeCommentRequest>
             .NotNull();
 
         RuleFor(x => x.Tags)
-             .Must(x => x.Length <= 10).WithMessage(TagMaximumLengthMessage);
+             .Must(x => x is null || x.Length <= 10).WithMessage(TagMaximumLengthMessage);
     }
 }

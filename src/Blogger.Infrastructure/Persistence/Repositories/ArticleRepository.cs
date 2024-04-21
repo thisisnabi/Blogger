@@ -7,6 +7,7 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         var topSizeTags = bloggerDbContext.Articles
                                           .AsNoTracking()
+                                          .Where(x => x.Status == ArticleStatus.Published)
                                           .SelectMany(x => x.Tags)
                                           .GroupBy(x => x.Value)
                                           .Select(x => new
@@ -25,6 +26,7 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         var tags = await bloggerDbContext.Articles
                                          .AsNoTracking()
+                                         .Where(x => x.Status == ArticleStatus.Published)
                                          .SelectMany(x => x.Tags)
                                          .ToListAsync(cancellationToken);
 
