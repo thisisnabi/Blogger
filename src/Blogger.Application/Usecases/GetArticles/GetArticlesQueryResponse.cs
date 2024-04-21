@@ -1,9 +1,20 @@
-﻿namespace Blogger.Application.Usecases.GetArticles;
+﻿using Blogger.Application.Usecases.GetArticle;
+
+namespace Blogger.Application.Usecases.GetArticles;
 
 public record GetArticlesQueryResponse(
     ArticleId ArticleId,
-    string Title, 
+    string Title,
     string Summary,
     DateTime PublishedOnUtc,
     int ReadOnMinutes,
-    IReadOnlyList<Tag> Tags);
+    IReadOnlyCollection<Tag> Tags)
+{
+    public static explicit operator GetArticlesQueryResponse(Article article)
+    => new GetArticlesQueryResponse(article.Id,
+                                   article.Title,
+                                   article.Summary,
+                                   article.PublishedOnUtc,
+                                   article.GetReadOnInMinutes,
+                                   article.Tags);
+}

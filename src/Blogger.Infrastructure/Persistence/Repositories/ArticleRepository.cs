@@ -67,7 +67,9 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
 
     public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
-        var que = await bloggerDbContext.Articles.ToListAsync(cancellationToken);
+        var que = await bloggerDbContext.Articles
+                                        .Where(x => x.Status == ArticleStatus.Published)
+                                        .ToListAsync(cancellationToken);
 
         return que.ToImmutableList();
     }

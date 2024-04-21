@@ -1,5 +1,4 @@
-﻿
-namespace Blogger.Application.Usecases.GetArticles;
+﻿namespace Blogger.Application.Usecases.GetArticles;
 
 public class GetArticlesQueryHandler(IArticleRepository articleRepository)
     : IRequestHandler<GetArticlesQuery, IReadOnlyList<GetArticlesQueryResponse>>
@@ -10,6 +9,7 @@ public class GetArticlesQueryHandler(IArticleRepository articleRepository)
     {
         var articles = await _articleRepository.GetLatestArticlesAsync(request.PageNumber, request.PageSize, cancellationToken);
 
-        return articles.Adapt<IReadOnlyList<GetArticlesQueryResponse>>();
+        return articles.Select(x => (GetArticlesQueryResponse)x)
+                       .ToImmutableList();
     }
 }
