@@ -76,9 +76,8 @@ public class Article : AggregateRootBase<ArticleId>
         return TimeSpan.FromSeconds(readingTime);
     }
 
-    public void UpdateDraft(ArticleId draftId ,string title, string summary, string body)
+    public void UpdateDraft(string title, string summary, string body)
     {
-        Id = draftId;
         Title = title;
         Body = body;
         Summary = summary;

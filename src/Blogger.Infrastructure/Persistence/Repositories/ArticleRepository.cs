@@ -77,5 +77,8 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
 
-
+    public void Delete(Article draft)
+    {
+        bloggerDbContext.Remove(draft);
+    }
 }

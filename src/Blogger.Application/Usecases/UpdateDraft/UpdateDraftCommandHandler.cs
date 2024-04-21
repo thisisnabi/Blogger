@@ -1,4 +1,6 @@
-﻿namespace Blogger.Application.Usecases.UpdateDraft;
+﻿using Blogger.Domain.ArticleAggregate;
+
+namespace Blogger.Application.Usecases.UpdateDraft;
 
 public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : IRequestHandler<UpdateDraftCommand>
 {
@@ -9,15 +11,33 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
         {
             throw new DraftNotFoundException();
         }
-
-        var draftId = ArticleId.CreateUniqueId(request.Title);
-        if (await articleRepository.HasIdAsync(draftId, cancellationToken))
+  
+        var newDraftId = ArticleId.CreateUniqueId(request.Title);
+        if (!draft.Id.Equals(newDraftId) && 
+             await articleRepository.HasIdAsync(newDraftId, cancellationToken))
         {
-            throw new DraftTitleDuplicatedException(draftId.ToString());
+            throw new DraftTitleDuplicatedException(newDraftId.ToString());
         }
 
-        draft.UpdateDraft(draftId, request.Title, request.Summary, request.Body);
-        draft.UpdateTags(request.Tags);
+        if (draft.Id.Equals(newDraftId))
+        {
+            draft.UpdateDraft(request.Title, request.Summary, request.Body);
+            draft.UpdateTags(request.Tags);
+        }
+        else
+        {
+            articleRepository.Delete(draft);
+            
+            var newDraft = Article.CreateDraft(request.Title, request.Body, request.Summary);
+            await articleRepository.CreateAsync(newDraft, cancellationToken);
+
+            if (request.Tags.Any())
+            {
+                draft.AddTags(request.Tags);
+            }
+        }
+
+
 
         await articleRepository.SaveChangesAsync(cancellationToken);
     }
