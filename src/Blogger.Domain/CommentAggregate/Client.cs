@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-
-namespace Blogger.Domain.CommentAggregate;
+﻿namespace Blogger.Domain.CommentAggregate;
 
 public class Client : ValueObject<Client>
 {
@@ -12,19 +10,16 @@ public class Client : ValueObject<Client>
     {
         yield return FullName;
         yield return Email;
-    }
-
-    private Client(string fullName, string email)
-    {
-        FullName = fullName;
-        Email = email;
-    }
+    } 
 
     public static Client Create(string fullName, string email)
     {
         if (MailAddress.TryCreate(email, out _))
         {
-            return new Client(fullName, email);
+            return new Client { 
+                Email = email,
+                FullName = fullName,
+            };
         }
 
         throw new ArgumentException("Invalid email address");

@@ -14,8 +14,8 @@ public class MakeCommentCommandHandler(
  
     public async Task<MakeCommentCommandResponse> Handle(MakeCommentCommand request, CancellationToken cancellationToken)
     {
-        var isArticleValid = await _articleService.IsArticleIdValidAsync(request.ArticleId, cancellationToken);
-        if (!isArticleValid)
+ 
+        if (await _articleService.IsArticleIdValidAsync(request.ArticleId, cancellationToken))
         {
             throw new NotFoundArticleException();
         }
