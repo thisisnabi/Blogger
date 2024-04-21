@@ -1,4 +1,7 @@
-﻿namespace Blogger.APIs.Contracts.GetPopularTags;
+﻿using Blogger.APIs.Endpoints.GetPopularTags;
+using Blogger.Application.Usecases.GetPopularTags;
+
+namespace Blogger.APIs.Contracts.GetPopularTags;
 
 public class GetPopularTagsEndpoint : IEndpoint
 {
@@ -6,15 +9,15 @@ public class GetPopularTagsEndpoint : IEndpoint
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        //app.MapGet("/tags/popular", async (
-        //IMapper mapper,
-        //IMediator mediator,
-        //CancellationToken cancellationToken) =>
-        //{
-        //    var command = new GetPopularTagsQuery(SizeOfTopPopular);
-        //    var response = await mediator.Send(command, cancellationToken);
+        app.MapGet("/tags/popular", async (
+        IMapper mapper,
+        IMediator mediator,
+        CancellationToken cancellationToken) =>
+        {
+            var command = new GetPopularTagsQuery(SizeOfTopPopular);
+            var response = await mediator.Send(command, cancellationToken);
 
-        //    return mapper.Map<GetPopularTagsResponse>(response);
-        //});
+            return mapper.Map<IEnumerable<GetPopularTagsResponse>>(response);
+        });
     }
 }

@@ -8,7 +8,6 @@ public class GetPopularTagsMappingProfile : IRegister
     public void Register(TypeAdapterConfig config)
     {
         config.ForType<GetPopularTagsQueryResponse, GetPopularTagsResponse>()
-                  .Map(x => x.Tags, src => src.Tags
-                                              .Select(x => x.Value));
+                  .Map(x => x.Name, src => src.Tag.ToString());
     }
 }

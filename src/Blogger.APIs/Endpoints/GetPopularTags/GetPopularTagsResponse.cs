@@ -1,3 +1,3 @@
 ﻿namespace Blogger.APIs.Endpoints.GetPopularTags;
 
-public record GetPopularTagsResponse(string[] Tags);
+public record GetPopularTagsResponse(string Name);
