@@ -1,4 +1,3 @@
-﻿using Blogger.Domain.ArticleAggregate;
-namespace Blogger.APIs.Contracts.CreateArticle;
+﻿namespace Blogger.APIs.Contracts.CreateArticle;
 
-public record CreateArticleRequest(string Title, string Body, string Summary, string [] Tags);
+public record CreateArticleRequest(string Title, string Body, string Summary, string[] Tags);
