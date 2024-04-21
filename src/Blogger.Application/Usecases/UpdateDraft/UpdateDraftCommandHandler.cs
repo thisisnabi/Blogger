@@ -16,7 +16,7 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
             throw new DraftTitleDuplicatedException(draftId.ToString());
         }
 
-        draft.UpdateDraft(request.Title, request.Summary, request.Body);
+        draft.UpdateDraft(draftId, request.Title, request.Summary, request.Body);
         draft.UpdateTags(request.Tags);
 
         await articleRepository.SaveChangesAsync(cancellationToken);

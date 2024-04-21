@@ -2,7 +2,7 @@
 
 public abstract class EntityBase<TId> where TId : notnull
 {
-    public TId Id { get; private set; }
+    public TId Id { get; protected set; }
 
     protected EntityBase(TId id)
     {

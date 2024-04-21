@@ -2,30 +2,20 @@
 
 namespace Blogger.Domain.ArticleAggregate;
 
-public class ArticleId : ValueObject<ArticleId>
+public sealed class ArticleId : ValueObject<ArticleId>
 {
-    public string Slug { get; set; }
+    public required string Slug { get; init; }
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
         yield return Slug;
     }
+  
+    public static ArticleId CreateUniqueId(string title) 
+        => new ArticleId { Slug = title.Kebaberize() };
 
-    private ArticleId(string slug)
-    {
-        Slug = slug;
-    }
+    public static ArticleId Create(string value) 
+        => new ArticleId{  Slug = value };
 
-    public static ArticleId CreateUniqueId(string title)
-    {
-        var slug = title.Kebaberize();
-        return new(slug);
-    }
-
-    public static ArticleId Create(string value) => new(value);
-
-    public override string ToString()
-    {
-        return Slug;
-    }
+    public override string ToString() => Slug;
 }
