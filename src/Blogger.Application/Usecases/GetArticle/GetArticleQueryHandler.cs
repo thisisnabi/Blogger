@@ -1,7 +1,6 @@
 ﻿namespace Blogger.Application.Usecases.GetArticle;
 
 public class GetArticlesQueryHandler(
-    IMapper mapper,
     IArticleRepository articleRepository) : IRequestHandler<GetArticleQuery, GetArticleQueryResponse>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
@@ -14,6 +13,6 @@ public class GetArticlesQueryHandler(
             throw new NotFoundArticleException();
         }
 
-        return mapper.Map<GetArticleQueryResponse>(article);
+        return (GetArticleQueryResponse)article;
     }
 }
