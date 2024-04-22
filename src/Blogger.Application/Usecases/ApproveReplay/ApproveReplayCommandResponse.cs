@@ -1,3 +1,5 @@
-﻿namespace Blogger.Application.Usecases.ApproveReplay;
+﻿using Blogger.Domain.CommentAggregate;
 
-public record ApproveReplayCommandResponse(ArticleId ArticleId) : IRequest;
+namespace Blogger.Application.Usecases.ApproveReplay;
+
+public record ApproveReplayCommandResponse(ArticleId ArticleId, CommentId CommentId, ReplayId ReplayId) : IRequest;

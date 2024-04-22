@@ -15,7 +15,7 @@ public class ApproveCommentEndpoint : IEndpoint
             var command = mapper.Map<ApproveCommentCommand>(request);
             var result = await mediator.Send(command, cancellationToken);
 
-            return Results.LocalRedirect($"/articles/{result.ArticleId}");
+            return Results.LocalRedirect($"/articles/{result.ArticleId}?comment-id={result.CommentId}");
         }).Validator<ApproveCommentRequest>();
     }
 }

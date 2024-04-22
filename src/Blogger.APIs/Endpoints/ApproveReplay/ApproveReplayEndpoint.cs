@@ -15,7 +15,7 @@ public class ApproveReplayEndpoint : IEndpoint
             var command = mapper.Map<ApproveReplayCommand>(request);
             var result = await mediator.Send(command, cancellationToken);
 
-            return Results.LocalRedirect($"/articles/{result.ArticleId}");
+            return Results.LocalRedirect($"/articles/{result.ArticleId}?comment-id={result.CommentId}&replay-id={result.ReplayId}");
         }).Validator<ApproveReplayRequest>();
     }
 }

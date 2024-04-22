@@ -16,6 +16,6 @@ public class ApproveCommentCommandHandler(ICommentRepository commentRepository) 
         comment.Approve();
         await _commentRepository.SaveChangesAsync(cancellationToken);
 
-        return new ApproveCommentCommandResponse(comment.ArticleId);
+        return new ApproveCommentCommandResponse(comment.ArticleId, comment.Id);
     }
 }

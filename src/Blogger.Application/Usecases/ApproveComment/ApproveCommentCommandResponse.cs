@@ -1,3 +1,5 @@
-﻿namespace Blogger.Application.Usecases.ApproveComment;
+﻿using Blogger.Domain.CommentAggregate;
 
-public record ApproveCommentCommandResponse(ArticleId ArticleId) : IRequest;
+namespace Blogger.Application.Usecases.ApproveComment;
+
+public record ApproveCommentCommandResponse(ArticleId ArticleId, CommentId CommentId) : IRequest;

@@ -13,9 +13,9 @@ public class ApproveReplayCommandHandler(ICommentRepository commentRepository) :
             throw new CommentNotFoundException();
         }
 
-        comment.ApproveReplay(request.Link);
+        var replayId = comment.ApproveReplay(request.Link);
         await _commentRepository.SaveChangesAsync(cancellationToken);
 
-        return new ApproveReplayCommandResponse(comment.ArticleId);
+        return new ApproveReplayCommandResponse(comment.ArticleId, comment.Id, replayId);
     }
 }

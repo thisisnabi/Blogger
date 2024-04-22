@@ -52,7 +52,7 @@ public class Comment: AggregateRootBase<CommentId>
         return replay;
     }
 
-    public void ApproveReplay(string link)
+    public ReplayId ApproveReplay(string link)
     {
         var replay = _replaies.FirstOrDefault(x => x.ApproveLink.ApproveId == link);
         if (replay is null)
@@ -61,5 +61,7 @@ public class Comment: AggregateRootBase<CommentId>
         }
 
         replay.Approve();
+
+        return replay.Id;
     }
 }
