@@ -14,7 +14,7 @@ public class GetPopularArticlesEndpoint : IEndpoint
                 IMediator mediator,
                 CancellationToken cancellationToken) =>
         {
-            var command = mapper.Map<GetPopularArticlesQuery>(SizeOfTopPopular);
+            var command = new GetPopularArticlesQuery(SizeOfTopPopular);
             var result = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<IEnumerable<GetPopularArticlesResponse>>(result);
