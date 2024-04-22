@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetArticleArchive;
+﻿using Blogger.Application.Usecases.GetArchive;
 using Blogger.Domain.ArticleAggregate;
 using Moq;
 
@@ -29,6 +29,6 @@ public class GetArticlesQueryHandlerTests : IClassFixture<TestFixture>
         result.Should().NotBeEmpty();
         result.Count.Should().Be(1);
         result.FirstOrDefault().Should().NotBeNull();
-        result.FirstOrDefault()!.ArticleOnArchives.Count.Should().NotBe(0);
+        result.FirstOrDefault()!.Articles.Count.Should().NotBe(0);
     }
 }
