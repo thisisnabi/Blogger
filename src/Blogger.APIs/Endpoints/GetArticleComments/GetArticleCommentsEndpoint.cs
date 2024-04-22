@@ -1,12 +1,12 @@
 ﻿using Blogger.Application.Usecases.GetArticleComments;
 namespace Blogger.APIs.Contracts.GetArticleComments;
 
-public class GetApprovedArticleCommentsEndpoint : IEndpoint
+public class GetArticleCommentsEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet("/comments/{article-id}/approved", async (
-                [AsParameters] GetApprovedArticleCommentsRequest request,
+                [AsParameters] GetArticleCommentsRequest request,
                 IMapper mapper,
                 IMediator mediator,
                 CancellationToken cancellationToken) =>
@@ -14,7 +14,7 @@ public class GetApprovedArticleCommentsEndpoint : IEndpoint
             var command = mapper.Map<GetArticleCommentsQuery>(request);
             var result = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<IEnumerable<GetApprovedArticleCommentsResponse>>(result);
-        }).Validator<GetApprovedArticleCommentsRequest>();
+            return mapper.Map<IEnumerable<GetArticleCommentsResponse>>(result);
+        }).Validator<GetArticleCommentsRequest>();
     }
 }

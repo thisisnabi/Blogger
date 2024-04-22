@@ -1,8 +1,8 @@
 ﻿namespace Blogger.APIs.Contracts.GetArticleComments;
 
-public class GetApprovedArticleCommentsValidator : AbstractValidator<GetApprovedArticleCommentsRequest>
+public class GetArticleCommentsValidator : AbstractValidator<GetArticleCommentsRequest>
 {
-    public GetApprovedArticleCommentsValidator()
+    public GetArticleCommentsValidator()
     {
         RuleFor(x => x.ArticleId)
             .NotEmpty()

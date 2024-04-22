@@ -1,6 +1,6 @@
 ﻿namespace Blogger.APIs.Contracts.GetArticleComments;
 
-public record GetApprovedArticleCommentsResponse(
+public record GetArticleCommentsResponse(
   string FullName, 
   DateTime CreatedOnUtc,
   string Content);
