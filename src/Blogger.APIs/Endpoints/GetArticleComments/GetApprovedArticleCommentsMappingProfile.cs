@@ -1,7 +1,7 @@
-﻿using Blogger.Application.Usecases.GetApprovedArticleComments;
+﻿using Blogger.Application.Usecases.GetArticleComments;
 using Blogger.Domain.ArticleAggregate;
 
-namespace Blogger.APIs.Contracts.GetApprovedArticleComments;
+namespace Blogger.APIs.Contracts.GetArticleComments;
 
 public class GetApprovedArticleCommentsMappingProfile : IRegister
 {

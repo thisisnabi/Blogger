@@ -1,4 +1,4 @@
-﻿namespace Blogger.APIs.Contracts.GetApprovedArticleComments;
+﻿namespace Blogger.APIs.Contracts.GetArticleComments;
 
 public record GetApprovedArticleCommentsResponse(
   string FullName, 

@@ -3,8 +3,6 @@ global using System.Collections.Immutable;
 
 // third-party
 global using MediatR;
-global using Mapster;
-global using MapsterMapper;
 
 // solution
 global using Blogger.Domain.ArticleAggregate;

@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Application.Usecases.GetPopularTags;
 
-public class GetPopularTagsQueryHandler(IArticleRepository articleRepository, IMapper mapper) 
+public class GetPopularTagsQueryHandler(IArticleRepository articleRepository) 
     : IRequestHandler<GetPopularTagsQuery, IReadOnlyList<GetPopularTagsQueryResponse>>
 {
     private readonly IArticleRepository _articleRepository = articleRepository;

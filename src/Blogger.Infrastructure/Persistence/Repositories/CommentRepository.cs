@@ -20,21 +20,12 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
 
         return que.ToImmutableList();
     }
-
-
-
-
-
-
-
+     
     public async Task CreateAsync(Comment comment, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Comments.AddAsync(comment, cancellationToken);
     }
-
-
-
-
+     
     public Task<Comment?> GetCommentByIdAsync(CommentId commentId, CancellationToken cancellationToken)
     {
         return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
