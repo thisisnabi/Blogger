@@ -5,6 +5,7 @@ namespace Blogger.Application.Usecases.ReplayToComment;
 
 public class ReplayToCommentCommandHandler(
     ICommentRepository commentRepository,
+    IEmailService emailService,
     ILinkGenerator linkGenerator) : IRequestHandler<ReplayToCommentCommand, ReplayToCommentCommandResponse>
 {
     public async Task<ReplayToCommentCommandResponse> Handle(ReplayToCommentCommand request, CancellationToken cancellationToken)
@@ -18,6 +19,13 @@ public class ReplayToCommentCommandHandler(
         var replay = comment.ReplayComment(request.Client, request.Content, approveLink);
 
         await commentRepository.SaveChangesAsync(cancellationToken);
+
+        var content = EmailTemplates.ConfirmEngagementEmail;
+        await emailService.SendAsync(request.Client.Email,
+            ApplicationSettings.ApproveLink.ConfirmEmailSubject,
+            content,
+            cancellationToken);
+
         return new ReplayToCommentCommandResponse(replay.Id);
     }
 }

@@ -6,6 +6,7 @@ namespace Blogger.Application.Usecases.MakeComment;
 public class MakeCommentCommandHandler(
     ICommentRepository commentRepository,
     IArticleService articleService,
+    IEmailService emailService,
     ILinkGenerator linkGenerator) : IRequestHandler<MakeCommentCommand, MakeCommentCommandResponse>
 {
     private readonly ICommentRepository _commentRepository = commentRepository;
@@ -26,7 +27,13 @@ public class MakeCommentCommandHandler(
         var comment = Comment.Create(request.ArticleId, request.Client, request.Content, approveLink);
         await _commentRepository.CreateAsync(comment, cancellationToken);
         await _commentRepository.SaveChangesAsync(cancellationToken);
-         
+
+        var content = EmailTemplates.ConfirmEngagementEmail;
+        await emailService.SendAsync(request.Client.Email,
+            ApplicationSettings.ApproveLink.ConfirmEmailSubject, 
+            content, 
+            cancellationToken);
+
         return new MakeCommentCommandResponse(comment.Id);
     }
 }
