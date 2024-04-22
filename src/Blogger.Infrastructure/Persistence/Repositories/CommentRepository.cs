@@ -1,10 +1,5 @@
-﻿using Blogger.Domain.ArticleAggregate;
-using Blogger.Domain.CommentAggregate;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Immutable;
-using static Blogger.Application.Common.ApplicationSettings;
+﻿ namespace Blogger.Infrastructure.Persistence.Repositories;
 
-namespace Blogger.Infrastructure.Persistence.Repositories;
 internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepository
 {
     public Task<Comment?> GetCommentByApproveLinkAsync(string link, CancellationToken cancellationToken)
@@ -21,6 +16,14 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
         return que.ToImmutableList();
     }
      
+    public async Task<IReadOnlyList<Replay>> GetApprovedReplaiesAsync(CommentId commentId, CancellationToken cancellationToken)
+    {
+        var comment = await bloggerDbContext.Comments.FirstAsync(x => x.IsApproved && x.Id == commentId, cancellationToken);
+
+        return comment.Replaies.ToImmutableList();
+    }
+
+
     public async Task CreateAsync(Comment comment, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Comments.AddAsync(comment, cancellationToken);
@@ -35,4 +38,6 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
     }
+
+  
 }
