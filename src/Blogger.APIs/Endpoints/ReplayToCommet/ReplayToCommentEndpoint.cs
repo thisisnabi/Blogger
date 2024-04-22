@@ -1,5 +1,4 @@
-﻿using Blogger.APIs.Contracts.MakeComment;
-using Blogger.APIs.Contracts.ReplayToCommet;
+﻿using Blogger.APIs.Contracts.ReplayToCommet;
 using Blogger.Application.Usecases.ReplayToComment;
 
 namespace Blogger.APIs.Contracts.ReplayToComment;
@@ -17,7 +16,7 @@ public class ReplayToCommentEndpoint : IEndpoint
             var command = mapper.Map<ReplayToCommentCommand>(request);
             var response = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<ReplayToCommetResponse>(response);
+            return mapper.Map<ReplayToCommentResponse>(response);
         }).Validator<ReplayToCommentRequestModel>();
     }
 }

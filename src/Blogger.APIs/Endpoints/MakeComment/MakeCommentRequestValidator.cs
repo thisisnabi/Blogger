@@ -1,8 +1,8 @@
 ﻿namespace Blogger.APIs.Contracts.MakeComment;
 
-public class ReplayToCommetRequestValidator : AbstractValidator<ReplayToCommetRequest>
+public class MakeCommentRequestValidator : AbstractValidator<MakeCommetRequest>
 {
-    public ReplayToCommetRequestValidator()
+    public MakeCommentRequestValidator()
     {
         RuleFor(x => x.ArticleId)
             .NotEmpty()
