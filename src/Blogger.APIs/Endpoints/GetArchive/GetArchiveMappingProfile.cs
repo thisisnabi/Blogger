@@ -6,14 +6,12 @@ public class GetArchiveMappingProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.ForType<GetArchiveQueryResponse, GetArchiveResponse>()
-                    .Map(x => x.Date, src => $"{src.Year} {GetMonthName(src.Month)}")
-                    .Map(x => x.Items, src => src.Articles);
-    }
+        config.ForType<ArticleOnArchive,GetArchiveItemResponse>()
+                    .Map(x => x.ArticleId, src => src.ArticleId.ToString())
+                    .Map(x => x.Title, src => src.Title)
+                    .Map(x => x.Day, src => src.Day);
 
-    private string GetMonthName(int monthNumber)
-    {
-        DateTime date = new DateTime(2000, monthNumber, 1);
-        return date.ToString("MMMM");
+        config.ForType<GetArchiveQueryResponse, GetArchiveResponse>();
     }
+ 
 }
