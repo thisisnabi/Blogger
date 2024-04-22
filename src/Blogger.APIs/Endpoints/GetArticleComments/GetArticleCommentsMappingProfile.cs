@@ -7,9 +7,9 @@ public class GetArticleCommentsMappingProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.ForType<GetArticleCommentsRequest, GetApprovedArticleCommentsQuery>()
+        config.ForType<GetArticleCommentsRequest, GetArticleCommentsQuery>()
                    .Map(x => x.ArticleId, src => ArticleId.Create(src.ArticleId));
 
-        config.ForType<GetArticleCommentsResponse, GetApprovedArticleCommentsQueryResponse>();
+        config.ForType<GetArticleCommentsResponse, GetArticleCommentsQueryResponse>();
     }
 }

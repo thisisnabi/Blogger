@@ -14,7 +14,7 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
 
     public async Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
-        var que = await bloggerDbContext.Comments.Where(x => x.ArticleId == articleId)
+        var que = await bloggerDbContext.Comments.Where(x => x.ArticleId.Slug == articleId.Slug)
                                                  .Where(c => c.IsApproved)
                                                  .ToListAsync(cancellationToken);
 
