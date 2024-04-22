@@ -12,8 +12,7 @@ public class GetArchiveQueryHandler(IArticleRepository articleRepository)
         return articles.GroupBy(x => new { x.PublishedOnUtc.Year, x.PublishedOnUtc.Month })
                        .Select(z => new GetArchiveQueryResponse(z.Key.Year, 
                                                                 z.Key.Month, 
-                                                                z.Select(d => new ArticleOnArchive(d.Id, d.Title, d.PublishedOnUtc.Day))
-                                                                  .ToImmutableList()))
-                       .ToImmutableArray();
+                                                                z.Select(d => (ArticleOnArchive)d).ToImmutableList()))
+                       .ToImmutableList();
     }
 }
