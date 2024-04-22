@@ -10,22 +10,17 @@ public class SubscriberId : ValueObject<SubscriberId>
     {
         yield return Email;
     }
-
-    private SubscriberId(string email)
-    {
-        Email = email;
-    }
-
+  
     public static SubscriberId CreateUniqueId(string email)
     {
         if(MailAddress.TryCreate(email, out _)) 
         {
-            return new SubscriberId(email);
+            return new SubscriberId { Email = email };
         }
 
         throw new ArgumentException("Invalid email address");
     }
 
     public static SubscriberId Create(string value) =>
-        new SubscriberId(value);
+        new SubscriberId{ Email = value };
 }
