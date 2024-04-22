@@ -58,6 +58,16 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
         return que.ToImmutableList();
     }
 
+    public async Task<IReadOnlyList<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken)
+    {
+        var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
+                                                 .OrderByDescending(x => x.CommnetIds.Count)
+                                                 .Take(size)
+                                                 .ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
+    }
+
     public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
         return bloggerDbContext.Articles
@@ -76,6 +86,17 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
         return que.ToImmutableList();
     }
 
+    public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken)
+    {
+        var que = await bloggerDbContext.Articles
+                                       .Where(x => x.Status == ArticleStatus.Published)
+                                       .Where(x => x.Tags.Any(x => x.Value == tag.Value))
+                                       .OrderByDescending(x => x.PublishedOnUtc)
+                                       .ToListAsync(cancellationToken);
+
+        return que.ToImmutableList();
+    }
+
     public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
@@ -85,4 +106,6 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         bloggerDbContext.Remove(draft);
     }
+
+
 }

@@ -10,7 +10,7 @@ public class GetPopularTagsEndpoint : IEndpoint
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/articles/tags/popular", async (
+        app.MapGet("/articles/tags/populars", async (
         IMapper mapper,
         IMediator mediator,
         CancellationToken cancellationToken) =>

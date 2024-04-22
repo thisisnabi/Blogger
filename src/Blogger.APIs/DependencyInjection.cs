@@ -1,5 +1,4 @@
-﻿using Blogger.APIs.Abstractions;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Blogger.APIs;
 

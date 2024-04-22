@@ -11,7 +11,7 @@ public class GetArticleMappingProfile : IRegister
                    .Map(x => x.ArticleId, src => ArticleId.Create(src.ArticleId));
 
         config.ForType<GetArticleQueryResponse, GetArticleResponse>()
-                    .Map(x => x.ArticleId, src => src.ArticleId.Slug)
+                    .Map(x => x.ArticleId, src => src.ArticleId.ToString())
                     .Map(x => x.AuthorFullName, src => src.Author.FullName)
                     .Map(x => x.AuthorAvatar, src => src.Author.Avatar)
                     .Map(x => x.AuthorJobTitle, src => src.Author.JobTitle)

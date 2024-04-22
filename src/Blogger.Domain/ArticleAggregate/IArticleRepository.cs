@@ -13,4 +13,6 @@ public interface IArticleRepository
      
     Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken);
     Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
+    Task<IReadOnlyList<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken);
+    Task<IReadOnlyList<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken);
 }

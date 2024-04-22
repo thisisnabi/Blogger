@@ -11,7 +11,7 @@ public class GetArticlesMappingProfile : IRegister
                    .Map(x => x.PageSize, src => src.Size);
 
         config.ForType<GetArticlesQueryResponse, GetArticlesResponse>()
-                    .Map(x => x.ArticleId, src => src.ArticleId.Slug)
+                    .Map(x => x.ArticleId, src => src.ArticleId.ToString())
                     .Map(x => x.Tags, src => src.Tags.Select(x => x.Value)
                                                      .ToImmutableArray());
     }
