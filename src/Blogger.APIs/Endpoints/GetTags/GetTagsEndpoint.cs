@@ -7,15 +7,15 @@ public class GetTagsEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/tags/", async (
-        IMapper mapper,
-        IMediator mediator,
-        CancellationToken cancellationToken) =>
-        {
-            var command = new GetTagsQuery();
-            var response = await mediator.Send(command, cancellationToken);
+        //app.MapGet("/tags/", async (
+        //IMapper mapper,
+        //IMediator mediator,
+        //CancellationToken cancellationToken) =>
+        //{
+        //    var command = new GetTagsQuery();
+        //    var response = await mediator.Send(command, cancellationToken);
 
-            return mapper.Map<IEnumerable<GetTagsResponse>>(response);
-        });
+        //    return mapper.Map<IEnumerable<GetTagsResponse>>(response);
+        //});
     }
 }
