@@ -5,7 +5,6 @@ public static class DependencyInjection
     {
         services.AddDbContext<BloggerDbContext>(options =>
         {
-
             options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefualtConnectionStringName));
         });
 

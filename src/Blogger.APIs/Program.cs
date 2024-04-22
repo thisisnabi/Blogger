@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
+
 builder.Services.ConfigureApplicationLayer(builder.Configuration);
 builder.Services.ConfigureInfrastructureLayer(builder.Configuration);
 builder.Services.ConfigureMapster();
