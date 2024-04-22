@@ -1,10 +1,10 @@
 ﻿namespace Blogger.APIs.Contracts.MakeDraft;
 
-public class MakeCommentRequestValidator : AbstractValidator<MakeCommentRequest>
+public class MakeDraftRequestValidator : AbstractValidator<MakeDraftRequest>
 {
     private const string TagMaximumLengthMessage = "The tags must contain at most 10 elements.";
 
-    public MakeCommentRequestValidator()
+    public MakeDraftRequestValidator()
     {
         RuleFor(x => x.Title)
             .MaximumLength(70)

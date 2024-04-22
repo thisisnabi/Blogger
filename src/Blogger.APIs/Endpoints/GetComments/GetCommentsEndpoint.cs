@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.GetComments;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.GetComments;
 
 namespace Blogger.APIs.Contracts.GetComments;
 
@@ -16,6 +17,7 @@ public class GetCommentsEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<IEnumerable<GetCommentsResponse>>(result);
-        }).Validator<GetCommentsRequest>();
+        }).Validator<GetCommentsRequest>()
+        .WithTags(EndpointSchema.CommentTag);
     }
 }

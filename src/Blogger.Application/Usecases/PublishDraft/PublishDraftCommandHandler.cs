@@ -11,5 +11,7 @@ public class PublishDraftCommandHandler(IArticleRepository articleRepository)
         draft.Publish();
 
         await articleRepository.SaveChangesAsync(cancellationToken);
+
+        // TODO: send article nutify for subscriber
     }
 }

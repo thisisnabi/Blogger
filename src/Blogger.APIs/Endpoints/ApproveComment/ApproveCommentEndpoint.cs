@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.ApproveComment;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.ApproveComment;
 
 namespace Blogger.APIs.Contracts.ApproveComment;
 
@@ -16,6 +17,7 @@ public class ApproveCommentEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return Results.LocalRedirect($"/articles/{result.ArticleId}?comment-id={result.CommentId}");
-        }).Validator<ApproveCommentRequest>();
+        }).Validator<ApproveCommentRequest>()
+          .WithTags(EndpointSchema.CommentTag);
     }
 }

@@ -3,16 +3,16 @@ using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.MakeDraft;
 
-public class MakeCommentMappingProfile : IRegister
+public class MakeDraftMappingProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.ForType<MakeCommentRequest, MakeDraftCommand>()
+        config.ForType<MakeDraftRequest, MakeDraftCommand>()
                 
                    .Map(x => x.Tags, src => src.Tags.Select(x => Tag.Create(x))
                                                     .ToImmutableList());
 
-        config.ForType<MakeDraftCommandResponse, MakeCommentResponse>()
+        config.ForType<MakeDraftCommandResponse, MakeDraftResponse>()
                   .Map(x => x.DraftId, src => src.DraftId.Slug);
     }
 }

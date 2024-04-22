@@ -1,3 +1,3 @@
 ﻿namespace Blogger.APIs.Contracts.MakeDraft;
 
-public record MakeCommentResponse(string DraftId);
+public record MakeDraftResponse(string DraftId);

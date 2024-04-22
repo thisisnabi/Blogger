@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.CreateArticle;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.CreateArticle;
 
 namespace Blogger.APIs.Contracts.CreateArticle;
 
@@ -16,6 +17,7 @@ public class CreateArticleEndpoint : IEndpoint
             var response = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<CreateArticleResponse>(response);
-        }).Validator<CreateArticleRequest>();
+        }).Validator<CreateArticleRequest>()
+          .WithTags(EndpointSchema.ArticleTag);
     }
 }

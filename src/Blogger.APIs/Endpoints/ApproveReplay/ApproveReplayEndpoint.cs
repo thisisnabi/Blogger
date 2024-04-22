@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.ApproveReplay;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.ApproveReplay;
 
 namespace Blogger.APIs.Contracts.ApproveReplay;
 
@@ -16,6 +17,7 @@ public class ApproveReplayEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return Results.LocalRedirect($"/articles/{result.ArticleId}?comment-id={result.CommentId}&replay-id={result.ReplayId}");
-        }).Validator<ApproveReplayRequest>();
+        }).Validator<ApproveReplayRequest>()
+          .WithTags(EndpointSchema.CommentTag);
     }
 }

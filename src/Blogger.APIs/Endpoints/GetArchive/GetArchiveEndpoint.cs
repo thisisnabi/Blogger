@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.GetArchive;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.GetArchive;
 
 namespace Blogger.APIs.Contracts.GetArchive;
 
@@ -15,6 +16,6 @@ public class GetArchiveEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<IEnumerable<GetArchiveResponse>>(result);
-        });
+        }).WithTags(EndpointSchema.ArticleTag);
     }
 }

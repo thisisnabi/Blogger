@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.GetArticle;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.GetArticle;
 
 namespace Blogger.APIs.Contracts.GetArticle;
 
@@ -16,6 +17,7 @@ public class GetArticleEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<GetArticleResponse>(result);
-        }).Validator<GetArticleRequest>();
+        }).Validator<GetArticleRequest>()
+        .WithTags(EndpointSchema.ArticleTag);
     }
 }

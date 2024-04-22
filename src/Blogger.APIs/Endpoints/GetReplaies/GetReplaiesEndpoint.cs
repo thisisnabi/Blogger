@@ -1,4 +1,5 @@
-﻿using Blogger.Application.Usecases.GetReplaies;
+﻿using Blogger.APIs.Endpoints;
+using Blogger.Application.Usecases.GetReplaies;
 
 namespace Blogger.APIs.Contracts.GetReplaies;
 
@@ -16,6 +17,7 @@ public class GetReplaiesEndpoint : IEndpoint
             var result = await mediator.Send(command, cancellationToken);
 
             return mapper.Map<IEnumerable<GetReplaiesResponse>>(result);
-        }).Validator<GetReplaiesRequest>();
+        }).Validator<GetReplaiesRequest>()
+        .WithTags(EndpointSchema.ArticleTag);
     }
 }
