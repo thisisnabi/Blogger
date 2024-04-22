@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F10530A2-8E3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Domain", "src\Blogger.Domain\Blogger.Domain.csproj", "{90C456BB-B200-4386-94DC-B971084AA2CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.Domain", "src\Blogger.Domain\Blogger.Domain.csproj", "{90C456BB-B200-4386-94DC-B971084AA2CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Application", "src\Blogger.Application\Blogger.Application.csproj", "{5ACBF1E8-8C5B-43F6-BA1D-B34C8B4A821D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.Application", "src\Blogger.Application\Blogger.Application.csproj", "{5ACBF1E8-8C5B-43F6-BA1D-B34C8B4A821D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Infrastructure", "src\Blogger.Infrastructure\Blogger.Infrastructure.csproj", "{1C59E001-D440-4CF6-BD00-8D31F24F461F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.Infrastructure", "src\Blogger.Infrastructure\Blogger.Infrastructure.csproj", "{1C59E001-D440-4CF6-BD00-8D31F24F461F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.APIs", "src\Blogger.APIs\Blogger.APIs.csproj", "{D6D064B7-80EB-4D1A-9942-FB705C5095D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.APIs", "src\Blogger.APIs\Blogger.APIs.csproj", "{D6D064B7-80EB-4D1A-9942-FB705C5095D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.ArchitectureTests", "tests\Blogger.ArchitectureTests\Blogger.ArchitectureTests.csproj", "{6652F99E-5CFE-47D6-8A27-CCDDC223889A}"
 EndProject
