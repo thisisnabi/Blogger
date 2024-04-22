@@ -4,7 +4,7 @@ env:
   DOTNET_VERSION: '8'
   
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
@@ -27,6 +27,9 @@ jobs:
     - name: Build Project
       run: dotnet build --no-restore
 
-    - name: Publish
-      run: dotnet publish -c release --output ./release
-    
+    - name: Liara-Publish
+      env:
+        LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+      run: |
+        npm i -g @liara/cli@5
+        liara deploy --app="APP_NAME" --api-token="$LIARA_TOKEN" --no-app-logs
