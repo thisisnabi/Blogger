@@ -69,6 +69,8 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     {
         var que = await bloggerDbContext.Articles
                                         .Where(x => x.Status == ArticleStatus.Published)
+                                        .OrderByDescending(x => x.PublishedOnUtc)
+                                        .Skip((pageNumber - 1) * pageSize).Take(pageSize)
                                         .ToListAsync(cancellationToken);
 
         return que.ToImmutableList();
