@@ -10,9 +10,7 @@ public class ReplayToCommentCommandHandler(
     public async Task<ReplayToCommentCommandResponse> Handle(ReplayToCommentCommand request, CancellationToken cancellationToken)
     {
         var comment = await commentRepository.GetCommentByIdAsync(request.CommentId, cancellationToken);
-
-        // change into the NotFoundCommentException
-        if (comment is null) throw new NotFoundArticleException();
+        if (comment is null) throw new NotFoundCommentException();
 
         var link = linkGenerator.Generate();
         var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));

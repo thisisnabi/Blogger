@@ -1,8 +1,10 @@
-﻿using Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Application.Services;
+using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.CommentAggregate;
 using Blogger.Domain.SubscriberAggregate;
 using Blogger.Infrastructure.Persistence;
 using Blogger.Infrastructure.Persistence.Repositories;
+using Blogger.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,7 @@ public static class DependencyInjection
         services.AddTransient<IArticleRepository, ArticleRepository>();
         services.AddTransient<ICommentRepository, CommentRepository>();
         services.AddTransient<ISubscruiberRepository, SubscriberRepository>();
+        services.AddSingleton<ILinkGenerator, LinkGenerator>();
 
         return services;
     }

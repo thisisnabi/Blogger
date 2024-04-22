@@ -43,13 +43,10 @@ public class Comment: AggregateRootBase<CommentId>
     {
         if (!IsApproved)
         {
-            // TODO: // add new costum exception in Article aggregate
-            throw new Exception("Invalid action in this status");
+            throw new UnapprovedCommentException();
         }
 
         var replay = Replay.Create(client, content, approveLink);
-
-        _replaies ??= new List<Replay>();
         _replaies.Add(replay);
 
         return replay;

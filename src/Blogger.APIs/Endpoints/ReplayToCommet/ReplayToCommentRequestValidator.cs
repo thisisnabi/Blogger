@@ -1,6 +1,6 @@
 ﻿namespace Blogger.APIs.Contracts.ReplayToCommet;
 
-public class ReplayToCommentRequestValidator : AbstractValidator<ReplayToCommentRequest>
+public class ReplayToCommentRequestValidator : AbstractValidator<ReplayToCommentRequestModel>
 {
     public ReplayToCommentRequestValidator()
     {
@@ -8,17 +8,17 @@ public class ReplayToCommentRequestValidator : AbstractValidator<ReplayToComment
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.Content)
+        RuleFor(x => x.body.Content)
             .MaximumLength(500)
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.FullName)
+        RuleFor(x => x.body.FullName)
             .MaximumLength(100)
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.Email)
+        RuleFor(x => x.body.Email)
             .MaximumLength(1044)
             .NotEmpty()
             .NotNull();

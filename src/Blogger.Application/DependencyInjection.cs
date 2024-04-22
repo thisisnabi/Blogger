@@ -6,7 +6,6 @@ public static class DependencyInjection
 {
     public static IServiceCollection ConfigureApplicationLayer(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<ILinkGenerator, LinkGenerator>();
         services.AddTransient<IArticleService, ArticleService>();
         services.AddTransient<ISubscriberService, SubscriberService>();
 

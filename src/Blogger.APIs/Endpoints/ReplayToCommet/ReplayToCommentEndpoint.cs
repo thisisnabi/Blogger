@@ -8,16 +8,16 @@ public class ReplayToCommentEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        //app.MapPost("comments/{comment-id:guid}/replay", async (
-        //        [FromBody] ReplayToCommentRequest request,
-        //        IMapper mapper,
-        //        IMediator mediator,
-        //        CancellationToken cancellationToken) =>
-        //{
-        //    var command = mapper.Map<ReplayToCommentCommand>(request);
-        //    var response = await mediator.Send(command, cancellationToken);
+        app.MapPatch("comments/{comment-id}/replay", async (
+                [AsParameters] ReplayToCommentRequestModel request,
+                IMapper mapper,
+                IMediator mediator,
+                CancellationToken cancellationToken) =>
+        {
+            var command = mapper.Map<ReplayToCommentCommand>(request);
+            var response = await mediator.Send(command, cancellationToken);
 
-        //    return mapper.Map<ReplayToCommetResponse>(response);
-        //}).Validator<ReplayToCommentRequest>();
+            return mapper.Map<ReplayToCommetResponse>(response);
+        }).Validator<ReplayToCommentRequestModel>();
     }
 }
