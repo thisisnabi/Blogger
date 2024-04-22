@@ -1,3 +1,5 @@
+using Blogger.APIs.ErrorHandling;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddEnvironmentVariables();
@@ -11,10 +13,15 @@ builder.Services.AddEndpoints();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-  
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // TODO: if (app.Environment.IsDevelopment())
+app.UseExceptionHandler();
+
 app.UseSwagger();
 app.UseSwaggerUI();
  
