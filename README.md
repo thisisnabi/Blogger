@@ -1,5 +1,5 @@
 # Clean Architecture & DDD for Bloggers
-This document serves as a guide for building a blog application using Clean Architecture and Domain-Driven Design (DDD) software design approach. 👋
+This document serves as a guide for building a blog application using Clean Architecture and Domain-Driven Design (DDD) software design approach In ASP.NET Core 8. 👋
 
 ## Target Audience
 
