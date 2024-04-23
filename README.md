@@ -1,4 +1,4 @@
-# Clean Architecture & DDD for Bloggers
+# Clean Architecture & DDD in ASP.NET Core
 This document serves as a guide for building a blog application using Clean Architecture and Domain-Driven Design (DDD) software design approach In ASP.NET Core 8.
 
 ## Give a Star! ⭐
