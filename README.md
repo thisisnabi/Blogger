@@ -1,18 +1,9 @@
 # Clean Architecture & DDD for Bloggers
-This document serves as a guide for building a blog application using Clean Architecture and Domain-Driven Design (DDD) software design approach In ASP.NET Core 8. 👋
-
-## Target Audience
-
-Developers interested in creating well-structured, maintainable, and scalable blog applications.
+This document serves as a guide for building a blog application using Clean Architecture and Domain-Driven Design (DDD) software design approach In ASP.NET Core 8.
 
 ## Give a Star! ⭐
-If you find this `Blogger` valuable and believe in the importance of CQRD, Clean Architecture, Domain-Driven Design, consider showing your support by giving this repository a star! ⭐️
+If you find this `Blogger` valuable and believe in the importance of CQRD, Clean Architecture, Domain-Driven Design, consider showing your support by giving this repository a star!
  
-## Benefits
-
-- **Clean Architecture:** Promotes separation of concerns, leading to improved code maintainability and testability.
-- **Domain-Driven Design:** Focuses on modeling core domain concepts for a clear and robust application structure.
-
 ## Getting Started
 
 This repository provides various resources to get you started with building your blog application:
