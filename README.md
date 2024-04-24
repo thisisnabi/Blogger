@@ -9,6 +9,21 @@ If you find this `Blogger` valuable and believe in the importance of CQRD, Clean
 This repository provides various resources to get you started with building your blog application:
 
 > Cooming soon
+### Index
+- Problem domain:
+- Ubiquitous Language
+- Domain objects
+- Aggregates
+- Repository
+- Factory
+- Strongly-typed IDs
+- Domain Events
+- Clean Architecture
+- Setting up our domain objects
+- Setting up usescases
+- Persist by using EF Core
+- Expose our features
+
 
 ## Contributing
 
