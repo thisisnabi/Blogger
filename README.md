@@ -24,7 +24,6 @@ This repository provides various resources to get you started with building your
 - Persist by using EF Core
 - Expose our features
 
-
 ## Contributing
 
 We welcome contributions to this project! Feel free to open pull requests with improvements, bug fixes, or additional features.
@@ -37,6 +36,11 @@ We welcome contributions to this project! Feel free to open pull requests with i
          <a href="https://github.com/amirhossein33">
             <img src="https://avatars.githubusercontent.com/u/141221532?v=4?s=100" width="100px;" alt="Amirhossein Shiravandi"/>
               <br /><sub><b>Amirhossein Shiravandi</b></sub></a>
+      </td>
+      <td align="center" valign="top" width="14.28%">
+         <a href="https://github.com/amirabbas-dev">
+            <img src="https://avatars.githubusercontent.com/u/89020912?v=4?s=100" width="100px;" alt="Amir Abbas Hassan Khani"/>
+              <br /><sub><b>Amir Abbas Hassan Khani</b></sub></a>
       </td>
     </tr>
 
