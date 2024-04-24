@@ -21,7 +21,7 @@ This repository provides various resources to get you started with building your
 - Clean Architecture
 - Setting up our domain objects
 - Setting up usescases
-- Persist by using EF Core
+- Persist data by using EF Core
 - Expose our features
 
 ## Contributing
