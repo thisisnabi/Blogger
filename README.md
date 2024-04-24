@@ -59,37 +59,31 @@ We welcome contributions to this project! Feel free to open pull requests with i
        </td>
     </tr>
     <tr>
-    
        <td align="center" valign="top" width="14.28%">
            <a href="https://github.com/mhshahmoradi">
               <img src="https://avatars.githubusercontent.com/u/88337261?v=4&s=100" width="100px;" alt="MohammadReza SH"/>
                   <br /><sub><b>MohammadReza SH</b></sub></a>
-       </td>
-       
+       </td>       
        <td align="center" valign="top" width="14.28%">
            <a href="https://github.com/soheilagolshan">
               <img src="https://avatars.githubusercontent.com/u/107979661?v=4&s=100" width="100px;" alt="Soheila Golshan"/>
                   <br /><sub><b>Soheila Golshan</b></sub></a>
-       </td>
-       
+       </td>      
        <td align="center" valign="top" width="14.28%">
            <a href="https://github.com/alighodrati">
               <img src="https://avatars.githubusercontent.com/u/4831605?v=4&s=100" width="100px;" alt="Ali Ghodrati"/>
                   <br /><sub><b>Ali Ghodrati</b></sub></a>
-       </td>
-       
+       </td>       
        <td align="center" valign="top" width="14.28%">
            <a href="https://github.com/mahdisalahi">
               <img src="https://avatars.githubusercontent.com/u/67652712?v=4&s=100" width="100px;" alt="Mahdi Salahinia"/>
                   <br /><sub><b>Mahdi Salahinia</b></sub></a>
-       </td>
-       
+       </td>  
        <td align="center" valign="top" width="14.28%">
            <a href="https://github.com/naderjavid">
               <img src="https://avatars.githubusercontent.com/u/30950912?v=4&s=100" width="100px;" alt="Nader Javid"/>
                   <br /><sub><b>Nader Javid</b></sub></a>
        </td>
-    
     </tr>
   </tbody>
 </table>
