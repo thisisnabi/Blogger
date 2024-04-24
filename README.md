@@ -42,6 +42,21 @@ We welcome contributions to this project! Feel free to open pull requests with i
             <img src="https://avatars.githubusercontent.com/u/89020912?v=4?s=100" width="100px;" alt="Amir Abbas Hassan Khani"/>
               <br /><sub><b>Amir Abbas Hassan Khani</b></sub></a>
       </td>
+      <td align="center" valign="top" width="14.28%">
+            <a href="https://github.com/SLjavad">
+               <img src="https://avatars.githubusercontent.com/u/24592212?v=4?s=100" width="100px;" alt="SLjavad"/>
+                   <br /><sub><b>SLjavad</b></sub></a>
+       </td>
+       <td align="center" valign="top" width="14.28%">
+           <a href="https://github.com/hoseinhayati">
+              <img src="https://avatars.githubusercontent.com/u/34894710?v=4?s=100" width="100px;" alt="Hossein Hayati"/>
+                  <br /><sub><b>Hossein Hayati</b></sub></a>
+       </td>
+       <td align="center" valign="top" width="14.28%">
+           <a href="https://github.com/aminafra">
+              <img src="https://avatars.githubusercontent.com/u/99575913?v=4?s=100" width="100px;" alt="aminafra"/>
+                  <br /><sub><b>aminafra</b></sub></a>
+       </td>
     </tr>
 
   </tbody>
