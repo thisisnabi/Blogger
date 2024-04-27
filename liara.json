@@ -1,4 +1,4 @@
 {
-  "app": "thisisnabi-prod-apis",
+  "app": "thisisnabi-dev-apis",
   "port": 80
 }
