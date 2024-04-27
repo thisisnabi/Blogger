@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.GetTaggedArticles;
+using Blogger.Application.Articles.GetTaggedArticles;
 
 namespace Blogger.APIs.Contracts.GetTaggedArticles;
 

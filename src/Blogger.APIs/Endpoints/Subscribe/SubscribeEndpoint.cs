@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.Subscribe;
+using Blogger.Application.Subscribers.Subscribe;
 
 namespace Blogger.APIs.Contracts.Subscribe;
 

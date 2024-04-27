@@ -1,6 +1,6 @@
 ﻿using Blogger.APIs.Contracts.ReplayToCommet;
 using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.ReplayToComment;
+using Blogger.Application.Comments.ReplayToComment;
 
 namespace Blogger.APIs.Contracts.ReplayToComment;
 

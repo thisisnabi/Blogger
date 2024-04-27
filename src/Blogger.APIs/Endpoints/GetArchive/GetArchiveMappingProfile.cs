@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetArchive;
+﻿using Blogger.Application.Articles.GetArchive;
 
 namespace Blogger.APIs.Contracts.GetArchive;
 

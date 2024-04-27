@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.GetComments;
+using Blogger.Application.Comments.GetComments;
 
 namespace Blogger.APIs.Contracts.GetComments;
 

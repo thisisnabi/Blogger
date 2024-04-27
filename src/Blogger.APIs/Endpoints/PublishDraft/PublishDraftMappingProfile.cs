@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.PublishDraft;
+﻿using Blogger.Application.Articles.PublishDraft;
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.PublishDraft;

@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.GetReplaies;
+using Blogger.Application.Comments.GetReplaies;
 
 namespace Blogger.APIs.Contracts.GetReplaies;
 

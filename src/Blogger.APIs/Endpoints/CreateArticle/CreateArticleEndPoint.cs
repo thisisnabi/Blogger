@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.CreateArticle;
+using Blogger.Application.Articles.CreateArticle;
 
 namespace Blogger.APIs.Contracts.CreateArticle;
 

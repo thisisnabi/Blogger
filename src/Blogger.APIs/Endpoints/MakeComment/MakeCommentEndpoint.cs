@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.MakeComment;
+using Blogger.Application.Comments.MakeComment;
 
 namespace Blogger.APIs.Contracts.MakeComment;
 

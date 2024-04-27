@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.UpdateDraft;
+﻿using Blogger.Application.Articles.UpdateDraft;
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.UpdateDraft;

@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.ApproveReplay;
+using Blogger.Application.Comments.ApproveReplay;
 
 namespace Blogger.APIs.Contracts.ApproveReplay;
 

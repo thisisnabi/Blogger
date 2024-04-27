@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.MakeComment;
+﻿using Blogger.Application.Comments.MakeComment;
 using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.CommentAggregate;
 

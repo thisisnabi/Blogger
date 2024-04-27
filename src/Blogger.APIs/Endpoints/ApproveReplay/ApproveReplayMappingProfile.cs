@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.ApproveReplay;
+﻿using Blogger.Application.Comments.ApproveReplay;
 using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.APIs.Contracts.ApproveReplay;

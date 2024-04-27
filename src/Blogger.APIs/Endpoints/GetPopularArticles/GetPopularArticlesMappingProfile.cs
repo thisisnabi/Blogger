@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetPopularArticles;
+﻿using Blogger.Application.Articles.GetPopularArticles;
 
 namespace Blogger.APIs.Contracts.GetPopularArticles;
 

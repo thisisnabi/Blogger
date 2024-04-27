@@ -1,4 +1,6 @@
-﻿namespace Blogger.Infrastructure;
+﻿using Blogger.Application.ApplicatioServices;
+
+namespace Blogger.Infrastructure;
 public static class DependencyInjection
 {
     public static IServiceCollection ConfigureInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)

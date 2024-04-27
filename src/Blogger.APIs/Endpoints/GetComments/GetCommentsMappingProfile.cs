@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetComments;
+﻿using Blogger.Application.Comments.GetComments;
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.GetComments;

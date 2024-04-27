@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetTaggedArticles;
+﻿using Blogger.Application.Articles.GetTaggedArticles;
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.GetTaggedArticles;

@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.UpdateDraft;
+using Blogger.Application.Articles.UpdateDraft;
 
 namespace Blogger.APIs.Contracts.UpdateDraft;
 

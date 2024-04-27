@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetReplaies;
+﻿using Blogger.Application.Comments.GetReplaies;
 using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.CommentAggregate;
 

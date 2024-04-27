@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.GetArticle;
+﻿using Blogger.Application.Articles.GetArticle;
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.APIs.Contracts.GetArticle;

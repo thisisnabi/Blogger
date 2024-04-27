@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.ApproveComment;
+using Blogger.Application.Comments.ApproveComment;
 
 namespace Blogger.APIs.Contracts.ApproveComment;
 

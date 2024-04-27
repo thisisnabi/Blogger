@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.Subscribe;
+﻿using Blogger.Application.Subscribers.Subscribe;
 using Blogger.Domain.SubscriberAggregate;
 
 namespace Blogger.APIs.Contracts.Subscribe;

@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.PublishDraft;
+using Blogger.Application.Articles.PublishDraft;
 
 namespace Blogger.APIs.Contracts.PublishDraft;
 

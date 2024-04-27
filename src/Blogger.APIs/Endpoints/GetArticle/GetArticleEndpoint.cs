@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Usecases.GetArticle;
+using Blogger.Application.Articles.GetArticle;
 
 namespace Blogger.APIs.Contracts.GetArticle;
 

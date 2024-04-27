@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints.GetPopularTags;
-using Blogger.Application.Usecases.GetPopularTags;
+using Blogger.Application.Articles.GetPopularTags;
 
 namespace Blogger.APIs.Contracts.GetPopularTags;
 

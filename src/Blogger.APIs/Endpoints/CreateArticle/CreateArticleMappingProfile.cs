@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.CreateArticle;
+﻿using Blogger.Application.Articles.CreateArticle;
 using Blogger.Domain.ArticleAggregate;
 using System.Collections.Immutable;
 

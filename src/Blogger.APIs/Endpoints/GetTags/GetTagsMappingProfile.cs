@@ -1,5 +1,5 @@
 ﻿using Blogger.APIs.Endpoints.GetTags;
-using Blogger.Application.Usecases.GetTags;
+using Blogger.Application.Articles.GetTags;
 
 namespace Blogger.APIs.Contracts.GetTags;
 

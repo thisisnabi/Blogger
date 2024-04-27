@@ -1,4 +1,4 @@
-﻿using Blogger.Application.Usecases.ReplayToComment;
+﻿using Blogger.Application.Comments.ReplayToComment;
 using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.APIs.Contracts.ReplayToCommet;
