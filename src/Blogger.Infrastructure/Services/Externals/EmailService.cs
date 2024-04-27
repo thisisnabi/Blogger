@@ -1,4 +1,6 @@
-﻿namespace Blogger.Infrastructure.Services.Externals;
+﻿using Blogger.Application.ApplicatioServices;
+
+namespace Blogger.Infrastructure.Services.Externals;
 
 public class EmailService : IEmailService
 {

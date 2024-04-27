@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.FunctionalTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.UnitTests", "tests\Blogger.UnitTests\Blogger.UnitTests.csproj", "{51E5814B-9063-4B3F-8617-478F4D7DCB07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.IntegrationTests", "tests\Blogger.IntegrationTests\Blogger.IntegrationTests.csproj", "{D2790D2D-B93D-44C5-BC8B-BCA3F3631996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{51E5814B-9063-4B3F-8617-478F4D7DCB07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51E5814B-9063-4B3F-8617-478F4D7DCB07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51E5814B-9063-4B3F-8617-478F4D7DCB07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{6652F99E-5CFE-47D6-8A27-CCDDC223889A} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 		{96C26B22-037D-433C-A2B6-088875C5DCEC} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 		{51E5814B-9063-4B3F-8617-478F4D7DCB07} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
+		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79594A78-23A6-4103-92DA-71BD4586160D}

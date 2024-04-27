@@ -8,7 +8,7 @@ global using Microsoft.Extensions.DependencyInjection;
 
 // solution
 global using Blogger.Domain.ArticleAggregate;
-global using Blogger.Application.Services;
+global using Blogger.Application.ApplicatioServices;
 global using Blogger.Domain.CommentAggregate;
 global using Blogger.Domain.SubscriberAggregate;
 global using Blogger.Infrastructure.Persistence;
