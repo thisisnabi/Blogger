@@ -31,7 +31,9 @@ public static class DependencyInjection
             options.AddPolicy(name: "AllowOrigin",
                 builder =>
                 {
-                    builder.WithOrigins("https://localhost:5001")
+                    builder.WithOrigins("http://localhost:5001", 
+                                        "http://localhost:5002",
+                                        "http://localhost:5003")
                                         .AllowAnyHeader()
                                         .AllowCredentials()
                                         .AllowAnyMethod();
