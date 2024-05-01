@@ -59,7 +59,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
                         .HasColumnName(BloggerDbContextSchema.Article.AuthorFullName);
         });
          
-        builder.OwnsMany(x => x.CommnetIds, cb =>
+        builder.OwnsMany(x => x.CommentIds, cb =>
         {
             cb.ToTable(BloggerDbContextSchema.Article.CommentIdTableName);
 
@@ -68,7 +68,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
 
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
-        builder.Navigation(x => x.CommnetIds)
+        builder.Navigation(x => x.CommentIds)
                     .Metadata.SetField(BloggerDbContextSchema.Article.CommentIdBackendField);
 
         builder.OwnsMany(x => x.Tags, tb =>

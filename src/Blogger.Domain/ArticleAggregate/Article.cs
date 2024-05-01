@@ -15,7 +15,7 @@ public class Article : AggregateRootBase<ArticleId>
 
 
     private IList<CommentId> _commentIds = null!;
-    public IReadOnlyCollection<CommentId> CommnetIds => _commentIds.ToImmutableList();
+    public IReadOnlyCollection<CommentId> CommentIds => _commentIds.ToImmutableList();
 
     private IList<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();

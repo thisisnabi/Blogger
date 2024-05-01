@@ -1,12 +1,12 @@
 ﻿namespace Blogger.Application.Subscribers;
 
-public class SubscriberService(ISubscruiberRepository subscruiberRepository) : ISubscriberService
+public class SubscriberService(ISubscriberRepository subscriberRepository) : ISubscriberService
 {
-    private readonly ISubscruiberRepository _subscruiberRepository = subscruiberRepository;
+    private readonly ISubscriberRepository _subscriberRepository = subscriberRepository;
 
     public async Task<bool> IsDuplicated(SubscriberId subscriberId, CancellationToken cancellationToken)
     {
-        var exists = await _subscruiberRepository.IsExists(subscriberId, cancellationToken);
+        var exists = await _subscriberRepository.IsExists(subscriberId, cancellationToken);
         return exists;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Blogger.Domain.SubscriberAggregate;
 
 namespace Blogger.Infrastructure.Persistence.Repositories;
-internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscruiberRepository
+internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscriberRepository
 {
 
     public async Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken)
