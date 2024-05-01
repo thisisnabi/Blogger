@@ -5,7 +5,7 @@ This document serves as a guide for building a blog application using Clean Arch
 > Here you can see UI for this api project, <a href='https://github.com/thisisnabi/Blogger.UI'>Blogger.UI</a>
 
 > [!WARNING]
-> Tests will end this month, follow me on http://lu.ma/thisisnabi
+> Tests will end this month, follow me on https://lu.ma/thisisnabi?tag=testing
 > 1. Unit Testing - 6 May
 > 2. Integration Testing - 13 May
 > 3. Functional Testing - 20 May
