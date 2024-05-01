@@ -6,7 +6,7 @@ public class SubscriberService(ISubscruiberRepository subscruiberRepository) : I
 
     public async Task<bool> IsDuplicated(SubscriberId subscriberId, CancellationToken cancellationToken)
     {
-        var subscriber = await _subscruiberRepository.FindById(subscriberId);
-        return subscriber is not null;
+        var exists = await _subscruiberRepository.IsExists(subscriberId, cancellationToken);
+        return exists;
     }
 }

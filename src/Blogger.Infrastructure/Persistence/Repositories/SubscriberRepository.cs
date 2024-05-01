@@ -14,7 +14,10 @@ internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscr
         var subscriber = await bloggerDbContext.Subscribers.FindAsync(subscriberId);
         return subscriber;
     }
-
+    public Task<bool> IsExists(SubscriberId subscriberId, CancellationToken cancellationToken)
+    {
+        return bloggerDbContext.Subscribers.AnyAsync(s=>s.Id.Equals(subscriberId), cancellationToken);
+    }
     public async Task SavaChangesAsync(CancellationToken cancellationToken)
     {
         await bloggerDbContext.SaveChangesAsync(cancellationToken);
