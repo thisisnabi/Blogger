@@ -22,6 +22,22 @@ public static class DependencyInjection
         services.AddValidatorsFromAssemblies(Assemblies);
 
         return services;
+    } 
+    
+    public static IServiceCollection ConfigureCors(this IServiceCollection services)
+    {
+        services.AddCors(options =>
+        {
+            options.AddPolicy(name: "AllowOrigin",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
+
+        return services;
     }
 
     public static IServiceCollection AddEndpoints(this IServiceCollection services)
@@ -38,7 +54,8 @@ public static class DependencyInjection
         services.TryAddEnumerable(serviceDescriptors);
 
         return services;
-    }
+    } 
+
 
     public static IApplicationBuilder MapEndpoints(this WebApplication app)
     {
