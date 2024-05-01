@@ -1,4 +1,4 @@
-﻿using Blogger.Application.ApplicatioServices;
+﻿using Blogger.Application.ApplicationServices;
 
 namespace Blogger.Infrastructure.Services;
 public class LinkGenerator : ILinkGenerator

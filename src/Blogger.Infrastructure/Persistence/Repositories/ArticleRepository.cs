@@ -3,7 +3,7 @@
 internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
 
-    public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int Size, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
     {
         var topSizeTags = bloggerDbContext.Articles
                                           .AsNoTracking()
@@ -15,7 +15,7 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
                                               Tag = x.Key,
                                               Count = x.Count()
                                           }).OrderByDescending(x => x.Count)
-                                            .Take(Size);
+                                            .Take(size);
 
         return (await topSizeTags.ToListAsync(cancellationToken))
                                  .Select(x => Tag.Create(x.Tag))
@@ -61,7 +61,7 @@ internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRe
     public async Task<IReadOnlyList<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken)
     {
         var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
-                                                 .OrderByDescending(x => x.CommnetIds.Count)
+                                                 .OrderByDescending(x => x.CommentIds.Count)
                                                  .Take(size)
                                                  .ToListAsync(cancellationToken);
 

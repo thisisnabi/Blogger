@@ -1,4 +1,4 @@
-﻿namespace Blogger.Application.ApplicatioServices;
+﻿namespace Blogger.Application.ApplicationServices;
 public interface ILinkGenerator
 {
     string Generate();
