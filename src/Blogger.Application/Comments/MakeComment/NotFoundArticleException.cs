@@ -1,4 +1,4 @@
-﻿using Blogger.Domain.Common;
+﻿using Blogger.Domain.Common.Exceptions;
 
 namespace Blogger.Application.Comments.MakeComment;
 public class NotFoundArticleException : BlogException

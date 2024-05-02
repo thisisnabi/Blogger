@@ -1,4 +1,6 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Domain.Common.Exceptions;
+
+namespace Blogger.Domain.ArticleAggregate;
 
 public class InvalidArticleActionException : BlogException
 {

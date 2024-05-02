@@ -1,4 +1,4 @@
-﻿using Blogger.Domain.Common;
+﻿using Blogger.Domain.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace Blogger.APIs.ErrorHandling;
