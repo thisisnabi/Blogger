@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Blogger.Domain.Common;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace Blogger.APIs.ErrorHandling;
 
@@ -19,18 +20,32 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
         _logger.LogError(
             exception, "Exception occurred: {Message}", exception.Message);
 
-        var problemDetails = new ProblemDetails
-        {
-            Status = StatusCodes.Status500InternalServerError,
-            Title = "Server error",
-            Detail = exception.Message
-        };
+        ProblemDetails problemDetails = CreateProblemDetailFromException(exception);
 
-        httpContext.Response.StatusCode = problemDetails.Status.Value;
+        httpContext.Response.StatusCode = problemDetails.Status!.Value;
 
         await httpContext.Response
             .WriteAsJsonAsync(problemDetails, cancellationToken);
 
         return true;
+    }
+
+    private ProblemDetails CreateProblemDetailFromException(Exception exception)
+    {
+        if (exception is BlogException)
+            return new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Bad Request",
+                Detail = exception.Message
+            };
+
+        return new ProblemDetails
+        {
+            Status = StatusCodes.Status500InternalServerError,
+            Title = "Server error",
+            Detail = "Server error"
+        };
+
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Blogger.Application.Articles.MakeDraft;
+﻿using Blogger.Domain.Common;
 
-public sealed class DraftAlreadyExistsException : Exception
+namespace Blogger.Application.Articles.MakeDraft;
+
+public sealed class DraftAlreadyExistsException : BlogException
 {
     private const string _messages = "Draft with Title `{0}` already exists.";
     public DraftAlreadyExistsException(string articleId)
