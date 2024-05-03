@@ -1,6 +1,8 @@
-﻿namespace Blogger.Application.Articles.CreateArticle;
+﻿using Blogger.Domain.Common.Exceptions;
 
-public sealed class ArticleAlreadyExistsException : Exception
+namespace Blogger.Application.Articles.CreateArticle;
+
+public sealed class ArticleAlreadyExistsException : BlogException
 {
     private const string _messages = "Article with Title `{0}` already exists.";
     public ArticleAlreadyExistsException(string articleId)

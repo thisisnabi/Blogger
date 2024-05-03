@@ -1,6 +1,8 @@
-﻿namespace Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Domain.Common.Exceptions;
 
-public class InvalidReplayApprovalLinkException : Exception
+namespace Blogger.Domain.ArticleAggregate;
+
+public class InvalidReplayApprovalLinkException : BlogException
 {
     private const string _message = "Invalid replay approved link.";
     public InvalidReplayApprovalLinkException() : base(_message)

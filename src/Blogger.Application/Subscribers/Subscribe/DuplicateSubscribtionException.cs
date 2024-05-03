@@ -1,6 +1,8 @@
-﻿namespace Blogger.Application.Subscribers.Subscribe;
+﻿using Blogger.Domain.Common.Exceptions;
 
-public class DuplicateSubscribtionException : Exception
+namespace Blogger.Application.Subscribers.Subscribe;
+
+public class DuplicateSubscribtionException : BlogException
 {
     private const string _messages = "Duplicated registration!";
 

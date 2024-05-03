@@ -1,5 +1,7 @@
-﻿namespace Blogger.Application.Articles.UpdateDraft;
-public class DraftTitleDuplicatedException : Exception
+﻿using Blogger.Domain.Common.Exceptions;
+
+namespace Blogger.Application.Articles.UpdateDraft;
+public class DraftTitleDuplicatedException : BlogException
 {
     private const string _message = "A draft with the same title already exists. Draft title: {0}";
 
