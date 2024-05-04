@@ -21,7 +21,7 @@ public class Author : ValueObject<Author>
         yield return JobTitle;
     }
 
-    public static Author CreateDefaultAuthor() => new("Nabi Karampour", "/images/avatars/thisisnabi.png", "Senior Software Engineer");
+    public static Author CreateDefaultAuthor() => Create("Nabi Karampour", "/images/avatars/thisisnabi.png", "Senior Software Engineer");
 
     public static Author Create(string fullName, string avatar, string jobTitle) => new(fullName, avatar, jobTitle);
 }

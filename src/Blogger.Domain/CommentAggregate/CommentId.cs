@@ -8,10 +8,9 @@ public class CommentId : ValueObject<CommentId>
     {
         yield return Value;
     }
-    public static CommentId CreateUniqueId() => new CommentId {
-
-        Value = Guid.NewGuid()
-    };
+    public static CommentId CreateUniqueId() => Create(
+        Guid.NewGuid()
+    );
 
     public static CommentId Create(Guid value) => new CommentId
     {

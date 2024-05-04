@@ -12,7 +12,7 @@ public sealed class ArticleId : ValueObject<ArticleId>
     }
   
     public static ArticleId CreateUniqueId(string title) 
-        => new ArticleId { Slug = title.Kebaberize() };
+        => Create(title.Kebaberize());
 
     public static ArticleId Create(string value) 
         => new ArticleId{  Slug = value };
