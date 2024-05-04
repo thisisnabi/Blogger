@@ -16,11 +16,11 @@ internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRe
         return que.ToImmutableList();
     }
      
-    public async Task<IReadOnlyList<Replay>> GetApprovedReplaiesAsync(CommentId commentId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Reply>> GetApprovedRepliesAsync(CommentId commentId, CancellationToken cancellationToken)
     {
         var comment = await bloggerDbContext.Comments.FirstAsync(x => x.IsApproved && x.Id == commentId, cancellationToken);
 
-        return comment.Replaies.ToImmutableList();
+        return comment.Replies.ToImmutableList();
     }
 
 

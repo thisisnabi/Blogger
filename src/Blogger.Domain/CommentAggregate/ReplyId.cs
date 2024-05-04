@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Domain.CommentAggregate;
 
-public class CommentId : ValueObject<CommentId>
+public class ReplyId : ValueObject<ReplyId>
 {
     public Guid Value { get; init; }
 
@@ -8,11 +8,10 @@ public class CommentId : ValueObject<CommentId>
     {
         yield return Value;
     }
-    public static CommentId CreateUniqueId() => Create(
-        Guid.NewGuid()
-    );
+     
+    public static ReplyId CreateUniqueId() => Create(Guid.NewGuid());
 
-    public static CommentId Create(Guid value) => new CommentId
+    public static ReplyId Create(Guid value) => new ReplyId
     {
         Value = value
     };

@@ -30,8 +30,8 @@ public static class BloggerDbContextSchema
     { 
         public const string TableName = "Comments";
         public const string ForeignKey = "CommentId";
-        public const string ReplaiesTableName = "Replaies";
-        public const string ReplaiesBackendField = "_replaies";
+        public const string RepliesTableName = "Replies";
+        public const string RepliesBackendField = "_replies";
         public const string ClientFullName = "Client_FullName";
         public const string ClientEmail = "Client_Email";
         public const string ApproveLinkApproveId = "ApproveLink_ApproveId";
