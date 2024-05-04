@@ -6,7 +6,7 @@ public interface ICommentRepository
 {
     Task<Comment?> GetCommentByApproveLinkAsync(string link, CancellationToken cancellationToken);
     Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken);
-    Task<IReadOnlyList<Replay>> GetApprovedReplaiesAsync(CommentId commentId, CancellationToken cancellationToken);
+    Task<IReadOnlyList<Reply>> GetApprovedRepliesAsync(CommentId commentId, CancellationToken cancellationToken);
 
 
     Task CreateAsync(Comment comment, CancellationToken cancellationToken);

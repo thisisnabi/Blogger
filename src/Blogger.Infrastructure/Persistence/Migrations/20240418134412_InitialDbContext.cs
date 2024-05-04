@@ -113,7 +113,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Replaies",
+                name: "Replies",
                 schema: "blog",
                 columns: table => new
                 {
@@ -129,9 +129,9 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Replaies", x => x.Id);
+                    table.PrimaryKey("PK_Replies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Replaies_Comments_CommentId",
+                        name: "FK_Replies_Comments_CommentId",
                         column: x => x.CommentId,
                         principalSchema: "blog",
                         principalTable: "Comments",
@@ -162,9 +162,9 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Replaies_CommentId",
+                name: "IX_Replies_CommentId",
                 schema: "blog",
-                table: "Replaies",
+                table: "Replies",
                 column: "CommentId");
         }
 
@@ -176,7 +176,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                 schema: "blog");
 
             migrationBuilder.DropTable(
-                name: "Replaies",
+                name: "Replies",
                 schema: "blog");
 
             migrationBuilder.DropTable(

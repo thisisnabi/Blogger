@@ -7,7 +7,7 @@ public class Comment: AggregateRootBase<CommentId>
 
     public Comment(CommentId id):base(id)
     {
-        _replaies = [];
+        _replies = [];
     }
     public Comment() : base(null)
     {
@@ -23,8 +23,8 @@ public class Comment: AggregateRootBase<CommentId>
 
     public bool IsApproved { get; private set; }
 
-    private IList<Replay> _replaies;
-    public IReadOnlyCollection<Replay> Replaies => _replaies.ToImmutableList();
+    private IList<Reply> _replies;
+    public IReadOnlyCollection<Reply> Replies => _replies.ToImmutableList();
 
     public static Comment Create(ArticleId articleId,  Client client, string content, ApproveLink approveLink) =>
         new Comment(CommentId.CreateUniqueId())
@@ -39,29 +39,29 @@ public class Comment: AggregateRootBase<CommentId>
 
     public void Approve() => IsApproved = true;
 
-    public Replay ReplayComment(Client client,string content, ApproveLink approveLink)
+    public Reply ReplyComment(Client client,string content, ApproveLink approveLink)
     {
         if (!IsApproved)
         {
             throw new UnapprovedCommentException();
         }
 
-        var replay = Replay.Create(client, content, approveLink);
-        _replaies.Add(replay);
+        var reply = Reply.Create(client, content, approveLink);
+        _replies.Add(reply);
 
-        return replay;
+        return reply;
     }
 
-    public ReplayId ApproveReplay(string link)
+    public ReplyId ApproveReply(string link)
     {
-        var replay = _replaies.FirstOrDefault(x => x.ApproveLink.ApproveId == link);
-        if (replay is null)
+        var reply = _replies.FirstOrDefault(x => x.ApproveLink.ApproveId == link);
+        if (reply is null)
         {
-            throw new InvalidReplayApprovalLinkException();
+            throw new InvalidReplyApprovalLinkException();
         }
 
-        replay.Approve();
+        reply.Approve();
 
-        return replay.Id;
+        return reply.Id;
     }
 }

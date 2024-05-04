@@ -255,7 +255,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("CommentId");
                         });
 
-                    b.OwnsMany("Blogger.Domain.CommentAggregate.Replay", "Replaies", b1 =>
+                    b.OwnsMany("Blogger.Domain.CommentAggregate.Reply", "Replies", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");
@@ -279,14 +279,14 @@ namespace Blogger.Infrastructure.Persistence.Migrations
 
                             b1.HasIndex("CommentId");
 
-                            b1.ToTable("Replaies", "blog");
+                            b1.ToTable("Replies", "blog");
 
                             b1.WithOwner()
                                 .HasForeignKey("CommentId");
 
                             b1.OwnsOne("Blogger.Domain.CommentAggregate.ApproveLink", "ApproveLink", b2 =>
                                 {
-                                    b2.Property<Guid>("ReplayId")
+                                    b2.Property<Guid>("ReplyId")
                                         .HasColumnType("uniqueidentifier");
 
                                     b2.Property<string>("ApproveId")
@@ -299,17 +299,17 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                                         .HasColumnType("datetime2")
                                         .HasColumnName("ApproveLink_ApproveExpirationOnUtc");
 
-                                    b2.HasKey("ReplayId");
+                                    b2.HasKey("ReplyId");
 
-                                    b2.ToTable("Replaies", "blog");
+                                    b2.ToTable("Replies", "blog");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("ReplayId");
+                                        .HasForeignKey("ReplyId");
                                 });
 
                             b1.OwnsOne("Blogger.Domain.CommentAggregate.Client", "Client", b2 =>
                                 {
-                                    b2.Property<Guid>("ReplayId")
+                                    b2.Property<Guid>("ReplyId")
                                         .HasColumnType("uniqueidentifier");
 
                                     b2.Property<string>("Email")
@@ -326,12 +326,12 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                                         .HasColumnType("nvarchar(100)")
                                         .HasColumnName("Client_FullName");
 
-                                    b2.HasKey("ReplayId");
+                                    b2.HasKey("ReplyId");
 
-                                    b2.ToTable("Replaies", "blog");
+                                    b2.ToTable("Replies", "blog");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("ReplayId");
+                                        .HasForeignKey("ReplyId");
                                 });
 
                             b1.Navigation("ApproveLink")
@@ -350,7 +350,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                     b.Navigation("Client")
                         .IsRequired();
 
-                    b.Navigation("Replaies");
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("Blogger.Domain.SubscriberAggregate.Subscriber", b =>

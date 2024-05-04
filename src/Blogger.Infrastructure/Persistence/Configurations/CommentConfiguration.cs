@@ -65,9 +65,9 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
         });
 
 
-        builder.OwnsMany(x => x.Replaies, rb =>
+        builder.OwnsMany(x => x.Replies, rb =>
         {
-            rb.ToTable(BloggerDbContextSchema.Comment.ReplaiesTableName);
+            rb.ToTable(BloggerDbContextSchema.Comment.RepliesTableName);
 
             rb.HasKey(x => x.Id);
 
@@ -79,7 +79,7 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
                          .IsRequired()
                          .HasConversion(
                                 id => id.Value,
-                                value => ReplayId.Create(value));
+                                value => ReplyId.Create(value));
 
             rb.Property(x => x.Content)
                     .HasMaxLength(500)
@@ -120,8 +120,8 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
             });
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
-        builder.Navigation(s => s.Replaies)
-                     .Metadata.SetField(BloggerDbContextSchema.Comment.ReplaiesBackendField);
+        builder.Navigation(s => s.Replies)
+                     .Metadata.SetField(BloggerDbContextSchema.Comment.RepliesBackendField);
 
     }
 }
