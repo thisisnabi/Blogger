@@ -20,19 +20,19 @@ This repository provides various resources to get you started with building your
 
 > Cooming soon
 ### Index
-- Problem domain:
-- Ubiquitous Language
-- Domain objects
-- Aggregates
-- Repository
-- Factory
-- Strongly-typed IDs
-- Domain Events
-- Clean Architecture
-- Setting up our domain objects
-- Setting up usescases
-- Persist data by using EF Core
-- Expose our features
+- [ ] Problem domain:
+- [ ] Ubiquitous Language
+- [ ] Domain objects
+- [ ] Aggregates
+- [ ] Repository
+- [ ] Factory
+- [ ] Strongly-typed IDs
+- [ ] Domain Events
+- [ ] Clean Architecture
+- [ ] Setting up our domain objects
+- [ ] Setting up usescases
+- [ ] Persist data by using EF Core
+- [ ] Expose our features
 
 ## Contributing
 
