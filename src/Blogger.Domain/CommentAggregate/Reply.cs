@@ -2,9 +2,9 @@
 
 public class Reply(ReplyId id) : EntityBase<ReplyId>(id)
 {
-    public Reply() : this(null)
+    public Reply() : this(null!)
     {
-        
+
     }
 
     public Client Client { get; init; } = null!;

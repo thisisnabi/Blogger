@@ -1,11 +1,10 @@
-﻿using System.Net.Mail;
-using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.Domain.Common.Exceptions;
 
 namespace Blogger.Domain.SubscriberAggregate;
 
 public class SubscriberId : ValueObject<SubscriberId>
 {
-    public string Email { get; set; }
+    public string Email { get; set; } = null!;
 
     public override IEnumerable<object> GetEqualityComponenets()
     {

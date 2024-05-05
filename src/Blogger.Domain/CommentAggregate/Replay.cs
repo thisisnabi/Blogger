@@ -2,9 +2,9 @@
 
 public class Replay(ReplayId id) : EntityBase<ReplayId>(id)
 {
-    public Replay() : this(null)
+    public Replay() : this(null!)
     {
-        
+
     }
 
     public Client Client { get; init; } = null!;

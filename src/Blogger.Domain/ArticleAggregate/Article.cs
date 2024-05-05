@@ -5,13 +5,13 @@ namespace Blogger.Domain.ArticleAggregate;
 public class Article : AggregateRootBase<ArticleId>
 {
 
-    public Article(ArticleId slug):base(slug)
-    {  
+    public Article(ArticleId slug) : base(slug)
+    {
         _tags = [];
         _commentIds = [];
     }
 
-    private Article()  : this(null) { }
+    private Article() : this(null!) { }
 
 
     private IList<CommentId> _commentIds = null!;
