@@ -14,7 +14,7 @@ internal class SubscriberConfiguration : IEntityTypeConfiguration<Subscriber>
         builder.Property(x => x.Id)
                .ValueGeneratedNever()
                .HasConversion(
-                    id => id.Email,
+                    id => id.Email.Address,
                     value => SubscriberId.Create(value));
 
         builder.Property(x => x.JoinedOnUtc)

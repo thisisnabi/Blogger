@@ -4,7 +4,7 @@ namespace Blogger.Domain.SubscriberAggregate;
 
 public class SubscriberId : ValueObject<SubscriberId>
 {
-    public string Email { get; set; } = null!;
+    public MailAddress Email { get; init; } = null!;
 
     public override IEnumerable<object> GetEqualityComponenets()
     {
@@ -13,14 +13,14 @@ public class SubscriberId : ValueObject<SubscriberId>
 
     public static SubscriberId CreateUniqueId(string email)
     {
-        if (MailAddress.TryCreate(email, out _))
+        if (MailAddress.TryCreate(email, out MailAddress? mailAddress))
         {
-            return new SubscriberId { Email = email };
+            return new SubscriberId { Email = mailAddress };
         }
 
         throw new InvalidEmailAddressException();
     }
 
     public static SubscriberId Create(string value) =>
-        new SubscriberId { Email = value };
+        new SubscriberId { Email = new MailAddress(value) };
 }
