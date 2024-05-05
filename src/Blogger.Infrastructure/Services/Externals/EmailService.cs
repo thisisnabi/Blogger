@@ -19,6 +19,9 @@ public class EmailService(IOptions<EmailSettings> options) : IEmailService
 
         var mailMessage = new MailMessage
         {
+            SubjectEncoding = System.Text.Encoding.UTF8,
+            BodyEncoding = System.Text.Encoding.UTF8,
+            IsBodyHtml = true,
             From = new(_emailSettings.From),
             Subject = subject,
             Body = content
