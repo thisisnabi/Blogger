@@ -1,0 +1,14 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+        <LangVersion>latest</LangVersion>
+        <AnalysisLevel>latest-all</AnalysisLevel>
+        <AnalysisMode>all</AnalysisMode>
+
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+</Project>
