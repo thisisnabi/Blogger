@@ -3,8 +3,8 @@
 namespace Blogger.Domain.ArticleAggregate;
 public class Tag : ValueObject<Tag>
 {
-    public string Value { get; init; }
-     
+    public string Value { get; init; } = null!;
+
     public override IEnumerable<object> GetEqualityComponenets()
     {
         yield return Value;
@@ -12,7 +12,8 @@ public class Tag : ValueObject<Tag>
 
     public static Tag Create(string tagValue)
     {
-        return new Tag { 
+        return new Tag
+        {
             Value = tagValue.Kebaberize()
         };
     }

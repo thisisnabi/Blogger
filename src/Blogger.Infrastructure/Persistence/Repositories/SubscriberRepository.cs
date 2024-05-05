@@ -1,6 +1,4 @@
-﻿using Blogger.Domain.SubscriberAggregate;
-
-namespace Blogger.Infrastructure.Persistence.Repositories;
+﻿namespace Blogger.Infrastructure.Persistence.Repositories;
 internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscriberRepository
 {
 
@@ -9,14 +7,14 @@ internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscr
         await bloggerDbContext.Subscribers.AddAsync(subscriber, cancellationToken);
     }
 
-    public async Task<Subscriber> FindById(SubscriberId subscriberId)
+    public async Task<Subscriber?> FindById(SubscriberId subscriberId)
     {
         var subscriber = await bloggerDbContext.Subscribers.FindAsync(subscriberId);
         return subscriber;
     }
     public Task<bool> IsExists(SubscriberId subscriberId, CancellationToken cancellationToken)
     {
-        return bloggerDbContext.Subscribers.AnyAsync(s=>s.Id.Equals(subscriberId), cancellationToken);
+        return bloggerDbContext.Subscribers.AnyAsync(s => s.Id.Equals(subscriberId), cancellationToken);
     }
     public async Task SavaChangesAsync(CancellationToken cancellationToken)
     {
