@@ -5,6 +5,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection ConfigureInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
     {
+        services.Configure<EmailSettings>(configuration.GetSection(nameof(EmailSettings)));
+
         services.AddDbContext<BloggerDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefualtConnectionStringName));
