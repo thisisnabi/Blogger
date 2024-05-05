@@ -1,4 +1,6 @@
 ﻿
+using Blogger.Domain.ArticleAggregate;
+
 namespace Blogger.Domain.SubscriberAggregate;
 
 public interface ISubscriberRepository
@@ -7,4 +9,5 @@ public interface ISubscriberRepository
     Task<Subscriber> FindById(SubscriberId subscriberId);
     Task<bool> IsExists(SubscriberId subscriberId, CancellationToken cancellationToken);
     Task SavaChangesAsync(CancellationToken cancellationToken);
+    Task<List<Subscriber>> FindByArticleId(ArticleId articleId);
 }

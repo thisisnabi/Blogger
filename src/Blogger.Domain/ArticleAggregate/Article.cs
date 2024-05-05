@@ -1,4 +1,5 @@
 ﻿using Blogger.Domain.CommentAggregate;
+using Blogger.Domain.Events.ArticleCreated;
 
 namespace Blogger.Domain.ArticleAggregate;
 
@@ -50,7 +51,7 @@ public class Article : AggregateRootBase<ArticleId>
 
     public static Article CreateArticle(string title, string body, string summary)
     {
-        return new Article(ArticleId.CreateUniqueId(title))
+        var article = new Article(ArticleId.CreateUniqueId(title))
         {
             Author = Author.CreateDefaultAuthor(),
             Body = body,
@@ -60,6 +61,10 @@ public class Article : AggregateRootBase<ArticleId>
             ReadOn = GetReadOnTimeSpan(body),
             PublishedOnUtc = DateTime.UtcNow
         };
+
+        article.AddEvent(new ArticleCreatedEvent() { Article = article  });
+
+        return article;
     }
 
     public void AddTags(IReadOnlyList<Tag> tags)
