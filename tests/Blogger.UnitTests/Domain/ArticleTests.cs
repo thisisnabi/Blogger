@@ -39,7 +39,7 @@ public class ArticleTests
     }
 
     [Fact]
-    public void Publish_ShouldBeThrowDraftTagsMissingException_WhenHaventTagns()
+    public void Publish_ShouldThrowDraftTagsMissingException_WhenDoesntHaveTags()
     {
         // arrange
         var draft = Article.CreateArticle("hi bye", "nothing", "for what");
