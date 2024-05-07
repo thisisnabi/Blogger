@@ -7,13 +7,13 @@ public class AggregateRootBaseTests
     [Fact]
     public void events_should_be_have_item_when_adding_event()
     {
-        // arrane
+        // arrange
         var aggregateRoot = new ConcreteAggregateRoot(10);
 
         // act
         aggregateRoot.RaiseCreatedEvent();
 
-        //
+        // assert
         aggregateRoot.Events.Should().NotBeEmpty();
         aggregateRoot.Events.Should().HaveCount(1);
     }
@@ -21,7 +21,7 @@ public class AggregateRootBaseTests
    [Fact]
     public void events_should_be_empty_when_create_new_aggregate()
     {
-        // arrane
+        // arrange
         var aggregateRoot = new ConcreteAggregateRoot(10);
   
         // act
@@ -31,7 +31,7 @@ public class AggregateRootBaseTests
     [Fact]
     public void events_should_be_empty_when_call_CleanEvents()
     {
-        // arrane
+        // arrange
         var aggregateRoot = new ConcreteAggregateRoot(10);
         
         // act

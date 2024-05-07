@@ -61,7 +61,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void value_objects_of_same_type_should_be_not_equal_when_values_diffrent()
+    public void value_objects_of_same_type_should_not_be_equal_when_values_are_different()
     {
         // arrange
         var valueObjectA = new Address
