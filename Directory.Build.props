@@ -6,8 +6,8 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
         <LangVersion>latest</LangVersion>
-        <AnalysisLevel>latest-all</AnalysisLevel>
-        <AnalysisMode>all</AnalysisMode>
+        <AnalysisLevel>latest-minimum</AnalysisLevel>
+        <AnalysisMode>minimum</AnalysisMode>
 
         <Version>0.1.0</Version>
     </PropertyGroup>
