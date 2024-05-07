@@ -10,8 +10,7 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
             throw new ArticleAlreadyExistsException(articleId.ToString());
         }
 
-        var article = Article.CreateArticle(request.Title, request.Body, request.Summary);
-        article.AddTags(request.Tags);
+        var article = Article.CreateArticle(request.Title, request.Body, request.Summary, request.Tags);
 
         await articleRepository.CreateAsync(article, cancellationToken);
         await articleRepository.SaveChangesAsync(cancellationToken);

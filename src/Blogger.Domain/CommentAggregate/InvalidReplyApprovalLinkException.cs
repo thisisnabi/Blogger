@@ -1,6 +1,6 @@
 ﻿using Blogger.Domain.Common.Exceptions;
 
-namespace Blogger.Domain.ArticleAggregate;
+namespace Blogger.Domain.CommentAggregate;
 
 public class InvalidReplyApprovalLinkException : BlogException
 {
