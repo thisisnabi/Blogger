@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Domain.CommentAggregate;
 
-public class ApproveLink : ValueObject<Client>
+public class ApproveLink : ValueObject<ApproveLink>
 {
     public string ApproveId { get; set; } = null!;
 
