@@ -5,7 +5,7 @@ public class Tag : ValueObject<Tag>
 {
     public string Value { get; init; } = null!;
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }

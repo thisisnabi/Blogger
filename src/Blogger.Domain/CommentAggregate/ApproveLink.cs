@@ -6,7 +6,7 @@ public class ApproveLink : ValueObject<Client>
 
     public DateTime ExpirationOnUtc { get; set; }
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return ApproveId;
         yield return ExpirationOnUtc;
