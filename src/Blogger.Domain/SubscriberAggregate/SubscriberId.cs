@@ -6,7 +6,7 @@ public class SubscriberId : ValueObject<SubscriberId>
 {
     public MailAddress Email { get; init; } = null!;
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Email;
     }

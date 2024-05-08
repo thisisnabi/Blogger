@@ -94,7 +94,7 @@ public class ValueObjectTests
         public required string State { get; init; }
         public required string PostalCode { get; init; }
 
-        public override IEnumerable<object> GetEqualityComponenets()
+        public override IEnumerable<object> GetEqualityComponents()
         {
             yield return City;
             yield return State;
@@ -107,7 +107,7 @@ public class ValueObjectTests
         public required string Corrency { get; init; }
         public required decimal Value { get; init; }
 
-        public override IEnumerable<object> GetEqualityComponenets()
+        public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Corrency;
             yield return Value;

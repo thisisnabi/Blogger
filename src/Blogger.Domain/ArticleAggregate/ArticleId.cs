@@ -6,7 +6,7 @@ public sealed class ArticleId : ValueObject<ArticleId>
 {
     public required string Slug { get; init; }
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Slug;
     }
