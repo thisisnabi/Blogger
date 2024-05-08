@@ -48,18 +48,14 @@ public class Article : AggregateRootBase<ArticleId>
         };
     }
 
-    public static Article CreateArticle(string title, string body, string summary)
+    public static Article CreateArticle(string title, string body, string summary, IReadOnlyList<Tag> tags)
     {
-        return new Article(ArticleId.CreateUniqueId(title))
-        {
-            Author = Author.CreateDefaultAuthor(),
-            Body = body,
-            Status = ArticleStatus.Published,
-            Summary = summary,
-            Title = title,
-            ReadOn = GetReadOnTimeSpan(body),
-            PublishedOnUtc = DateTime.UtcNow
-        };
+        var article = CreateDraft(title, body, summary); 
+
+        article.AddTags(tags);
+        article.Publish();
+
+        return article;
     }
 
     public void AddTags(IReadOnlyList<Tag> tags)
@@ -102,6 +98,7 @@ public class Article : AggregateRootBase<ArticleId>
         ReadOn = GetReadOnTimeSpan(Body);
         PublishedOnUtc = DateTime.UtcNow;
     }
+
     public void Remove()
     {
         Status = ArticleStatus.Deleted;

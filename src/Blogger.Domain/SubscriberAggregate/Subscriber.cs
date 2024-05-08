@@ -4,7 +4,7 @@ namespace Blogger.Domain.SubscriberAggregate;
 
 public class Subscriber(SubscriberId id) : AggregateRootBase<SubscriberId>(id)
 {
-    public DateTime JoinedOnUtc { get; set; }
+    public DateTime JoinedOnUtc { get; init; } 
 
     private IList<ArticleId> _articleIds = null!;
     public IReadOnlyCollection<ArticleId> ArticleIds => _articleIds.ToImmutableList();
