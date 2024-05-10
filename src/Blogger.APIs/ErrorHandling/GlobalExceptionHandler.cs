@@ -1,4 +1,5 @@
 ﻿using Blogger.Domain.Common.Exceptions;
+
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace Blogger.APIs.ErrorHandling;
@@ -30,22 +31,20 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
         return true;
     }
 
-    private ProblemDetails CreateProblemDetailFromException(Exception exception)
+    private static ProblemDetails CreateProblemDetailFromException(Exception exception)
     {
-        if (exception is BlogException)
-            return new ProblemDetails
+        return exception is BlogException
+            ? new ProblemDetails
             {
                 Status = StatusCodes.Status400BadRequest,
                 Title = "Bad Request",
                 Detail = exception.Message
+            }
+            : new ProblemDetails
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "Server error",
+                Detail = "Server error"
             };
-
-        return new ProblemDetails
-        {
-            Status = StatusCodes.Status500InternalServerError,
-            Title = "Server error",
-            Detail = "Server error"
-        };
-
     }
 }

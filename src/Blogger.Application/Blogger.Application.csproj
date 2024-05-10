@@ -1,19 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\Blogger.Domain\Blogger.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MediatR" Version="12.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+		<PackageReference Include="MediatR" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
 	</ItemGroup>
 
 </Project>
