@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Blogger.Domain.ArticleAggregate;
+using Blogger.Domain.Common;
 using FluentAssertions;
 
 namespace Blogger.UnitTests.Domain;
@@ -25,22 +26,20 @@ public class AuthorTests : IClassFixture<BaseFixture>
         var author = Author.Create(fullName, avatar, jobTitle);
 
         // Assert
-        author.Should().NotBeNull("author object is null");
-        author.Should().BeAssignableTo<Author>("type of author object is not AuthorType");
-        author.Avatar.Should().Be(avatar, "avatar is not correct");
-        author.FullName.Should().Be(fullName, "fullName is not correct");
-        author.JobTitle.Should().Be(jobTitle, "jobName is not correct");
+        author.Should().BeAssignableTo<ValueObject<Author>>("type of author object is not ValueObject");
+        AssertAuthorProperties(author,new AuthorTestDto(fullName,avatar,jobTitle));
+
     }
 
     [Theory]
-    [InlineData("", "avatar","jobTitle")]
-    [InlineData("fullName", "","jobTitle")]
-    [InlineData("fullName", "avatars","")]
-    
-    [InlineData(" ", "avatar","jobTitle")]
-    [InlineData("fullName", " ","jobTitle")]
-    [InlineData("fullName", "avatars"," ")]
-    public void Create_GivenSomeInCorrectParameters_ThrowArgumentException(string fullName, string avatar, string jobTitle)
+    [InlineData("", "avatar", "jobTitle")]
+    [InlineData("fullName", "", "jobTitle")]
+    [InlineData("fullName", "avatars", "")]
+    [InlineData(" ", "avatar", "jobTitle")]
+    [InlineData("fullName", " ", "jobTitle")]
+    [InlineData("fullName", "avatars", " ")]
+    public void Create_GivenSomeInCorrectParameters_ThrowArgumentException(string fullName, string avatar,
+        string jobTitle)
     {
         // Arrange
         // Act
@@ -49,7 +48,7 @@ public class AuthorTests : IClassFixture<BaseFixture>
         // Assert
         action.Should().Throw<ArgumentException>("parameters are incorrect but did not throw Exception");
     }
-    
+
     [Fact]
     public void CreateDefaultAuthor_withoutAnyParameters_AuthorObjectCreatedSuccessfullyWithDefaultValues()
     {
@@ -62,8 +61,29 @@ public class AuthorTests : IClassFixture<BaseFixture>
         var author = Author.CreateDefaultAuthor();
 
         // Assert
-        author.Avatar.Should().Be(expectedAvatar, "avatar is not correct");
-        author.FullName.Should().Be(expectedFullName, "fullName is not correct");
-        author.JobTitle.Should().Be(expectedJobTitle, "jobName is not correct");
+        AssertAuthorProperties(author,new AuthorTestDto(expectedFullName,expectedAvatar,expectedJobTitle));
     }
-} 
+
+    private static void AssertAuthorProperties(Author author, AuthorTestDto authorTestDto)
+    {
+        author.Avatar.Should().Be(authorTestDto.Avatar, "avatar is not correct");
+        author.FullName.Should().Be(authorTestDto.FullName, "fullName is not correct");
+        author.JobTitle.Should().Be(authorTestDto.JobTitle, "jobName is not correct");
+    }
+
+    private class AuthorTestDto
+    {
+        internal AuthorTestDto(string fullName, string avatar, string jobTitle)
+        {
+            FullName = fullName;
+            Avatar = avatar;
+            JobTitle = jobTitle;
+        }
+
+        internal string FullName { get; }
+
+        internal string Avatar { get; }
+
+        internal string JobTitle { get; }
+    }
+}

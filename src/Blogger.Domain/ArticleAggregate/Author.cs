@@ -1,11 +1,11 @@
 ﻿namespace Blogger.Domain.ArticleAggregate;
 public class Author : ValueObject<Author>
 {
-    public string FullName { get; init; }
+        public string FullName { get; init; }
 
-    public string Avatar { get; init; }
+        public string Avatar { get; init; }
 
-    public string JobTitle { get; init; }
+        public string JobTitle { get; init; }
 
     private Author(string fullName, string avatar, string jobTitle)
     {
