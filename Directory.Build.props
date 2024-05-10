@@ -10,5 +10,7 @@
         <AnalysisMode>minimum</AnalysisMode>
 
         <Version>0.1.0</Version>
+
+        <NoWarn>$(NoWarn);IDE0290</NoWarn>
     </PropertyGroup>
 </Project>
