@@ -23,11 +23,11 @@ public class AuthorTests : IClassFixture<BaseFixture>
         var jobTitle = _baseFixture.Fixture.Create<string>();
 
         // Act
-        var author = Author.Create(fullName, avatar, jobTitle);
+        var actual = Author.Create(fullName, avatar, jobTitle);
 
         // Assert
-        author.Should().BeAssignableTo<ValueObject<Author>>("type of author object is not ValueObject");
-        AssertAuthorProperties(author,new AuthorTestDto(fullName,avatar,jobTitle));
+        actual.Should().BeAssignableTo<ValueObject<Author>>("type is not ValueObject");
+        AssertAuthorProperties(actual,new AuthorTestDto(fullName,avatar,jobTitle));
 
     }
 
@@ -43,10 +43,10 @@ public class AuthorTests : IClassFixture<BaseFixture>
     {
         // Arrange
         // Act
-        Action action = () => Author.Create(fullName, avatar, jobTitle);
+        Action actual = () => Author.Create(fullName, avatar, jobTitle);
 
         // Assert
-        action.Should().Throw<ArgumentException>("parameters are incorrect but did not throw Exception");
+        actual.Should().Throw<ArgumentException>("parameters are incorrect but did not throw Exception");
     }
 
     [Fact]
@@ -58,10 +58,10 @@ public class AuthorTests : IClassFixture<BaseFixture>
         const string expectedAvatar = "/images/avatars/thisisnabi.png";
 
         // Act
-        var author = Author.CreateDefaultAuthor();
+        var actual = Author.CreateDefaultAuthor();
 
         // Assert
-        AssertAuthorProperties(author,new AuthorTestDto(expectedFullName,expectedAvatar,expectedJobTitle));
+        AssertAuthorProperties(actual,new AuthorTestDto(expectedFullName,expectedAvatar,expectedJobTitle));
     }
 
     private static void AssertAuthorProperties(Author author, AuthorTestDto authorTestDto)
