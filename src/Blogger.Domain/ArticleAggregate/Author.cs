@@ -14,7 +14,7 @@ public class Author : ValueObject<Author>
         JobTitle = jobTitle;
     }
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return FullName;
         yield return Avatar;

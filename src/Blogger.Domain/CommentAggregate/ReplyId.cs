@@ -4,7 +4,7 @@ public class ReplyId : ValueObject<ReplyId>
 {
     public Guid Value { get; init; }
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
