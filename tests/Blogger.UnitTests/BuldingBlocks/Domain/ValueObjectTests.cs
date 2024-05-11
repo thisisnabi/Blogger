@@ -5,7 +5,7 @@ namespace Blogger.UnitTests.BuldingBlocks.Domain;
 public class ValueObjectTests
 {
     [Fact]
-    public void value_objects_of_diffrent_type_should_not_be_equal()
+    public void value_objects_of_different_types_should_not_be_equal()
     {
         // arrange
         var valueObjectA = new Address
@@ -33,7 +33,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void value_objects_of_same_type_should_be_equal_when_values_match()
+    public void value_objects_of_same_types_should_be_equal_when_values_match()
     {
         // arrange
         var valueObjectA = new Address
@@ -61,7 +61,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void value_objects_of_same_type_should_not_be_equal_when_values_are_different()
+    public void value_objects_of_same_types_should_not_be_equal_when_values_are_different()
     {
         // arrange
         var valueObjectA = new Address
@@ -94,7 +94,7 @@ public class ValueObjectTests
         public required string State { get; init; }
         public required string PostalCode { get; init; }
 
-        public override IEnumerable<object> GetEqualityComponenets()
+        public override IEnumerable<object> GetEqualityComponents()
         {
             yield return City;
             yield return State;
@@ -107,7 +107,7 @@ public class ValueObjectTests
         public required string Corrency { get; init; }
         public required decimal Value { get; init; }
 
-        public override IEnumerable<object> GetEqualityComponenets()
+        public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Corrency;
             yield return Value;

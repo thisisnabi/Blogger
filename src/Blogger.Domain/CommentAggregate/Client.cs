@@ -8,7 +8,7 @@ public class Client : ValueObject<Client>
 
     public string Email { get; set; } = null!;
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return FullName;
         yield return Email;
