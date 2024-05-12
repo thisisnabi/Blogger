@@ -4,7 +4,7 @@ namespace Blogger.Domain.CommentAggregate;
 
 public class Comment : AggregateRootBase<CommentId>
 {
-    private IList<Reply> _replies;
+    private readonly IList<Reply> _replies;
     public Comment(CommentId id) : base(id)
     {
         _replies = [];
@@ -25,10 +25,10 @@ public class Comment : AggregateRootBase<CommentId>
     public bool IsApproved { get; private set; }
 
 
-    public IReadOnlyCollection<Reply> Replies => _replies.ToImmutableList();
+    public IReadOnlyCollection<Reply> Replies => [.. _replies];
 
     public static Comment Create(ArticleId articleId, Client client, string content, ApproveLink approveLink) =>
-        new Comment(CommentId.CreateUniqueId())
+        new(CommentId.CreateUniqueId())
         {
             ArticleId = articleId,
             Content = content,
@@ -55,12 +55,7 @@ public class Comment : AggregateRootBase<CommentId>
 
     public ReplyId ApproveReply(string link)
     {
-        var reply = _replies.FirstOrDefault(x => x.ApproveLink.ApproveId == link);
-        if (reply is null)
-        {
-            throw new InvalidReplyApprovalLinkException();
-        }
-
+        var reply = _replies.FirstOrDefault(x => x.ApproveLink.ApproveId == link) ?? throw new InvalidReplyApprovalLinkException();
         reply.Approve();
 
         return reply.Id;
