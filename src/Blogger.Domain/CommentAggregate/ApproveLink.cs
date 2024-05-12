@@ -20,9 +20,8 @@ public class ApproveLink : ValueObject<ApproveLink>
 
     private ApproveLink()
     {
-        
     }
 
     public static ApproveLink Create(string approvedId, DateTime expairedOn) =>
-         new ApproveLink(approvedId, expairedOn);
+         new(approvedId, expairedOn);
 }
