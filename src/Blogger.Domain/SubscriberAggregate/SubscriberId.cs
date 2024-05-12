@@ -18,12 +18,8 @@ public class SubscriberId : ValueObject<SubscriberId>
 
     public static SubscriberId Create(string value)
     {
-
-        if (MailAddress.TryCreate(value, out MailAddress? mailAddress))
-        {
-            return new SubscriberId { Email = mailAddress };
-        }
-
-        throw new InvalidEmailAddressException();
+        return MailAddress.TryCreate(value, out MailAddress? mailAddress)
+            ? new SubscriberId { Email = mailAddress }
+            : throw new InvalidEmailAddressException();
     }
 }
