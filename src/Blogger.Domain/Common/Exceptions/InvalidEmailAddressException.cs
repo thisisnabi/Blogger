@@ -1,8 +1,5 @@
 ﻿namespace Blogger.Domain.Common.Exceptions;
 
-public class InvalidEmailAddressException : BlogException
+public class InvalidEmailAddressException() : BlogException("Invalid Email Address")
 {
-    private const string _messages = "Invalid Email Address";
-
-    public InvalidEmailAddressException() : base(_messages) { }
 }
