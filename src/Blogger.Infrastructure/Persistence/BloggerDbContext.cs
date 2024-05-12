@@ -18,7 +18,7 @@ public class BloggerDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema(BloggerDbContextSchema.DefualtSchema);
+        modelBuilder.HasDefaultSchema(BloggerDbContextSchema.DefaultSchema);
 
         var infrastructureAssembly = typeof(IAssemblyMarker).Assembly;
         modelBuilder.ApplyConfigurationsFromAssembly(infrastructureAssembly); 
