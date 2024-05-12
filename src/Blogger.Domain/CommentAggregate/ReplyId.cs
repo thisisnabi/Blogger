@@ -8,7 +8,7 @@ public class ReplyId : ValueObject<ReplyId>
     {
         yield return Value;
     }
-     
+
     public static ReplyId CreateUniqueId() => Create(Guid.NewGuid());
 
     public static ReplyId Create(Guid value) => new ReplyId
