@@ -2,11 +2,7 @@
 
 namespace Blogger.Domain.ArticleAggregate;
 
-public class InvalidArticleActionException : BlogException
+public class InvalidArticleActionException(ArticleStatus status)
+    : BlogException(string.Format("Invalid action on {0} status", status))
 {
-    public InvalidArticleActionException(ArticleStatus status)
-        : base(string.Format("Invalid action on {0} status", status))
-    {
-
-    }
 }
