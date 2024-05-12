@@ -16,15 +16,12 @@ public class Client : ValueObject<Client>
 
     public static Client Create(string fullName, string email)
     {
-        if (MailAddress.TryCreate(email, out _))
-        {
-            return new Client
+        return MailAddress.TryCreate(email, out _)
+            ? new Client
             {
                 Email = email,
                 FullName = fullName,
-            };
-        }
-
-        throw new InvalidEmailAddressException();
+            }
+            : throw new InvalidEmailAddressException();
     }
 }
