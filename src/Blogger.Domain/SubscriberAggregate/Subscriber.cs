@@ -4,13 +4,13 @@ namespace Blogger.Domain.SubscriberAggregate;
 
 public class Subscriber(SubscriberId id) : AggregateRootBase<SubscriberId>(id)
 {
-    public DateTime JoinedOnUtc { get; init; } 
+    public DateTime JoinedOnUtc { get; init; }
 
-    private IList<ArticleId> _articleIds = null!;
-    public IReadOnlyCollection<ArticleId> ArticleIds => _articleIds.ToImmutableList();
+    private readonly IList<ArticleId> _articleIds = null!;
+    public IReadOnlyCollection<ArticleId> ArticleIds => [.. _articleIds];
 
     public static Subscriber Create(SubscriberId subscriberId)
-         => new Subscriber(subscriberId)
+         => new(subscriberId)
          {
              JoinedOnUtc = DateTime.UtcNow
          };
