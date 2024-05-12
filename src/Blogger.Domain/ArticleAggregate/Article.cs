@@ -4,7 +4,6 @@ namespace Blogger.Domain.ArticleAggregate;
 
 public class Article : AggregateRootBase<ArticleId>
 {
-
     public Article(ArticleId slug) : base(slug)
     {
         _tags = [];
@@ -14,11 +13,11 @@ public class Article : AggregateRootBase<ArticleId>
     private Article() : this(null!) { }
 
 
-    private IList<CommentId> _commentIds = null!;
-    public IReadOnlyCollection<CommentId> CommentIds => _commentIds.ToImmutableList();
+    private readonly IList<CommentId> _commentIds = null!;
+    public IReadOnlyCollection<CommentId> CommentIds => [.. _commentIds];
 
-    private IList<Tag> _tags = null!;
-    public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
+    private readonly IList<Tag> _tags = null!;
+    public IReadOnlyCollection<Tag> Tags => [.. _tags];
 
     public Author Author { get; private set; } = null!;
 
@@ -50,7 +49,7 @@ public class Article : AggregateRootBase<ArticleId>
 
     public static Article CreateArticle(string title, string body, string summary, IReadOnlyList<Tag> tags)
     {
-        var article = CreateDraft(title, body, summary); 
+        var article = CreateDraft(title, body, summary);
 
         article.AddTags(tags);
         article.Publish();
@@ -81,8 +80,7 @@ public class Article : AggregateRootBase<ArticleId>
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
     {
-        if (_tags is not null)
-            _tags.Clear();
+        _tags?.Clear();
 
         AddTags(tags);
     }
