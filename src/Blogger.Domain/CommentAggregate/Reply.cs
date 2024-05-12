@@ -4,7 +4,6 @@ public class Reply(ReplyId id) : EntityBase<ReplyId>(id)
 {
     public Reply() : this(null!)
     {
-
     }
 
     public Client Client { get; init; } = null!;
@@ -16,7 +15,7 @@ public class Reply(ReplyId id) : EntityBase<ReplyId>(id)
     public bool IsApproved { get; private set; }
 
     public static Reply Create(Client client, string content, ApproveLink approveLink) =>
-        new Reply(ReplyId.CreateUniqueId())
+        new(ReplyId.CreateUniqueId())
         {
             Content = content,
             CreatedOnUtc = DateTime.UtcNow,
