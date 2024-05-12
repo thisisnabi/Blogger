@@ -9,7 +9,7 @@ public static class DependencyInjection
 
         services.AddDbContext<BloggerDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefualtConnectionStringName));
+            options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefaultConnectionStringName));
         });
 
         services.AddTransient<IArticleRepository, ArticleRepository>();
