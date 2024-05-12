@@ -12,7 +12,7 @@ public class CommentId : ValueObject<CommentId>
         Guid.NewGuid()
     );
 
-    public static CommentId Create(Guid value) => new CommentId
+    public static CommentId Create(Guid value) => new()
     {
         Value = value
     };
