@@ -4,7 +4,7 @@ public abstract class ValueObject<T> where T : ValueObject<T>
 {
     public abstract IEnumerable<object> GetEqualityComponents();
 
-    public override bool Equals(object? obj) 
+    public override bool Equals(object? obj)
         => obj is not null &&
            obj is T valueObject &&
            obj.GetType() == GetType() &&
