@@ -10,12 +10,15 @@ public sealed class ArticleId : ValueObject<ArticleId>
     {
         yield return Slug;
     }
-  
-    public static ArticleId CreateUniqueId(string title) 
+
+    public static ArticleId CreateUniqueId(string title)
         => Create(title.Kebaberize());
 
-    public static ArticleId Create(string value) 
-        => new ArticleId{  Slug = value };
+    public static ArticleId Create(string value)
+        => new()
+        {
+            Slug = value
+        };
 
     public override string ToString() => Slug;
 }
