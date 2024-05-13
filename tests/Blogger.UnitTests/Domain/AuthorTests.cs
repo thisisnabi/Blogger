@@ -1,26 +1,18 @@
-﻿using AutoFixture;
-using Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.Common;
 using FluentAssertions;
 
 namespace Blogger.UnitTests.Domain;
 
-public class AuthorTests : IClassFixture<BaseFixture>
+public class AuthorTests
 {
-    private readonly BaseFixture _baseFixture;
-
-    public AuthorTests(BaseFixture baseFixture)
-    {
-        _baseFixture = baseFixture;
-    }
-
     [Fact]
     public void Create_GivenSomeValidParameters_AuthorObjectCreatedSuccessfully()
     {
         // Arrange
-        var fullName = _baseFixture.Fixture.Create<string>();
-        var avatar = _baseFixture.Fixture.Create<string>();
-        var jobTitle = _baseFixture.Fixture.Create<string>();
+        var fullName = "Nabi Karampour";
+        var avatar = "../../images/thisisnabi.png";
+        var jobTitle = "Software Developer";
 
         // Act
         var actual = Author.Create(fullName, avatar, jobTitle);
