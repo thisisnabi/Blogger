@@ -5,87 +5,86 @@ namespace Blogger.UnitTests.BuldingBlocks.Domain;
 public class ValueObjectTests
 {
     [Fact]
-    public void value_objects_of_diffrent_type_should_not_be_equal()
+    public void value_objects_of_different_type_should_not_be_equal()
     {
-        // arrange
+        // Arrange
         var valueObjectA = new Address
         {
             City = "Saqqez",
-            PostalCode = "66123812",
+            PostalCode = "12345",
             State = "Kurdestan"
         };
 
         var valueObjectB = new Price
         {
-            Corrency = "Dollars",
-            Value = 12
+            Corrency = "IRR",
+            Value = decimal.Zero,
         };
 
-        // act & assert
-
+        // Act & Assert
         (valueObjectA == valueObjectB).Should().BeFalse();
         (valueObjectA != valueObjectB).Should().BeTrue();
 
-        valueObjectA.Equals(valueObjectB).Should().BeFalse();
         valueObjectB.Equals(valueObjectA).Should().BeFalse();
+        valueObjectA.Equals(valueObjectB).Should().BeFalse();
 
-        (valueObjectB.GetHashCode() == valueObjectA.GetHashCode()).Should().BeFalse();
+        (valueObjectA.GetHashCode() == valueObjectB.GetHashCode()).Should().BeFalse();
     }
 
     [Fact]
     public void value_objects_of_same_type_should_be_equal_when_values_match()
     {
-        // arrange
+        // Arrange
         var valueObjectA = new Address
         {
             City = "Saqqez",
-            PostalCode = "66123812",
+            PostalCode = "12345",
             State = "Kurdestan"
         };
 
         var valueObjectB = new Address
         {
             City = "Saqqez",
-            PostalCode = "66123812",
+            PostalCode = "12345",
             State = "Kurdestan"
         };
 
-        // act & assert
+        // Act & Assert
         (valueObjectA == valueObjectB).Should().BeTrue();
         (valueObjectA != valueObjectB).Should().BeFalse();
 
         valueObjectA.Equals(valueObjectB).Should().BeTrue();
         valueObjectB.Equals(valueObjectA).Should().BeTrue();
 
-        (valueObjectB.GetHashCode() == valueObjectA.GetHashCode()).Should().BeTrue();
+        (valueObjectA.GetHashCode() == valueObjectB.GetHashCode()).Should().BeTrue();
     }
 
     [Fact]
-    public void value_objects_of_same_type_should_be_not_equal_when_values_diffrent()
+    public void value_objects_of_same_type_should_not_be_equal_when_values_different()
     {
-        // arrange
+        // Arrange
         var valueObjectA = new Address
         {
             City = "Tehran",
-            PostalCode = "66123812",
-            State = "Kurdestan"
+            PostalCode = "12345",
+            State = "Tehran"
         };
 
         var valueObjectB = new Address
         {
             City = "Saqqez",
-            PostalCode = "66123812",
+            PostalCode = "12345",
             State = "Kurdestan"
         };
 
-        // act & assert
+        // Act & Assert
         (valueObjectA == valueObjectB).Should().BeFalse();
         (valueObjectA != valueObjectB).Should().BeTrue();
 
         valueObjectA.Equals(valueObjectB).Should().BeFalse();
         valueObjectB.Equals(valueObjectA).Should().BeFalse();
 
-        (valueObjectB.GetHashCode() == valueObjectA.GetHashCode()).Should().BeFalse();
+        (valueObjectA.GetHashCode() == valueObjectB.GetHashCode()).Should().BeFalse();
     }
 
     private class Address : ValueObject<Address>
