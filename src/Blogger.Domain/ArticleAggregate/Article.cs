@@ -14,10 +14,10 @@ public class Article : AggregateRootBase<ArticleId>
     private Article() : this(null!) { }
 
 
-    private IList<CommentId> _commentIds = null!;
+    private readonly IList<CommentId> _commentIds = null!;
     public IReadOnlyCollection<CommentId> CommentIds => _commentIds.ToImmutableList();
 
-    private IList<Tag> _tags = null!;
+    private readonly IList<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
 
     public Author Author { get; private set; } = null!;
