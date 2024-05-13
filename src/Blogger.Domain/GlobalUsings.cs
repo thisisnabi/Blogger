@@ -2,7 +2,7 @@
 global using System.Collections.Immutable;
 global using System.Net.Mail;
 
-// third-barty
+// third-party
 
 
 // solution

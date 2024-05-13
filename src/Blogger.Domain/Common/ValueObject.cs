@@ -2,13 +2,13 @@
 
 public abstract class ValueObject<T> where T : ValueObject<T>
 {
-    public abstract IEnumerable<object> GetEqualityComponenets();
+    public abstract IEnumerable<object> GetEqualityComponents();
 
     public override bool Equals(object? obj) 
         => obj is not null &&
            obj is T valueObject &&
            obj.GetType() == GetType() &&
-           GetEqualityComponenets().SequenceEqual(valueObject.GetEqualityComponenets());
+           GetEqualityComponents().SequenceEqual(valueObject.GetEqualityComponents());
 
     public static bool operator ==(ValueObject<T> left, ValueObject<T> right)
         => left.Equals(right);
@@ -17,7 +17,7 @@ public abstract class ValueObject<T> where T : ValueObject<T>
         => !left.Equals(right);
 
     public override int GetHashCode()
-        => GetEqualityComponenets()
+        => GetEqualityComponents()
                 .Select(x => x?.GetHashCode() ?? 0)
                 .Aggregate((x, y) => x ^ y);
 }

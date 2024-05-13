@@ -6,21 +6,24 @@ public class SubscriberId : ValueObject<SubscriberId>
 {
     public MailAddress Email { get; init; } = null!;
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Email;
     }
 
     public static SubscriberId CreateUniqueId(string email)
     {
-        if (MailAddress.TryCreate(email, out MailAddress? mailAddress))
+        return Create(email);
+    }
+
+    public static SubscriberId Create(string value)
+    {
+
+        if (MailAddress.TryCreate(value, out MailAddress? mailAddress))
         {
             return new SubscriberId { Email = mailAddress };
         }
 
         throw new InvalidEmailAddressException();
     }
-
-    public static SubscriberId Create(string value) =>
-        new SubscriberId { Email = new MailAddress(value) };
 }

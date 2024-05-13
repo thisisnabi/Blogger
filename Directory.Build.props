@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+        <LangVersion>latest</LangVersion>
+        <AnalysisLevel>latest-minimum</AnalysisLevel>
+        <AnalysisMode>minimum</AnalysisMode>
+
+        <Version>0.1.0</Version>
+
+        <NoWarn>$(NoWarn);IDE0290</NoWarn>
+    </PropertyGroup>
+</Project>

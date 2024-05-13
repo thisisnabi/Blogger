@@ -18,17 +18,18 @@ public class ArticleTests
     public void CreateArticle_ShouldCreateAnArticle_WhenCallingCreateArticle()
     {
         // arrange
-        var draft = Article.CreateArticle("hi bye", "nothing", "for what");
+        var tags = new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") };
+        var article = Article.CreateArticle("hi bye", "nothing", "for what", tags);
 
         // assert
-        (draft.Status == ArticleStatus.Published).Should().BeTrue();
+        (article.Status == ArticleStatus.Published).Should().BeTrue();
     }
 
     [Fact]
     public void Publish_ShouldMakeArticle_WhenHaveDraft()
     {
         // arrange
-        var draft = Article.CreateArticle("hi bye", "nothing", "for what");
+        var draft = Article.CreateDraft("hi bye", "nothing", "for what");
         draft.AddTags(new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") });
          
         // act
@@ -39,10 +40,10 @@ public class ArticleTests
     }
 
     [Fact]
-    public void Publish_ShouldBeThrowDraftTagsMissingException_WhenHaventTagns()
+    public void Publish_ShouldThrowDraftTagsMissingException_WhenDoesntHaveTags()
     {
         // arrange
-        var draft = Article.CreateArticle("hi bye", "nothing", "for what");
+        var draft = Article.CreateDraft("hi bye", "nothing", "for what");
         
         // act
         var act = () => draft.Publish();

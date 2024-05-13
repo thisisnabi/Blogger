@@ -1,15 +1,14 @@
 ﻿namespace Blogger.Infrastructure.Persistence;
 public static class BloggerDbContextSchema
 {
-    public const string DefualtSchema = "blog";
-    public const string DefualtConnectionStringName = "SvcDbContext";
+    public const string DefaultSchema = "blog";
+    public const string DefaultConnectionStringName = "SvcDbContext";
 
     public static class Subscriber 
     {
         public const string TableName = "Subscribers";
         public const string ArticleIdTableName = "SubscriberArticleIds";
         public const string ArticleIdBackendField = "_articleIds";
-    
     }
 
     public static class Article

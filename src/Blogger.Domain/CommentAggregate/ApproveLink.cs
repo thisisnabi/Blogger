@@ -1,12 +1,12 @@
 ﻿namespace Blogger.Domain.CommentAggregate;
 
-public class ApproveLink : ValueObject<Client>
+public class ApproveLink : ValueObject<ApproveLink>
 {
     public string ApproveId { get; set; } = null!;
 
     public DateTime ExpirationOnUtc { get; set; }
 
-    public override IEnumerable<object> GetEqualityComponenets()
+    public override IEnumerable<object> GetEqualityComponents()
     {
         yield return ApproveId;
         yield return ExpirationOnUtc;
