@@ -17,7 +17,7 @@ public class Tag : ValueObject<Tag>
             Value = tagValue.Kebaberize()
         };
     }
-
+  
     public override string ToString()
     {
         return Value.ToString();

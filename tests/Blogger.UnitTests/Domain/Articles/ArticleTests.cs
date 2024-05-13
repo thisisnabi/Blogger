@@ -1,17 +1,22 @@
 ﻿using Blogger.Domain.ArticleAggregate;
+
 using FluentAssertions;
 
-namespace Blogger.UnitTests.Domain;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+
+namespace Blogger.UnitTests.Domain.Articles;
 public class ArticleTests
 {
     [Fact]
     public void CreateDraft_ShouldCreateADraft_WhenCallingCreateDraft()
     {
         // arrange
-        var draft = Article.CreateDraft("hi bye", "nothing", "for what");
-     
+        var draft = Article.CreateDraft("Linq Improvements in .NET 9!","Just for funny.","Hello...");
+
         // assert
-        (draft.Status == ArticleStatus.Draft).Should().BeTrue();
+        draft.Should().NotBeNull();
+        draft.Author.Should().NotBeNull();
+        draft.Status.Should().Be(ArticleStatus.Draft);
     }
 
     [Fact]
@@ -22,7 +27,9 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", "nothing", "for what", tags);
 
         // assert
-        (article.Status == ArticleStatus.Published).Should().BeTrue();
+        article.Should().NotBeNull();
+        article.Author.Should().NotBeNull();
+        article.Status.Should().Be(ArticleStatus.Published);
     }
 
     [Fact]
@@ -31,12 +38,13 @@ public class ArticleTests
         // arrange
         var draft = Article.CreateDraft("hi bye", "nothing", "for what");
         draft.AddTags(new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") });
-         
+
         // act
         draft.Publish();
 
         // assert
-        (draft.Status == ArticleStatus.Published).Should().BeTrue();
+        draft.Status.Should().Be(ArticleStatus.Published);
+        // TODO: here we must be test ReadOn timespan
     }
 
     [Fact]
@@ -44,7 +52,7 @@ public class ArticleTests
     {
         // arrange
         var draft = Article.CreateDraft("hi bye", "nothing", "for what");
-        
+
         // act
         var act = () => draft.Publish();
 
