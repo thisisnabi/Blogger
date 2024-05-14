@@ -44,6 +44,7 @@ public class ArticleTests
 
         // assert
         draft.Status.Should().Be(ArticleStatus.Published);
+        draft.PublishedOnUtc.Should().BeBefore(DateTime.UtcNow);
         // TODO: here we must be test ReadOn timespan
     }
 
