@@ -1,5 +1,6 @@
 ﻿using Blogger.Domain.Common.Exceptions;
 using Blogger.Domain.SubscriberAggregate;
+
 using FluentAssertions;
 
 namespace Blogger.UnitTests.Domain;
@@ -28,5 +29,5 @@ public class SubscriberIdTests
         subId.Should().NotBeNull();
         (subId.Email.Address == emailAddress).Should().BeTrue();
     }
- 
+
 }

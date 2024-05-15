@@ -2,16 +2,15 @@
 
 using FluentAssertions;
 
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-
 namespace Blogger.UnitTests.Domain.Articles;
 public class ArticleTests
 {
     [Fact]
     public void CreateDraft_ShouldCreateADraft_WhenCallingCreateDraft()
     {
-        // arrange
-        var draft = Article.CreateDraft("Linq Improvements in .NET 9!","Just for funny.","Hello...");
+        // act
+        Article draft = ArticleBuilder.CreateBuilder()
+                                        .BuildDraft();
 
         // assert
         draft.Should().NotBeNull();
@@ -22,9 +21,9 @@ public class ArticleTests
     [Fact]
     public void CreateArticle_ShouldCreateAnArticle_WhenCallingCreateArticle()
     {
-        // arrange
-        var tags = new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") };
-        var article = Article.CreateArticle("hi bye", "nothing", "for what", tags);
+        // act
+        Article article = ArticleBuilder.CreateBuilder()
+                                        .Build();
 
         // assert
         article.Should().NotBeNull();
@@ -35,11 +34,14 @@ public class ArticleTests
     [Fact]
     public void Publish_ShouldMakeArticle_WhenHaveDraft()
     {
-        // arrange
-        var draft = Article.CreateDraft("hi bye", "nothing", "for what");
-        draft.AddTags(new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") });
-
         // act
+        Article draft = ArticleBuilder.CreateBuilder()
+                                      .SetTitle("hi bye")
+                                      .SetBody("nothing")
+                                      .SetSummary("for what")
+                                      .SetTag([Tag.Create("aspnetcore"), Tag.Create("dotnet")])
+                                      .SetReadOn(new TimeSpan(20))
+                                      .Build();
         draft.Publish();
 
         // assert
@@ -50,14 +52,13 @@ public class ArticleTests
     [Fact]
     public void Publish_ShouldThrowDraftTagsMissingException_WhenDoesntHaveTags()
     {
-        // arrange
-        var draft = Article.CreateDraft("hi bye", "nothing", "for what");
 
         // act
-        var act = () => draft.Publish();
+        var act = () => ArticleBuilder.CreateBuilder()
+                                        .BuildDraft()
+                                        .Publish();
 
         // assert
         act.Should().Throw<DraftTagsMissingException>();
     }
-
 }

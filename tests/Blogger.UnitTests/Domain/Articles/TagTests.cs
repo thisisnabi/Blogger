@@ -1,9 +1,10 @@
 ﻿using Blogger.Domain.ArticleAggregate;
+
 using FluentAssertions;
 namespace Blogger.UnitTests.Domain.Articles;
 
 public class TagTests
-{ 
+{
     [Theory]
     [InlineData("Programming ASP.NET Core", "programming-asp.net-core")]
     [InlineData("Programming Languages", "programming-languages")]
