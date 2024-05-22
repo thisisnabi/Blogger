@@ -7,7 +7,7 @@ public class SubscribeEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("/Subscribe", async (
+        app.MapPost("/subscribe", async (
                 [FromBody] SubscribeRequest request,
                 IMapper mapper,
                 IMediator mediator,
