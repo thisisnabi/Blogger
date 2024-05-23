@@ -4,7 +4,7 @@ using Blogger.Domain.SubscriberAggregate;
 
 using FluentAssertions;
 
-namespace Blogger.UnitTests.Domain;
+namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
 public class SubscriberIdTests
 {
     [Fact]
@@ -30,5 +30,5 @@ public class SubscriberIdTests
         subId.Should().NotBeNull();
         subId.Email.Address.Should().Be(emailAddress);
     }
- 
+
 }

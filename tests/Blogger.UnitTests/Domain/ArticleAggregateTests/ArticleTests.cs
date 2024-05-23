@@ -4,7 +4,7 @@ using FluentAssertions;
 
 using static Blogger.Infrastructure.Persistence.BloggerDbContextSchema;
 
-namespace Blogger.UnitTests.Domain;
+namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
 public class ArticleTests
 {
     [Fact]
@@ -111,20 +111,20 @@ public class ArticleTests
 
 
     [Theory]
-    [InlineData(200,1)]
-    [InlineData(1000,5)]
-    [InlineData(5000,25)]
-    public void GetReadOnTimeSpan_ShouldCalculateCorrectTime_For200Words(int wordCount ,int expectedTime)
+    [InlineData(200, 1)]
+    [InlineData(1000, 5)]
+    [InlineData(5000, 25)]
+    public void GetReadOnTimeSpan_ShouldCalculateCorrectTime_For200Words(int wordCount, int expectedTime)
     {
         // Arrange
         var tags = new List<Tag> { Tag.Create("aspnetcore"), Tag.Create("dotnet") };
         var body = GenerateRandomWords(wordCount);
         var article = Article.CreateArticle("hi bye", body, "for what", tags);
-         
+
         // Act
         var result = article.ReadOn;
         // Assert
- 
+
         result.Should().BeCloseTo(TimeSpan.FromMinutes(expectedTime), precision: TimeSpan.FromSeconds(1));
     }
 }

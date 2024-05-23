@@ -2,7 +2,7 @@
 
 using FluentAssertions;
 
-namespace Blogger.UnitTests.Domain;
+namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
 
 public class TagTests
 {
@@ -18,7 +18,7 @@ public class TagTests
         // Assert
         tag.Value.Should().Be("test-value");
     }
- 
+
     [Fact]
     public void ToString_ShouldReturnValue()
     {

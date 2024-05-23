@@ -3,7 +3,7 @@ using Blogger.Domain.ArticleAggregate;
 
 using FluentAssertions;
 
-namespace Blogger.UnitTests.Domain;
+namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
 
 public class AuthorTests
 {
@@ -20,7 +20,7 @@ public class AuthorTests
 
         // Assert
         actual.Should().BeAssignableTo<ValueObject<Author>>("type is not ValueObject");
-        AssertAuthorProperties(actual,new AuthorTestDto(fullName,avatar,jobTitle));
+        AssertAuthorProperties(actual, new AuthorTestDto(fullName, avatar, jobTitle));
 
     }
 
@@ -54,7 +54,7 @@ public class AuthorTests
         var actual = Author.CreateDefaultAuthor();
 
         // Assert
-        AssertAuthorProperties(actual,new AuthorTestDto(expectedFullName,expectedAvatar,expectedJobTitle));
+        AssertAuthorProperties(actual, new AuthorTestDto(expectedFullName, expectedAvatar, expectedJobTitle));
     }
 
     private static void AssertAuthorProperties(Author author, AuthorTestDto authorTestDto)
