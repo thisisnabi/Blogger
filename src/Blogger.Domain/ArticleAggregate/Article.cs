@@ -12,13 +12,12 @@ public class Article : AggregateRootBase<ArticleId>
     }
 
     private Article() : this(null!) { }
+     
+    private readonly List<CommentId> _commentIds = null!;
+    public IReadOnlyCollection<CommentId> CommentIds => [.._commentIds];
 
-
-    private readonly IList<CommentId> _commentIds = null!;
-    public IReadOnlyCollection<CommentId> CommentIds => _commentIds.ToImmutableList();
-
-    private readonly IList<Tag> _tags = null!;
-    public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
+    private readonly List<Tag> _tags = null!;
+    public IReadOnlyCollection<Tag> Tags => [.. _tags];
 
     public Author Author { get; private set; } = null!;
 
@@ -68,8 +67,14 @@ public class Article : AggregateRootBase<ArticleId>
 
     private static TimeSpan GetReadOnTimeSpan(string body)
     {
-        var readingTime = Math.Round(((double)body.Split(" ").Length / 200) * 60);
-        return TimeSpan.FromSeconds(readingTime);
+        if (string.IsNullOrWhiteSpace(body))
+        {
+            return TimeSpan.Zero;
+        }
+
+        var words = body.Split([ ' ', '\t', '\n', '\r' ], StringSplitOptions.RemoveEmptyEntries).Length;
+        var readingTimeMinutes = words / 200.0;
+        return TimeSpan.FromMinutes(readingTimeMinutes);
     }
 
     public void UpdateDraft(string title, string summary, string body)
@@ -88,8 +93,8 @@ public class Article : AggregateRootBase<ArticleId>
     }
 
     public void Publish()
-    {
-        if (!_tags.Any())
+    { 
+        if (_tags.Count == 0)
         {
             throw new DraftTagsMissingException();
         }
@@ -105,9 +110,3 @@ public class Article : AggregateRootBase<ArticleId>
     }
 }
 
-public enum ArticleStatus
-{
-    Draft = 1,
-    Published = 2,
-    Deleted
-}
