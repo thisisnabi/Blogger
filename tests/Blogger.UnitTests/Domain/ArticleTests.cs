@@ -1,6 +1,8 @@
 ﻿using Blogger.Domain.ArticleAggregate;
 using FluentAssertions;
 
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+
 namespace Blogger.UnitTests.Domain;
 public class ArticleTests
 {
@@ -11,7 +13,7 @@ public class ArticleTests
         var draft = Article.CreateDraft("hi bye", "nothing", "for what");
      
         // assert
-        (draft.Status == ArticleStatus.Draft).Should().BeTrue();
+        draft.Status.Should().Be(ArticleStatus.Draft);
     }
 
     [Fact]
@@ -22,7 +24,7 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", "nothing", "for what", tags);
 
         // assert
-        (article.Status == ArticleStatus.Published).Should().BeTrue();
+        article.Status.Should().Be(ArticleStatus.Published);
     }
 
     [Fact]
@@ -36,7 +38,7 @@ public class ArticleTests
         draft.Publish();
 
         // assert
-        (draft.Status == ArticleStatus.Published).Should().BeTrue();
+        draft.Status.Should().Be(ArticleStatus.Published);
     }
 
     [Fact]
