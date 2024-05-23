@@ -28,7 +28,7 @@ public class SubscriberIdTests
 
         // assert
         subId.Should().NotBeNull();
-        (subId.Email.Address == emailAddress).Should().BeTrue();
+        subId.Email.Address.Should().Be(emailAddress);
     }
  
 }
