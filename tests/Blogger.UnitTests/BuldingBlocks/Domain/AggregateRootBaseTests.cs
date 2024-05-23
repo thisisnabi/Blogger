@@ -92,6 +92,17 @@ public class AggregateRootBaseTests
         entityA.Events.Should().BeEmpty();
     }
 
+    [Fact]
+    public void events_should_be_older_than_now()
+    {
+        // Arrange
+        var entityA = new ConcreteAggregateRoot(10);
+        entityA.RaiseCreatedEvent();
+
+        // Act & Assert
+        entityA.Events.First().OccurredOn.Should().BeBefore(DateTime.UtcNow);
+    }
+
 
     private class ConcreteAggregateRoot(int id) : AggregateRootBase<int>(id)
     {

@@ -1,6 +1,5 @@
 ﻿using Blogger.BuildingBlocks.Domain;
 using Blogger.Domain.ArticleAggregate;
-using Blogger.Domain.Common;
 
 using FluentAssertions;
 
