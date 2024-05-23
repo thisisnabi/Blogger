@@ -33,7 +33,7 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
 
     private static ProblemDetails CreateProblemDetailFromException(Exception exception)
     {
-        return exception is BlogException
+        return exception is DomainException
             ? new ProblemDetails
             {
                 Status = StatusCodes.Status400BadRequest,

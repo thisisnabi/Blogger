@@ -2,7 +2,7 @@
 
 namespace Blogger.Application.Comments.MakeComment;
 
-public class NotValidClientException : BlogException
+public class NotValidClientException : DomainException
 {
     private const string _messages = "Invalid client id.";
 
