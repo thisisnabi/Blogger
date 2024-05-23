@@ -1,5 +1,7 @@
-﻿using Blogger.Domain.ArticleAggregate;
+﻿using Blogger.BuildingBlocks.Domain;
+using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.Common;
+
 using FluentAssertions;
 
 namespace Blogger.UnitTests.Domain;

@@ -1,4 +1,4 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Exceptions;
 
 namespace Blogger.Domain.SubscriberAggregate;
 
@@ -18,12 +18,9 @@ public class SubscriberId : ValueObject<SubscriberId>
 
     public static SubscriberId Create(string value)
     {
+        InvalidEmailAddressException.Throw(value);
 
-        if (MailAddress.TryCreate(value, out MailAddress? mailAddress))
-        {
-            return new SubscriberId { Email = mailAddress };
-        }
-
-        throw new InvalidEmailAddressException();
+        var mailAddress = new MailAddress(value);
+        return new SubscriberId { Email = mailAddress };
     }
 }

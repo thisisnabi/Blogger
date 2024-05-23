@@ -6,4 +6,4 @@ global using System.Net.Mail;
 
 
 // solution
-global using Blogger.Domain.Common;
+global using Blogger.BuildingBlocks.Domain;

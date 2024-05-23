@@ -1,4 +1,4 @@
-﻿namespace Blogger.Domain.Common;
+﻿namespace Blogger.BuildingBlocks.Domain;
 public abstract class AggregateRootBase<TId> : EntityBase<TId>, IAggregateRoot
     where TId : notnull
 {

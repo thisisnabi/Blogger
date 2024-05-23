@@ -1,5 +1,7 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Exceptions;
+
 using Blogger.Domain.SubscriberAggregate;
+
 using FluentAssertions;
 
 namespace Blogger.UnitTests.Domain;

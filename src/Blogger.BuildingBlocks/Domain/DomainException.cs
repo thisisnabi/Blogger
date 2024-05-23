@@ -1,4 +1,4 @@
-﻿namespace Blogger.Domain.Common.Exceptions;
+﻿namespace Blogger.BuildingBlocks.Domain;
 
 public abstract class DomainException : Exception
 {

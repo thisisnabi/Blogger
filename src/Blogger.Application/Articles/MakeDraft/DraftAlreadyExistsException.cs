@@ -1,4 +1,4 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
 
 namespace Blogger.Application.Articles.MakeDraft;
 

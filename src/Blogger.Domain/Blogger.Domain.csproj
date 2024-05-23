@@ -4,4 +4,8 @@
 		<PackageReference Include="Humanizer.Core" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Blogger.BuildingBlocks\Blogger.BuildingBlocks.csproj" />
+	</ItemGroup>
+
 </Project>

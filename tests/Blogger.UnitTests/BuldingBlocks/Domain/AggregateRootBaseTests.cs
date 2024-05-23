@@ -1,4 +1,6 @@
-﻿using Blogger.Domain.Common;
+﻿using Blogger.BuildingBlocks.Domain;
+using Blogger.Domain.Common;
+
 using FluentAssertions;
 
 namespace Blogger.UnitTests.BuldingBlocks.Domain;

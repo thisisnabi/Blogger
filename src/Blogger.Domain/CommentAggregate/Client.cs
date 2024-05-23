@@ -1,4 +1,4 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Exceptions;
 
 namespace Blogger.Domain.CommentAggregate;
 
@@ -16,15 +16,12 @@ public class Client : ValueObject<Client>
 
     public static Client Create(string fullName, string email)
     {
-        if (MailAddress.TryCreate(email, out _))
-        {
-            return new Client
-            {
-                Email = email,
-                FullName = fullName,
-            };
-        }
+        InvalidEmailAddressException.Throw(email);
 
-        throw new InvalidEmailAddressException();
+        return new Client
+        {
+            Email = email,
+            FullName = fullName,
+        };
     }
 }

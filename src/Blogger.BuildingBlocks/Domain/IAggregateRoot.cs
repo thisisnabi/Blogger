@@ -1,4 +1,4 @@
-﻿namespace Blogger.Domain.Common;
+﻿namespace Blogger.BuildingBlocks.Domain;
 
 public interface IAggregateRoot
 {

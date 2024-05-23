@@ -1,4 +1,5 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Comments.ApproveReply;
 public class CommentNotFoundException : DomainException

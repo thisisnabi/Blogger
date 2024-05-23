@@ -1,6 +1,5 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿namespace Blogger.Domain.ArticleAggregate;
 
-namespace Blogger.Domain.ArticleAggregate;
 public class DraftTagsMissingException : DomainException
 {
     private const string _messages = "Cannot publish draft without tags.";
