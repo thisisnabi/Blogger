@@ -7,7 +7,7 @@ internal class SubscriberConfiguration : IEntityTypeConfiguration<Subscriber>
 {
     public void Configure(EntityTypeBuilder<Subscriber> builder)
     {
-        builder.ToTable(BloggerDbContextSchema.Subscriber.TableName);
+        builder.ToTable(BloggerDbContextSchema.SubscriberDbSchema.TableName);
 
         builder.HasKey(x => x.Id);
 
@@ -22,14 +22,14 @@ internal class SubscriberConfiguration : IEntityTypeConfiguration<Subscriber>
 
         builder.OwnsMany(x => x.ArticleIds, sb =>
         {
-            sb.ToTable(BloggerDbContextSchema.Subscriber.ArticleIdTableName);
+            sb.ToTable(BloggerDbContextSchema.SubscriberDbSchema.ArticleIdTableName);
 
             sb.Property(x => x.Slug)
-                .HasColumnName(BloggerDbContextSchema.Article.ForeignKey);
+                .HasColumnName(BloggerDbContextSchema.ArticleDbSchema.ForeignKey);
 
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(x => x.ArticleIds)
-                    .Metadata.SetField(BloggerDbContextSchema.Subscriber.ArticleIdBackendField);
+                    .Metadata.SetField(BloggerDbContextSchema.SubscriberDbSchema.ArticleIdBackendField);
     }
 }

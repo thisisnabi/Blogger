@@ -8,7 +8,7 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
 {
     public void Configure(EntityTypeBuilder<Comment> builder)
     {
-        builder.ToTable(BloggerDbContextSchema.Comment.TableName);
+        builder.ToTable(BloggerDbContextSchema.CommentDbSchema.TableName);
 
         builder.HasKey(x => x.Id);
 
@@ -36,43 +36,43 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
                 .IsRequired()
                 .HasMaxLength(100)
                 .IsUnicode(true)
-                .HasColumnName(BloggerDbContextSchema.Comment.ClientFullName);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ClientFullName);
 
             cb.Property(c => c.Email)
                 .IsRequired()
                 .HasMaxLength(1044)
                 .IsUnicode(true)
-                .HasColumnName(BloggerDbContextSchema.Comment.ClientEmail);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ClientEmail);
         });
 
         builder.OwnsOne(x => x.ApproveLink, cb =>
         {
             cb.Property(c => c.ExpirationOnUtc)
                 .IsRequired()
-                .HasColumnName(BloggerDbContextSchema.Comment.ApproveLinkExpirationOnUtc);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ApproveLinkExpirationOnUtc);
 
             cb.Property(c => c.ApproveId)
                 .IsRequired()
                 .HasMaxLength(2077)
-                .HasColumnName(BloggerDbContextSchema.Comment.ApproveLinkApproveId);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ApproveLinkApproveId);
         });
 
         builder.OwnsOne(x => x.ArticleId, cb =>
         {
             cb.Property(c => c.Slug)
                 .IsRequired()
-                .HasColumnName(BloggerDbContextSchema.Comment.ArticleId);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ArticleId);
         });
 
 
         builder.OwnsMany(x => x.Replies, rb =>
         {
-            rb.ToTable(BloggerDbContextSchema.Comment.RepliesTableName);
+            rb.ToTable(BloggerDbContextSchema.CommentDbSchema.RepliesTableName);
 
             rb.HasKey(x => x.Id);
 
             rb.WithOwner()
-               .HasForeignKey(BloggerDbContextSchema.Comment.ForeignKey);
+               .HasForeignKey(BloggerDbContextSchema.CommentDbSchema.ForeignKey);
 
             rb.Property(x => x.Id)
                          .ValueGeneratedNever()
@@ -98,30 +98,30 @@ internal class CommentConfiguration : IEntityTypeConfiguration<Comment>
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(true)
-                    .HasColumnName(BloggerDbContextSchema.Comment.ClientFullName);
+                    .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ClientFullName);
 
                 cb.Property(c => c.Email)
                     .IsRequired()
                     .HasMaxLength(1044)
                     .IsUnicode(true)
-                    .HasColumnName(BloggerDbContextSchema.Comment.ClientEmail);
+                    .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ClientEmail);
             });
 
             rb.OwnsOne(x => x.ApproveLink, cb =>
             {
                 cb.Property(c => c.ExpirationOnUtc)
                     .IsRequired()
-                    .HasColumnName(BloggerDbContextSchema.Comment.ApproveLinkExpirationOnUtc);
+                    .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ApproveLinkExpirationOnUtc);
 
                 cb.Property(c => c.ApproveId)
                     .IsRequired()
                     .HasMaxLength(2077)
-                    .HasColumnName(BloggerDbContextSchema.Comment.ApproveLinkApproveId);
+                    .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ApproveLinkApproveId);
             });
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(s => s.Replies)
-                     .Metadata.SetField(BloggerDbContextSchema.Comment.RepliesBackendField);
+                     .Metadata.SetField(BloggerDbContextSchema.CommentDbSchema.RepliesBackendField);
 
     }
 }
