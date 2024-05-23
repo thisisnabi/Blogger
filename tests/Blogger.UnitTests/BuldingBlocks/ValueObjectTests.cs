@@ -2,7 +2,7 @@
 
 using FluentAssertions;
 
-namespace Blogger.UnitTests.BuldingBlocks.Domain;
+namespace Blogger.UnitTests.BuldingBlocks;
 public class ValueObjectTests
 {
     [Fact]
