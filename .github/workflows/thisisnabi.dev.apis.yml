@@ -4,7 +4,7 @@ env:
   DOTNET_VERSION: '8'
   
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
@@ -34,11 +34,10 @@ jobs:
     needs: build
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-      
+      uses: actions/checkout@v3
     - uses: actions/setup-node@v4
       with:
-        node-version: 20      
+        node-version: 20
     - name: update-liara
       env:
         LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
