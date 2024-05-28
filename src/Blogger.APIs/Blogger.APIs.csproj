@@ -11,6 +11,7 @@
 		<PackageReference Include="Mapster.DependencyInjection" />
 		<PackageReference Include="Mapster" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+		<PackageReference Include="ServiceCollector.Core" />
 		<PackageReference Include="Swashbuckle.AspNetCore" />
 	</ItemGroup>
 
@@ -18,5 +19,5 @@
 		<ProjectReference Include="..\Blogger.Application\Blogger.Application.csproj" />
 		<ProjectReference Include="..\Blogger.Infrastructure\Blogger.Infrastructure.csproj" />
 	</ItemGroup>
-
+    
 </Project>

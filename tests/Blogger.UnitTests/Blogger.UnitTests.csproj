@@ -4,29 +4,14 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
     </PropertyGroup>
-
-
-	<ItemGroup>
-		<PackageReference Include="AutoFixture" Version="4.18.1" />
-		<PackageReference Include="coverlet.collector" Version="6.0.2">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="FluentAssertions" Version="6.12.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-		<PackageReference Include="xunit" Version="2.7.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="coverlet.collector">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="FluentAssertions"/>
+        <PackageReference Include="AutoFixture"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="Moq" />
         <PackageReference Include="xunit" />
@@ -43,9 +28,4 @@
         <ProjectReference Include="..\..\src\Blogger.Domain\Blogger.Domain.csproj" />
         <ProjectReference Include="..\..\src\Blogger.Infrastructure\Blogger.Infrastructure.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Using Include="Xunit" />
-    </ItemGroup>
-
 </Project>

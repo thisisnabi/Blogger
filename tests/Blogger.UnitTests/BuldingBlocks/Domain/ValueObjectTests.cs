@@ -1,6 +1,8 @@
 ﻿using Blogger.Domain.Common;
 using FluentAssertions;
 
+using Xunit;
+
 namespace Blogger.UnitTests.BuldingBlocks.Domain;
 public class ValueObjectTests
 {

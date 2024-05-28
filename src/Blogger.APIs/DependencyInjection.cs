@@ -1,46 +1,53 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 
+using ServiceCollector.Abstractions;
+
 namespace Blogger.APIs;
 
-public static class DependencyInjection
+public class AddMapster : IServiceDiscovery
 {
     private readonly static Assembly[] Assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-    public static IServiceCollection ConfigureMapster(this IServiceCollection services)
+    public void AddServices(IServiceCollection serviceCollection)
     {
         var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
         typeAdapterConfig.Scan(Assemblies);
 
-        services.AddSingleton(typeAdapterConfig);
-        services.AddScoped<IMapper, ServiceMapper>();
-
-        return services;
+        serviceCollection.AddSingleton(typeAdapterConfig);
+        serviceCollection.AddScoped<IMapper, ServiceMapper>();
     }
+}
 
-    public static IServiceCollection ConfigureValidator(this IServiceCollection services)
-    {
-        services.AddValidatorsFromAssemblies(Assemblies);
+public class AddValidator : IServiceDiscovery
+{
+    private readonly static Assembly[] Assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-        return services;
-    } 
-    
-    public static IServiceCollection ConfigureCors(this IServiceCollection services)
+    public void AddServices(IServiceCollection serviceCollection)
     {
-        services.AddCors(options =>
+        serviceCollection.AddValidatorsFromAssemblies(Assemblies);
+    }
+}
+
+public class AddCors : IServiceDiscovery
+{
+    public void AddServices(IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddCors(options =>
         {
             options.AddPolicy(name: "AllowOrigin",
                 builder =>
                 {
                     builder.AllowAnyOrigin()
-                           .AllowAnyHeader()
-                           .AllowAnyMethod();
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
         });
-
-        return services;
     }
+}
 
-    public static IServiceCollection AddEndpoints(this IServiceCollection services)
+public class AddEndpoint : IServiceDiscovery
+{
+    public void AddServices(IServiceCollection serviceCollection)
     {
         var assembly = typeof(IAssemblyMarker).Assembly;
 
@@ -51,16 +58,16 @@ public static class DependencyInjection
             .Select(type => ServiceDescriptor.Transient(typeof(IEndpoint), type))
             .ToArray();
 
-        services.TryAddEnumerable(serviceDescriptors);
+        serviceCollection.TryAddEnumerable(serviceDescriptors);
+    }
+}
 
-        return services;
-    } 
-
-
+public static class DependencyInjection
+{
     public static IApplicationBuilder MapEndpoints(this WebApplication app)
     {
         IEnumerable<IEndpoint> endpoints = app.Services
-                                              .GetRequiredService<IEnumerable<IEndpoint>>();
+            .GetRequiredService<IEnumerable<IEndpoint>>();
 
         foreach (IEndpoint endpoint in endpoints)
         {

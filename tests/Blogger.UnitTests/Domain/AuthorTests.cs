@@ -1,7 +1,9 @@
-﻿using AutoFixture;
-using Blogger.Domain.ArticleAggregate;
+﻿using Blogger.Domain.ArticleAggregate;
 using Blogger.Domain.Common;
 using FluentAssertions;
+using AutoFixture;
+
+using Xunit;
 
 namespace Blogger.UnitTests.Domain;
 

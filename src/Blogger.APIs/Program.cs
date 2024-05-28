@@ -1,22 +1,18 @@
 using Blogger.APIs.ErrorHandling;
 
+using ServiceCollector.Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddEnvironmentVariables();
-
-builder.Services.ConfigureApplicationLayer(builder.Configuration);
-builder.Services.ConfigureInfrastructureLayer(builder.Configuration);
-builder.Services.ConfigureMapster();
-builder.Services.ConfigureValidator();
-builder.Services.ConfigureCors();
-
-builder.Services.AddEndpoints();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddProblemDetails();
+builder.Services
+    .ConfigureApplicationLayer()
+    .ConfigureInfrastructureLayer(builder.Configuration)
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddExceptionHandler<GlobalExceptionHandler>()
+    .AddProblemDetails()
+    .AddServiceDiscovery();
 
 var app = builder.Build();
 

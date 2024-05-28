@@ -1,6 +1,8 @@
 ﻿using Blogger.Domain.ArticleAggregate;
 using FluentAssertions;
 
+using Xunit;
+
 namespace Blogger.UnitTests.Domain;
 public class ArticleTests
 {

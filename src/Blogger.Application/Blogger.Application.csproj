@@ -7,6 +7,7 @@
 	<ItemGroup>
 		<PackageReference Include="MediatR" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+		<PackageReference Include="ServiceCollector.Abstractions" />
 	</ItemGroup>
 
 </Project>
