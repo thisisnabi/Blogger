@@ -3,7 +3,7 @@
 using FluentAssertions;
 
 namespace Blogger.UnitTests.BuldingBlocks;
-public class AggregateRootBaseTests
+public class AggregateRootTests
 {
 
     [Fact]

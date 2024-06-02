@@ -3,7 +3,7 @@
 using FluentAssertions;
 
 namespace Blogger.UnitTests.BuldingBlocks;
-public class EntityBaseTests
+public class EntityTests
 {
     [Fact]
     public void entities_of_different_type_should_not_be_equal()
