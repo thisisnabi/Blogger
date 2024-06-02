@@ -1,6 +1,6 @@
 ﻿ namespace Blogger.Infrastructure.Persistence.Repositories;
 
-internal class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepository
+public class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepository
 {
     public Task<Comment?> GetCommentByApproveLinkAsync(string link, CancellationToken cancellationToken)
     {

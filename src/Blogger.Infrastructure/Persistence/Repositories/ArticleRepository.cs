@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Infrastructure.Persistence.Repositories;
 
-internal class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
+public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
 
     public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
