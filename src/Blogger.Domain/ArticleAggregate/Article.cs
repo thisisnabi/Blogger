@@ -31,9 +31,9 @@ public class Article : AggregateRoot<ArticleId>
 
     public ArticleStatus Status { get; private set; }
 
-    public TimeSpan? ReadOnTimeSpan { get; private set; }
+    public TimeSpan ReadOnTimeSpan { get; private set; }
 
-    public int GetReadOnInMinutes => Convert.ToInt32(ReadOnTimeSpan?.TotalMinutes);
+    public int GetReadOnInMinutes => Convert.ToInt32(ReadOnTimeSpan.TotalMinutes);
 
     public static Article CreateDraft(string title, string body, string summary)
     {
@@ -42,6 +42,7 @@ public class Article : AggregateRoot<ArticleId>
             Author = Author.CreateDefaultAuthor(),
             Body = body,
             Status = ArticleStatus.Draft,
+            ReadOnTimeSpan = GetReadOnTimeSpan(body),
             Summary = summary,
             Title = title,
         };
@@ -59,10 +60,7 @@ public class Article : AggregateRoot<ArticleId>
 
     public void AddTags(IReadOnlyList<Tag> tags)
     {
-        foreach (var tag in tags)
-        {
-            _tags.Add(tag);
-        }
+        _tags.AddRange(tags);
     }
 
     private static TimeSpan GetReadOnTimeSpan(string body)
@@ -82,6 +80,7 @@ public class Article : AggregateRoot<ArticleId>
         Title = title;
         Body = body;
         Summary = summary;
+        ReadOnTimeSpan = GetReadOnTimeSpan(body);
     }
 
     public void UpdateTags(IReadOnlyList<Tag> tags)

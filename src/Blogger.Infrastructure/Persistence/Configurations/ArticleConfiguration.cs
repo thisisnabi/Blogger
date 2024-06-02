@@ -35,7 +35,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
                 .IsRequired(false);
 
         builder.Property(x => x.ReadOnTimeSpan)
-                .IsRequired(false);
+                .IsRequired(true);
 
         builder.Property(x => x.Status)
                 .IsRequired();
