@@ -58,6 +58,6 @@ public class EntityBaseTests
         (entityA.GetHashCode() == entityB.GetHashCode()).Should().BeFalse();
     }
 
-    private class ConcreteEntity(Guid id) : EntityBase<Guid>(id) { }
-    private class OtherConcreteEntity(Guid id) : EntityBase<Guid>(id) { }
+    private class ConcreteEntity(Guid id) : Entity<Guid>(id) { }
+    private class OtherConcreteEntity(Guid id) : Entity<Guid>(id) { }
 }

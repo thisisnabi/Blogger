@@ -104,12 +104,12 @@ public class AggregateRootBaseTests
     }
 
 
-    private class ConcreteAggregateRoot(int id) : AggregateRootBase<int>(id)
+    private class ConcreteAggregateRoot(int id) : AggregateRoot<int>(id)
     {
         public void RaiseCreatedEvent() => AddEvent(new CreatedRootEvent { });
     }
 
-    private class OtherConcreteAggregateRoot(int id) : AggregateRootBase<int>(id)
+    private class OtherConcreteAggregateRoot(int id) : AggregateRoot<int>(id)
     {
 
     }

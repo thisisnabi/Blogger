@@ -1,12 +1,12 @@
 ﻿namespace Blogger.BuildingBlocks.Domain;
-public abstract class AggregateRootBase<TId> : EntityBase<TId>, IAggregateRoot
+public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
     where TId : notnull
 {
     public IReadOnlyCollection<IDomainEvent> Events => [.. _events];
 
     private readonly List<IDomainEvent> _events;
 
-    protected AggregateRootBase(TId id) : base(id)
+    protected AggregateRoot(TId id) : base(id)
     {
         _events = [];
     }

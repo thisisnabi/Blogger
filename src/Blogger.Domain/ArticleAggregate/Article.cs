@@ -2,7 +2,7 @@
 
 namespace Blogger.Domain.ArticleAggregate;
 
-public class Article : AggregateRootBase<ArticleId>
+public class Article : AggregateRoot<ArticleId>
 {
 
     public Article(ArticleId slug) : base(slug)

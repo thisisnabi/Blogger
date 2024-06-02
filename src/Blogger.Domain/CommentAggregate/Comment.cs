@@ -2,7 +2,7 @@
 
 namespace Blogger.Domain.CommentAggregate;
 
-public class Comment : AggregateRootBase<CommentId>
+public class Comment : AggregateRoot<CommentId>
 {
     private IList<Reply> _replies;
     public Comment(CommentId id) : base(id)

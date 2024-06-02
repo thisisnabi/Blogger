@@ -1,6 +1,6 @@
 ﻿namespace Blogger.Domain.CommentAggregate;
 
-public class Reply(ReplyId id) : EntityBase<ReplyId>(id)
+public class Reply(ReplyId id) : Entity<ReplyId>(id)
 {
     public Reply() : this(null!)
     {
