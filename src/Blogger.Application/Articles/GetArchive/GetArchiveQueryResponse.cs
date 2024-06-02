@@ -5,5 +5,5 @@ public record GetArchiveQueryResponse(int Year, int Month, IReadOnlyList<Article
 public record ArticleOnArchive(ArticleId ArticleId, string Title, int Day)
 {
     public static explicit operator ArticleOnArchive(Article article)
-        => new ArticleOnArchive(article.Id, article.Title, article.PublishedOnUtc.Day);
+        => new ArticleOnArchive(article.Id, article.Title, article.PublishedOnUtc?.Day ?? 0);
 }

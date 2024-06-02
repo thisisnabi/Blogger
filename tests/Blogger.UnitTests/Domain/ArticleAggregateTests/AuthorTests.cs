@@ -19,9 +19,10 @@ public class AuthorTests
         var actual = Author.Create(fullName, avatar, jobTitle);
 
         // Assert
-        actual.Should().BeAssignableTo<ValueObject<Author>>("type is not ValueObject");
-        AssertAuthorProperties(actual, new AuthorTestDto(fullName, avatar, jobTitle));
-
+        actual.Should().BeAssignableTo<ValueObject<Author>>();
+        actual.Avatar.Should().Be(avatar);
+        actual.FullName.Should().Be(fullName);
+        actual.JobTitle.Should().Be(jobTitle);
     }
 
     [Theory]
@@ -48,22 +49,18 @@ public class AuthorTests
         // Arrange
         const string expectedFullName = "Nabi Karampour";
         const string expectedJobTitle = "Senior Software Engineer";
-        const string expectedAvatar = "/images/avatars/thisisnabi.png";
+        const string expectedAvatar = "https://avatars.githubusercontent.com/u/3371886?s=400&u=cb8ebf9fc27e463b5d7002aaeeef881eb950b71f&v=4";
 
         // Act
         var actual = Author.CreateDefaultAuthor();
 
         // Assert
-        AssertAuthorProperties(actual, new AuthorTestDto(expectedFullName, expectedAvatar, expectedJobTitle));
+        actual.Avatar.Should().Be(expectedAvatar);
+        actual.FullName.Should().Be(expectedFullName);
+        actual.JobTitle.Should().Be(expectedJobTitle);
     }
 
-    private static void AssertAuthorProperties(Author author, AuthorTestDto authorTestDto)
-    {
-        author.Avatar.Should().Be(authorTestDto.Avatar, "avatar is not correct");
-        author.FullName.Should().Be(authorTestDto.FullName, "fullName is not correct");
-        author.JobTitle.Should().Be(authorTestDto.JobTitle, "jobName is not correct");
-    }
-
+  
     private class AuthorTestDto
     {
         internal AuthorTestDto(string fullName, string avatar, string jobTitle)

@@ -1,11 +1,8 @@
-﻿using Blogger.Domain.CommentAggregate;
-
-namespace Blogger.Domain.ArticleAggregate;
+﻿namespace Blogger.Domain.ArticleAggregate;
 
 public class Article : AggregateRoot<ArticleId>
 {
-
-    public Article(ArticleId slug) : base(slug)
+    private Article(ArticleId slug) : base(slug)
     {
         _tags = [];
         _commentIds = [];
@@ -27,7 +24,7 @@ public class Article : AggregateRoot<ArticleId>
 
     public string Summary { get; private set; } = null!;
 
-    public DateTime PublishedOnUtc { get; set; } = DateTime.MinValue;
+    public DateTime? PublishedOnUtc { get; set; }
 
     public ArticleStatus Status { get; private set; }
 

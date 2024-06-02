@@ -1,11 +1,11 @@
 ﻿namespace Blogger.Domain.ArticleAggregate;
 public class Author : ValueObject<Author>
 {
-        public string FullName { get; init; }
+    public string FullName { get; init; }
 
-        public string Avatar { get; init; }
+    public string Avatar { get; init; }
 
-        public string JobTitle { get; init; }
+    public string JobTitle { get; init; }
 
     private Author(string fullName, string avatar, string jobTitle)
     {
@@ -21,7 +21,10 @@ public class Author : ValueObject<Author>
         yield return JobTitle;
     }
 
-    public static Author CreateDefaultAuthor() => Create("Nabi Karampour", "/images/avatars/thisisnabi.png", "Senior Software Engineer");
+    public static Author CreateDefaultAuthor() => 
+        Create("Nabi Karampour", 
+                "https://avatars.githubusercontent.com/u/3371886?s=400&u=cb8ebf9fc27e463b5d7002aaeeef881eb950b71f&v=4",
+                "Senior Software Engineer");
 
     public static Author Create(string fullName, string avatar, string jobTitle)
     {
