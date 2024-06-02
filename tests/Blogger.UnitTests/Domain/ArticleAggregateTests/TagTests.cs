@@ -1,7 +1,5 @@
 ﻿using Blogger.Domain.ArticleAggregate;
 
-using FluentAssertions;
-
 namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
 
 public class TagTests

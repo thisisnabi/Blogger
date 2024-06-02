@@ -1,10 +1,7 @@
 ﻿using Blogger.BuildingBlocks.Exceptions;
-
 using Blogger.Domain.SubscriberAggregate;
 
-using FluentAssertions;
-
-namespace Blogger.UnitTests.Domain.ArticleAggregateTests;
+namespace Blogger.UnitTests.Domain.SubscriberAggregateTests;
 public class SubscriberIdTests
 {
     [Fact]
@@ -20,7 +17,7 @@ public class SubscriberIdTests
 
     [Theory]
     [InlineData("thisisnabi.dev@gmail.com")]
-    [InlineData("iman.safari@gmail.com")]
+    [InlineData("thisisnabi@outlook.com")]
     public void CreateUniqeId_ShouldReturnSubscriberId_WhenHaveCorrectEmail(string emailAddress)
     {
         // arrange
