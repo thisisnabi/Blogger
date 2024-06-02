@@ -16,6 +16,9 @@ public class Article : AggregateRoot<ArticleId>
     private readonly List<Tag> _tags = null!;
     public IReadOnlyCollection<Tag> Tags => [.. _tags];
 
+    private readonly List<Like> _likes = null!;
+    public IReadOnlyCollection<Like> Likes => [.. _likes];
+     
     public Author Author { get; private set; } = null!;
 
     public string Title { get; private set; } = null!;
@@ -24,13 +27,13 @@ public class Article : AggregateRoot<ArticleId>
 
     public string Summary { get; private set; } = null!;
 
-    public DateTime? PublishedOnUtc { get; set; }
+    public DateTime? PublishedOnUtc { get; private set; }
 
     public ArticleStatus Status { get; private set; }
 
-    public TimeSpan? ReadOn { get; private set; }
+    public TimeSpan? ReadOnTimeSpan { get; private set; }
 
-    public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
+    public int GetReadOnInMinutes => Convert.ToInt32(ReadOnTimeSpan?.TotalMinutes);
 
     public static Article CreateDraft(string title, string body, string summary)
     {
@@ -97,7 +100,7 @@ public class Article : AggregateRoot<ArticleId>
         }
 
         Status = ArticleStatus.Published;
-        ReadOn = GetReadOnTimeSpan(Body);
+        ReadOnTimeSpan = GetReadOnTimeSpan(Body);
         PublishedOnUtc = DateTime.UtcNow;
     }
 

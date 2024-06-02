@@ -64,7 +64,7 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", body, "for what", tags);
 
         // Act
-        var result = article.ReadOn;
+        var result = article.ReadOnTimeSpan;
 
         // Assert
         result.Should().Be(TimeSpan.Zero);
@@ -79,7 +79,7 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", body, "for what", tags);
 
         // Act
-        var result = article.ReadOn;
+        var result = article.ReadOnTimeSpan;
 
         // Assert
         result.Should().Be(TimeSpan.Zero);
@@ -94,7 +94,7 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", body, "for what", tags);
 
         // Act
-        var result = article.ReadOn;
+        var result = article.ReadOnTimeSpan;
 
         // Assert
         var expectedTime = TimeSpan.FromMinutes(1.0 / 200.0 * 5);
@@ -122,7 +122,7 @@ public class ArticleTests
         var article = Article.CreateArticle("hi bye", body, "for what", tags);
 
         // Act
-        var result = article.ReadOn;
+        var result = article.ReadOnTimeSpan;
         // Assert
 
         result.Should().BeCloseTo(TimeSpan.FromMinutes(expectedTime), precision: TimeSpan.FromSeconds(1));

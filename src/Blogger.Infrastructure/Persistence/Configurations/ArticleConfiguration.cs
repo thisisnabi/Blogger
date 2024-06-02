@@ -34,7 +34,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
         builder.Property(x => x.PublishedOnUtc)
                 .IsRequired(false);
 
-        builder.Property(x => x.ReadOn)
+        builder.Property(x => x.ReadOnTimeSpan)
                 .IsRequired(false);
 
         builder.Property(x => x.Status)
