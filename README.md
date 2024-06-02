@@ -4,13 +4,6 @@ This document serves as a guide for building a blog application using Clean Arch
 > [!TIP]
 > Here you can see UI for this api project, <a href='https://github.com/thisisnabi/Blogger.UI'>Blogger.UI</a>
 
-> [!WARNING]
-> Tests will end this month, follow me on https://lu.ma/thisisnabi?tag=testing
-> 1. Unit Testing - 6 May
-> 2. Integration Testing - 13 May
-> 3. Functional Testing - 20 May
-> 4. Load Testing - 27 May
- 
 ## Give a Star! ⭐
 If you find this `Blogger` valuable and believe in the importance of CQRD, Clean Architecture, Domain-Driven Design, consider showing your support by giving this repository a star!
  
