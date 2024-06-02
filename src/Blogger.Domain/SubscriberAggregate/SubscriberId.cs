@@ -20,7 +20,6 @@ public class SubscriberId : ValueObject<SubscriberId>
     {
         InvalidEmailAddressException.Throw(value);
 
-        var mailAddress = new MailAddress(value);
-        return new SubscriberId { Email = mailAddress };
+        return new SubscriberId { Email = new MailAddress(value) };
     }
 }

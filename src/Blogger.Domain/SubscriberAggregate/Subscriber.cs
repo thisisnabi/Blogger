@@ -1,12 +1,13 @@
 ﻿using Blogger.Domain.ArticleAggregate;
+using Blogger.Domain.CommentAggregate;
 
 namespace Blogger.Domain.SubscriberAggregate;
 
-public class Subscriber(SubscriberId id) : AggregateRoot<SubscriberId>(id)
+public sealed class Subscriber : AggregateRoot<SubscriberId>
 {
-    public DateTime JoinedOnUtc { get; init; } 
+    public DateTime JoinedOnUtc { get; init; }
 
-    private IList<ArticleId> _articleIds = null!;
+    private readonly IList<ArticleId> _articleIds;
     public IReadOnlyCollection<ArticleId> ArticleIds => _articleIds.ToImmutableList();
 
     public static Subscriber Create(SubscriberId subscriberId)
@@ -14,4 +15,12 @@ public class Subscriber(SubscriberId id) : AggregateRoot<SubscriberId>(id)
          {
              JoinedOnUtc = DateTime.UtcNow
          };
+
+    private Subscriber(SubscriberId id) : base(id)
+    {
+        _articleIds = [];
+    }
+
+    private Subscriber() : this(null!) { }
+     
 }
