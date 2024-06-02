@@ -1,8 +1,5 @@
-﻿using Blogger.BuildingBlocks.Domain;
+﻿namespace Blogger.UnitTests.BuldingBlocks;
 
-using FluentAssertions;
-
-namespace Blogger.UnitTests.BuldingBlocks;
 public class EntityTests
 {
     [Fact]

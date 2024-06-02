@@ -1,8 +1,4 @@
-﻿using Blogger.BuildingBlocks.Domain;
-
-using FluentAssertions;
-
-namespace Blogger.UnitTests.BuldingBlocks;
+﻿namespace Blogger.UnitTests.BuldingBlocks;
 public class ValueObjectTests
 {
     [Fact]
