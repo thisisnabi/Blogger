@@ -1,4 +1,8 @@
-﻿namespace Blogger.Infrastructure.Persistence.Repositories;
+﻿using System.Linq;
+
+using Blogger.Domain.ArticleAggregate.Models;
+
+namespace Blogger.Infrastructure.Persistence.Repositories;
 
 public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
@@ -7,6 +11,26 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
 
     public void Add(Article article) =>
          bloggerDbContext.Articles.Add(article);
+
+    public async Task<IReadOnlyCollection<ArchiveModel>> GetArchivesAsync(CancellationToken cancellationToken)
+    {
+        var archives = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
+                                                 .Select(x => new
+                                                 {
+                                                     PublishedOnUtc = x.PublishedOnUtc!.Value,
+                                                     x.Id,
+                                                     x.Title,
+                                                     x.PublishedOnUtc.Value.Day
+                                                 })
+                                                 .GroupBy(x => new { x.PublishedOnUtc.Year, x.PublishedOnUtc.Month })
+                                                 .Select(x => new ArchiveModel(x.Key.Year, x.Key.Month, x.Select(z => new ArticleArchiveModel(z.Id, z.Title, z.Day))))
+                                                 .ToListAsync(cancellationToken);
+
+        return [.. archives];
+    }
+
+
+
 
     public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
     {
@@ -48,13 +72,6 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
                                 .FirstOrDefaultAsync(x => x.Id == draftId, cancellationToken);
     }
 
-    public async Task<IReadOnlyList<Article>> GetArchiveArticlesAsync(CancellationToken cancellationToken)
-    {
-        var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
-                                                 .ToListAsync(cancellationToken);
-
-        return que.ToImmutableList();
-    }
 
     public async Task<IReadOnlyList<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken)
     {

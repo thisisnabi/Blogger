@@ -1,2 +1,2 @@
 ﻿namespace Blogger.Application.Articles.GetArchive;
-public record GetArchiveQuery() : IRequest<IReadOnlyList<GetArchiveQueryResponse>>;
+public record GetArchiveQuery() : IRequest<IReadOnlyCollection<GetArchiveQueryResponse>>;
