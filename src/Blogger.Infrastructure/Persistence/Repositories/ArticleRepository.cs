@@ -29,9 +29,23 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
         return [.. archives];
     }
 
+    public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
+    {
+        return bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
+                                        .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
+    }
+     
+    public async Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+    {
+        var articles = await bloggerDbContext.Articles
+                                        .Where(x => x.Status == ArticleStatus.Published)
+                                        .OrderByDescending(x => x.PublishedOnUtc)
+                                        .Skip((pageNumber - 1) * pageSize).Take(pageSize)
+                                        .ToListAsync(cancellationToken);
 
-
-
+        return [.. articles];
+    }
+      
     public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
     {
         var topSizeTags = bloggerDbContext.Articles
@@ -79,24 +93,6 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
                                                  .OrderByDescending(x => x.CommentIds.Count)
                                                  .Take(size)
                                                  .ToListAsync(cancellationToken);
-
-        return que.ToImmutableList();
-    }
-
-    public Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken)
-    {
-        return bloggerDbContext.Articles
-                                    .Where(x => x.Status == ArticleStatus.Published)
-                                    .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
-    }
-
-    public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
-    {
-        var que = await bloggerDbContext.Articles
-                                        .Where(x => x.Status == ArticleStatus.Published)
-                                        .OrderByDescending(x => x.PublishedOnUtc)
-                                        .Skip((pageNumber - 1) * pageSize).Take(pageSize)
-                                        .ToListAsync(cancellationToken);
 
         return que.ToImmutableList();
     }
