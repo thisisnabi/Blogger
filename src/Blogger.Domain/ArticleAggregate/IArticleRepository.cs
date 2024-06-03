@@ -20,8 +20,8 @@ public interface IArticleRepository
 
     Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken);
 
+    Task<IReadOnlyCollection<TagModel>> GetTagsAsync(CancellationToken cancellationToken);
 
-    Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken);
     Task SaveChangesAsync(CancellationToken cancellationToken);
     void Delete(Article draft);
     Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken);

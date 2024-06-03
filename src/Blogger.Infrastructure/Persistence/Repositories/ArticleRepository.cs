@@ -83,19 +83,18 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
 
         return [.. articles];
     }
-
-
-
-
-    public async Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken)
+     
+    public async Task<IReadOnlyCollection<TagModel>> GetTagsAsync(CancellationToken cancellationToken)
     {
         var tags = await bloggerDbContext.Articles
                                          .AsNoTracking()
                                          .Where(x => x.Status == ArticleStatus.Published)
                                          .SelectMany(x => x.Tags)
+                                         .GroupBy(x => x.Value)
+                                         .Select(x => new TagModel(Tag.Create(x.Key), x.Count()))
                                          .ToListAsync(cancellationToken);
 
-        return tags.ToImmutableList();
+        return[.. tags];
     }
 
 
