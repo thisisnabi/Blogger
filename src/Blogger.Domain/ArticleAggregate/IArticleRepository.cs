@@ -17,12 +17,13 @@ public interface IArticleRepository
     Task<IReadOnlyCollection<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken);
 
     Task<IReadOnlyCollection<Tag>> GetPopularTagsAsync(int size,CancellationToken cancellationToken);
-    
+
+    Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken);
+
+
     Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken);
     Task SaveChangesAsync(CancellationToken cancellationToken);
     void Delete(Article draft);
     Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken);
-    
-    Task<IReadOnlyList<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken);
-    
+   
 }
