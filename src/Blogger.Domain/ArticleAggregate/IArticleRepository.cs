@@ -16,7 +16,8 @@ public interface IArticleRepository
 
     Task<IReadOnlyCollection<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken);
 
-    Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size,CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<Tag>> GetPopularTagsAsync(int size,CancellationToken cancellationToken);
+    
     Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken);
     Task SaveChangesAsync(CancellationToken cancellationToken);
     void Delete(Article draft);
