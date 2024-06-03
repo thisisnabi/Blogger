@@ -9,11 +9,11 @@ public class GetArchiveQueryHandler(IArticleRepository articleRepository)
     {
         var articles = await _articleRepository.GetArchiveArticlesAsync(cancellationToken);
 
-        //return articles.GroupBy(x => new { x.PublishedOnUtc?.Year, x.PublishedOnUtc?.Month })
-        //               .Select(z => new GetArchiveQueryResponse(z.Key.Year,
-        //                                                        z.Key.Month,
-        //                                                        z.Select(d => (ArticleOnArchive)d).ToImmutableList()))
-        //               .ToImmutableList();
+        return articles.GroupBy(x => new { x.PublishedOnUtc?.Year, x.PublishedOnUtc?.Month })
+                       .Select(z => new GetArchiveQueryResponse(z.Key.Year,
+                                                                z.Key.Month,
+                                                                z.Select(d => (ArticleOnArchive)d).ToImmutableList()))
+                       .ToImmutableList();
 
         return [];
     }

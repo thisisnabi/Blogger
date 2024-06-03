@@ -3,26 +3,26 @@
 namespace Blogger.Domain.ArticleAggregate;
 public class Like : ValueObject<Like>
 {
-    public IPAddress IPAddress { get; init; } = null!;
+    public string ClientIP { get; init; } = null!;
 
     public DateTime LikedOn { get; set; }
 
     public override IEnumerable<object> GetEqualityComponents()
     {
-        yield return IPAddress;
+        yield return ClientIP;
         yield return LikedOn;
     }
 
-    public static Like Create(string userIp, DateTime likedOn)
+    public static Like Create(string clientIp, DateTime likedOn)
     {
-        if (!IPAddress.TryParse(userIp, out IPAddress? ipAddress))
+        if (!IPAddress.TryParse(clientIp, out IPAddress? ipAddress))
         {
-            throw new ArgumentOutOfRangeException(nameof(userIp));
+            throw new ArgumentOutOfRangeException(nameof(clientIp));
         }
 
         return new Like
         {
-            IPAddress = ipAddress,
+            ClientIP = clientIp,
             LikedOn = likedOn
         };
     }

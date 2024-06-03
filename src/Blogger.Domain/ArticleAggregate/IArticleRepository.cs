@@ -2,10 +2,11 @@
 
 public interface IArticleRepository
 {
+    Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken);
+    void Add(Article article);
+
     Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size,CancellationToken cancellationToken);
     Task<IReadOnlyList<Tag>> GetTagsAsync(CancellationToken cancellationToken);
-    Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken);
-    Task CreateAsync(Article article, CancellationToken cancellationToken);
     Task SaveChangesAsync(CancellationToken cancellationToken);
     void Delete(Article draft);
     Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken);

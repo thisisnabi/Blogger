@@ -12,7 +12,7 @@ public class CreateArticleCommandHandler(IArticleRepository articleRepository) :
 
         var article = Article.CreateArticle(request.Title, request.Body, request.Summary, request.Tags);
 
-        await articleRepository.CreateAsync(article, cancellationToken);
+        articleRepository.Add(article);
         await articleRepository.SaveChangesAsync(cancellationToken);
 
         return new CreateArticleCommandResponse(article.Id);

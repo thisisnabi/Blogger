@@ -82,5 +82,21 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
 
         builder.Navigation(x => x.Tags)
             .Metadata.SetField(BloggerDbContextSchema.ArticleDbSchema.TagIdBackendField);
+
+
+        builder.OwnsMany(x => x.Likes, tb =>
+        {
+            tb.ToTable(BloggerDbContextSchema.ArticleDbSchema.LikeTableName);
+
+            tb.Property(x => x.LikedOn)
+                .IsRequired(true);
+
+            tb.Property(x => x.ClientIP)
+               .IsRequired(true);
+
+        }).UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        builder.Navigation(x => x.Likes)
+            .Metadata.SetField(BloggerDbContextSchema.ArticleDbSchema.LikeIdBackendField);
     }
 }

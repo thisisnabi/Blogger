@@ -17,8 +17,10 @@ public static class BloggerDbContextSchema
         public const string ForeignKey = "ArticleId";
         public const string CommentIdTableName = "ArticleCommentIds";
         public const string TagTableName = "Tags";
+        public const string LikeTableName = "Likes";
         public const string CommentIdBackendField = "_commentIds";
         public const string TagIdBackendField = "_tags";
+        public const string LikeIdBackendField = "_likes";
         public const string AuthorAvatar = "Author_Avatar";
         public const string AuthorJobTitle = "Author_JobTitle";
         public const string AuthorFullName = "Author_FullName";

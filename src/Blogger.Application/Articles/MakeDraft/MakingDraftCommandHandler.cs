@@ -19,7 +19,7 @@ public class MakeDraftCommandHandler(IArticleRepository articleRepository)
             draft.AddTags(request.Tags);
         }
 
-        await articleRepository.CreateAsync(draft, cancellationToken);
+        articleRepository.Add(draft);
         await articleRepository.SaveChangesAsync(cancellationToken);
 
         return new MakeDraftCommandResponse(draft.Id);

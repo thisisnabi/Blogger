@@ -2,6 +2,11 @@
 
 public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
+    public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken) =>
+         bloggerDbContext.Articles.AnyAsync(x => x.Id == articleId, cancellationToken);
+
+    public void Add(Article article) =>
+         bloggerDbContext.Articles.Add(article);
 
     public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
     {
@@ -33,15 +38,8 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
         return tags.ToImmutableList();
     }
 
-    public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken)
-    {
-        return bloggerDbContext.Articles.AnyAsync(x => x.Id == articleId, cancellationToken);
-    }
 
-    public async Task CreateAsync(Article article, CancellationToken cancellationToken)
-    {
-        await bloggerDbContext.Articles.AddAsync(article, cancellationToken);
-    }
+
 
     public Task<Article?> GetDraftByIdAsync(ArticleId draftId, CancellationToken cancellationToken)
     {
