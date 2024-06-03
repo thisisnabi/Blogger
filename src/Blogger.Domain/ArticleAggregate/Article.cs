@@ -6,6 +6,7 @@ public class Article : AggregateRoot<ArticleId>
     {
         _tags = [];
         _commentIds = [];
+        _likes = [];
     }
 
     private Article() : this(null!) { }
@@ -106,6 +107,16 @@ public class Article : AggregateRoot<ArticleId>
     public void Remove()
     {
         Status = ArticleStatus.Deleted;
+    }
+
+    public void Like(Like like)
+    {
+        var item = _likes.FirstOrDefault(x => x == like);
+
+        if (item is null)
+        {
+            _likes.Add(like);
+        }
     }
 }
 

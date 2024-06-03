@@ -45,7 +45,19 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
 
         return [.. articles];
     }
-      
+
+    public async Task<IReadOnlyCollection<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken)
+    {
+        var articles = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
+                                                      .OrderByDescending(x => (x.Likes.Count() + x.CommentIds.Count()))
+                                                      .Take(size)
+                                                      .ToListAsync(cancellationToken);
+
+        return [.. articles];
+    }
+
+
+
     public async Task<IReadOnlyList<Tag>> GetPopularTagsAsync(int size, CancellationToken cancellationToken)
     {
         var topSizeTags = bloggerDbContext.Articles
@@ -87,15 +99,7 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
     }
 
 
-    public async Task<IReadOnlyList<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken)
-    {
-        var que = await bloggerDbContext.Articles.Where(x => x.Status == ArticleStatus.Published)
-                                                 .OrderByDescending(x => x.CommentIds.Count)
-                                                 .Take(size)
-                                                 .ToListAsync(cancellationToken);
 
-        return que.ToImmutableList();
-    }
 
     public async Task<IReadOnlyList<Article>> GetLatestArticlesAsync(Tag tag, CancellationToken cancellationToken)
     {
