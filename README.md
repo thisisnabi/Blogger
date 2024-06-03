@@ -27,6 +27,12 @@ This repository provides various resources to get you started with building your
 - [ ] Persist data by using EF Core
 - [ ] Expose our features
 
+### Tests
+
+- [x] Unit Tests (44 Passed)
+- [ ] Unit Tests (38 Incomming)
+- [ ] Functional Tests (18 Incomming)
+
 ## Contributing
 
 We welcome contributions to this project! Feel free to open pull requests with improvements, bug fixes, or additional features.
