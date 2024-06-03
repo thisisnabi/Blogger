@@ -22,6 +22,7 @@ public class CreateArticleCommandHandlerTests : IClassFixture<BloggerDbContextFi
         var articleRepository = new ArticleRepository(_fixture.BuildDbContext(Guid.NewGuid().ToString()));
         var _sut = new CreateArticleCommandHandler(articleRepository);
         var command = new CreateArticleCommand("Test Title", "Test Body", "Test Summary", [Tag.Create("tag1"), Tag.Create("tag2")]);
+        var articleId = ArticleId.CreateUniqueId("Test Title");
 
         // Act
         var response = await _sut.Handle(command, CancellationToken.None);
@@ -29,7 +30,10 @@ public class CreateArticleCommandHandlerTests : IClassFixture<BloggerDbContextFi
         // Assert
         response.Should().NotBeNull();
         response.ArticleId.Should().NotBeNull();
-        response.ArticleId.Slug.Should().Be("test-title");
+        response.ArticleId.Should().Be(articleId);
+
+        var article = articleRepository.GetDraftByIdAsync(articleId, CancellationToken.None);
+        article.Should().NotBeNull();
     }
 
     [Fact]

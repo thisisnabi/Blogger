@@ -23,13 +23,17 @@ public class MakeDraftCommandHandlerTests : IClassFixture<BloggerDbContextFixtur
         var request = new MakeDraftCommand("Existing Draft", "Draft body", "Draft summary", []);
         var articleRepository = new ArticleRepository(_fixture.BuildDbContext(Guid.NewGuid().ToString()));
         var sut = new MakeDraftCommandHandler(articleRepository);
-         
+        var articleId = ArticleId.CreateUniqueId(request.Title);
+
         // Act
         var response = await sut.Handle(request, CancellationToken.None);
 
         // Assert
         response.Should().NotBeNull();
-        response.DraftId.Should().Be(ArticleId.CreateUniqueId(request.Title)); 
+        response.DraftId.Should().Be(articleId);
+
+        var draft = articleRepository.GetDraftByIdAsync(articleId, CancellationToken.None);
+        draft.Should().NotBeNull();
     }
 
     [Fact]
