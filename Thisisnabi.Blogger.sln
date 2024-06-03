@@ -35,9 +35,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.BuildingBlocks", "src\Blogger.BuildingBlocks\Blogger.BuildingBlocks.csproj", "{C47118A5-D85F-4844-BBD7-AEA7E807670E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blogger.BuildingBlocks", "src\Blogger.BuildingBlocks\Blogger.BuildingBlocks.csproj", "{C47118A5-D85F-4844-BBD7-AEA7E807670E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{0139794E-4D2E-4CBB-9ACB-591DED4F1FF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "load-testing", "load-testing", "{285B019B-A7DC-48DC-835B-2DE7889B2B61}"
+	ProjectSection(SolutionItems) = preProject
+		tests\load-testing\load.js = tests\load-testing\load.js
+		tests\load-testing\soak.js = tests\load-testing\soak.js
+		tests\load-testing\spike.js = tests\load-testing\spike.js
+		tests\load-testing\stress.js = tests\load-testing\stress.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +99,7 @@ Global
 		{D2790D2D-B93D-44C5-BC8B-BCA3F3631996} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 		{C47118A5-D85F-4844-BBD7-AEA7E807670E} = {0139794E-4D2E-4CBB-9ACB-591DED4F1FF6}
 		{0139794E-4D2E-4CBB-9ACB-591DED4F1FF6} = {F10530A2-8E3A-4E7F-8057-2FA0A23E1838}
+		{285B019B-A7DC-48DC-835B-2DE7889B2B61} = {D4AB33E9-9464-4BE3-BBF2-B93AD34BE891}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79594A78-23A6-4103-92DA-71BD4586160D}
