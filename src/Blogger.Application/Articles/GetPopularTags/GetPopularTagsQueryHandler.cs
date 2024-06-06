@@ -9,7 +9,6 @@ public class GetPopularTagsQueryHandler(IArticleRepository articleRepository)
         Handle(GetPopularTagsQuery request, CancellationToken cancellationToken)
     {
         var tags = await _articleRepository.GetPopularTagsAsync(request.Size, cancellationToken);
-        return tags.Select(x => new GetPopularTagsQueryResponse(x))
-                   .ToImmutableList();
+        return [.. tags.Select(x => new GetPopularTagsQueryResponse(x))];
     }
 }

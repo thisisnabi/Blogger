@@ -1,8 +1,6 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿namespace Blogger.Domain.CommentAggregate;
 
-namespace Blogger.Domain.CommentAggregate;
-
-public class InvalidReplyApprovalLinkException : BlogException
+public class InvalidReplyApprovalLinkException : DomainException
 {
     private const string _message = "Invalid Reply approved link.";
     public InvalidReplyApprovalLinkException() : base(_message)

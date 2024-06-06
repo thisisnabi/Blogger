@@ -18,7 +18,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("blog")
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -33,10 +33,10 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PublishedOnUtc")
+                    b.Property<DateTime?>("PublishedOnUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("ReadOn")
+                    b.Property<TimeSpan>("ReadOnTimeSpan")
                         .HasColumnType("time");
 
                     b.Property<int>("Status")
@@ -127,6 +127,32 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("ArticleId");
                         });
 
+                    b.OwnsMany("Blogger.Domain.ArticleAggregate.Like", "Likes", b1 =>
+                        {
+                            b1.Property<string>("ArticleId")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("ClientIP")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<DateTime>("LikedOn")
+                                .HasColumnType("datetime2");
+
+                            b1.HasKey("ArticleId", "Id");
+
+                            b1.ToTable("Likes", "blog");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ArticleId");
+                        });
+
                     b.OwnsMany("Blogger.Domain.ArticleAggregate.Tag", "Tags", b1 =>
                         {
                             b1.Property<string>("ArticleId")
@@ -151,7 +177,7 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("ArticleId");
                         });
 
-                    b.OwnsMany("Blogger.Domain.CommentAggregate.CommentId", "CommnetIds", b1 =>
+                    b.OwnsMany("Blogger.Domain.CommentAggregate.CommentId", "CommentIds", b1 =>
                         {
                             b1.Property<string>("ArticleId")
                                 .HasColumnType("nvarchar(450)");
@@ -177,7 +203,9 @@ namespace Blogger.Infrastructure.Persistence.Migrations
                     b.Navigation("Author")
                         .IsRequired();
 
-                    b.Navigation("CommnetIds");
+                    b.Navigation("CommentIds");
+
+                    b.Navigation("Likes");
 
                     b.Navigation("Tags");
                 });

@@ -1,8 +1,9 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Comments.ApproveComment;
 
-public class InvalidCommentApprovalLinkException : BlogException
+public class InvalidCommentApprovalLinkException : DomainException
 {
     private const string _message = "Invalid comment approved link.";
     public InvalidCommentApprovalLinkException() : base(_message)

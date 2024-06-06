@@ -1,7 +1,8 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Comments.ReplyToComment;
-public class NotFoundCommentException : BlogException
+public class NotFoundCommentException : DomainException
 {
     private const string _message = "Invalid comment for Reply!";
 

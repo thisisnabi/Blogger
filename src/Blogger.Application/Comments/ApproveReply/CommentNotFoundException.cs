@@ -1,7 +1,8 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Comments.ApproveReply;
-public class CommentNotFoundException : BlogException
+public class CommentNotFoundException : DomainException
 {
     private const string _message = "Comment not found.";
 

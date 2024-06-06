@@ -7,7 +7,7 @@ public record GetArticleQueryResponse(
     string Summary,
     int ReadOnMinutes,
     Author Author,
-    DateTime PublishedOnUtc,
+    DateTime? PublishedOnUtc,
     IReadOnlyCollection<Tag> Tags)
 {
 

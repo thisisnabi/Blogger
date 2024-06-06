@@ -7,7 +7,7 @@ public class ReplyToCommentEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("comments/{comment-id}/Reply", async (
+        app.MapPost("comments/{comment-id}/reply", async (
                 [AsParameters] ReplyToCommentRequestModel request,
                 IMapper mapper,
                 IMediator mediator,

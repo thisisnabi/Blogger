@@ -1,7 +1,8 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Articles.UpdateDraft;
-public class DraftNotFoundException : BlogException
+public class DraftNotFoundException : DomainException
 {
     private const string _message = "Draft not found.";
 

@@ -7,7 +7,7 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
 {
     public void Configure(EntityTypeBuilder<Article> builder)
     {
-        builder.ToTable(BloggerDbContextSchema.Article.TableName);
+        builder.ToTable(BloggerDbContextSchema.ArticleDbSchema.TableName);
 
         builder.HasKey(x => x.Id);
 
@@ -32,10 +32,10 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
                .IsUnicode(true);
 
         builder.Property(x => x.PublishedOnUtc)
-                .IsRequired(true);
-
-        builder.Property(x => x.ReadOn)
                 .IsRequired(false);
+
+        builder.Property(x => x.ReadOnTimeSpan)
+                .IsRequired(true);
 
         builder.Property(x => x.Status)
                 .IsRequired();
@@ -46,34 +46,34 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
             ab.Property(x => x.Avatar)
                        .IsRequired()
                        .HasMaxLength(1024)
-                       .HasColumnName(BloggerDbContextSchema.Article.AuthorAvatar);
+                       .HasColumnName(BloggerDbContextSchema.ArticleDbSchema.AuthorAvatar);
 
             ab.Property(x => x.JobTitle)
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnName(BloggerDbContextSchema.Article.AuthorJobTitle);
+                        .HasColumnName(BloggerDbContextSchema.ArticleDbSchema.AuthorJobTitle);
 
             ab.Property(x => x.FullName)
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnName(BloggerDbContextSchema.Article.AuthorFullName);
+                        .HasColumnName(BloggerDbContextSchema.ArticleDbSchema.AuthorFullName);
         });
          
         builder.OwnsMany(x => x.CommentIds, cb =>
         {
-            cb.ToTable(BloggerDbContextSchema.Article.CommentIdTableName);
+            cb.ToTable(BloggerDbContextSchema.ArticleDbSchema.CommentIdTableName);
 
             cb.Property(x => x.Value)
-                .HasColumnName(BloggerDbContextSchema.Comment.ForeignKey);
+                .HasColumnName(BloggerDbContextSchema.CommentDbSchema.ForeignKey);
 
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(x => x.CommentIds)
-                    .Metadata.SetField(BloggerDbContextSchema.Article.CommentIdBackendField);
+                    .Metadata.SetField(BloggerDbContextSchema.ArticleDbSchema.CommentIdBackendField);
 
         builder.OwnsMany(x => x.Tags, tb =>
         {
-            tb.ToTable(BloggerDbContextSchema.Article.TagTableName);
+            tb.ToTable(BloggerDbContextSchema.ArticleDbSchema.TagTableName);
 
             tb.Property(x => x.Value)
                 .IsRequired()
@@ -81,6 +81,22 @@ internal class ArticleConfiguration : IEntityTypeConfiguration<Article>
         }).UsePropertyAccessMode(PropertyAccessMode.Field);
 
         builder.Navigation(x => x.Tags)
-            .Metadata.SetField(BloggerDbContextSchema.Article.TagIdBackendField);
+            .Metadata.SetField(BloggerDbContextSchema.ArticleDbSchema.TagIdBackendField);
+
+
+        builder.OwnsMany(x => x.Likes, tb =>
+        {
+            tb.ToTable(BloggerDbContextSchema.ArticleDbSchema.LikeTableName);
+
+            tb.Property(x => x.LikedOn)
+                .IsRequired(true);
+
+            tb.Property(x => x.ClientIP)
+               .IsRequired(true);
+
+        }).UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        builder.Navigation(x => x.Likes)
+            .Metadata.SetField(BloggerDbContextSchema.ArticleDbSchema.LikeIdBackendField);
     }
 }

@@ -34,7 +34,7 @@ public class UpdateDraftCommandHandler(IArticleRepository articleRepository) : I
                 newDraft.AddTags(request.Tags);
             }
 
-            await articleRepository.CreateAsync(newDraft, cancellationToken);
+            articleRepository.Add(newDraft);
         }
 
         await articleRepository.SaveChangesAsync(cancellationToken);

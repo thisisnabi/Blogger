@@ -1,5 +1,5 @@
 ﻿namespace Blogger.Infrastructure.Persistence.Repositories;
-internal class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscriberRepository
+public class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscriberRepository
 {
 
     public async Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken)

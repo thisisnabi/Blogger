@@ -1,7 +1,8 @@
-﻿using Blogger.Domain.Common.Exceptions;
+﻿using Blogger.BuildingBlocks.Domain;
+
 
 namespace Blogger.Application.Comments.MakeComment;
-public class NotFoundArticleException : BlogException
+public class NotFoundArticleException : DomainException
 {
     private const string _message = "Article not found.";
 

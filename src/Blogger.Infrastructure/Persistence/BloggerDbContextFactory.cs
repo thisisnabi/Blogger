@@ -1,8 +1,4 @@
-﻿using Blogger.Domain.ArticleAggregate;
-using Blogger.Domain.CommentAggregate;
-using Blogger.Domain.SubscriberAggregate;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore.Design;
 
 namespace Blogger.Infrastructure.Persistence;
 public class BloggerDbContextFactory : IDesignTimeDbContextFactory<BloggerDbContext>

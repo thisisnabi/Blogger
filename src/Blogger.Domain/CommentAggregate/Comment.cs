@@ -2,20 +2,22 @@
 
 namespace Blogger.Domain.CommentAggregate;
 
-public class Comment : AggregateRootBase<CommentId>
+public class Comment : AggregateRoot<CommentId>
 {
-    private IList<Reply> _replies;
-    public Comment(CommentId id) : base(id)
+    private Comment(CommentId id) : base(id)
     {
         _replies = [];
     }
 
-    public Comment() : this(null!)
-    {
-    }
+    private Comment() : this(null!) { }
+
+    private readonly IList<Reply> _replies;
+    public IReadOnlyCollection<Reply> Replies => [.. _replies];
 
     public Client Client { get; init; } = null!;
+
     public ApproveLink ApproveLink { get; init; } = null!;
+
     public ArticleId ArticleId { get; init; } = null!;
 
     public DateTime CreatedOnUtc { get; init; }
@@ -24,11 +26,9 @@ public class Comment : AggregateRootBase<CommentId>
 
     public bool IsApproved { get; private set; }
 
-
-    public IReadOnlyCollection<Reply> Replies => _replies.ToImmutableList();
-
-    public static Comment Create(ArticleId articleId, Client client, string content, ApproveLink approveLink) =>
-        new Comment(CommentId.CreateUniqueId())
+    public static Comment Create(ArticleId articleId, Client client, string content, ApproveLink approveLink)
+    {
+        return new Comment(CommentId.CreateUniqueId())
         {
             ArticleId = articleId,
             Content = content,
@@ -37,6 +37,7 @@ public class Comment : AggregateRootBase<CommentId>
             IsApproved = false,
             ApproveLink = approveLink
         };
+    }
 
     public void Approve() => IsApproved = true;
 

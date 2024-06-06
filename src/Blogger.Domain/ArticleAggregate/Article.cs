@@ -1,25 +1,25 @@
-﻿using Blogger.Domain.CommentAggregate;
+﻿namespace Blogger.Domain.ArticleAggregate;
 
-namespace Blogger.Domain.ArticleAggregate;
-
-public class Article : AggregateRootBase<ArticleId>
+public class Article : AggregateRoot<ArticleId>
 {
-
-    public Article(ArticleId slug) : base(slug)
+    private Article(ArticleId slug) : base(slug)
     {
         _tags = [];
         _commentIds = [];
+        _likes = [];
     }
 
     private Article() : this(null!) { }
+     
+    private readonly List<CommentId> _commentIds = null!;
+    public IReadOnlyCollection<CommentId> CommentIds => [.._commentIds];
 
+    private readonly List<Tag> _tags = null!;
+    public IReadOnlyCollection<Tag> Tags => [.. _tags];
 
-    private readonly IList<CommentId> _commentIds = null!;
-    public IReadOnlyCollection<CommentId> CommentIds => _commentIds.ToImmutableList();
-
-    private readonly IList<Tag> _tags = null!;
-    public IReadOnlyCollection<Tag> Tags => _tags.ToImmutableList();
-
+    private readonly List<Like> _likes = null!;
+    public IReadOnlyCollection<Like> Likes => [.. _likes];
+     
     public Author Author { get; private set; } = null!;
 
     public string Title { get; private set; } = null!;
@@ -28,13 +28,13 @@ public class Article : AggregateRootBase<ArticleId>
 
     public string Summary { get; private set; } = null!;
 
-    public DateTime PublishedOnUtc { get; set; } = DateTime.MinValue;
+    public DateTime? PublishedOnUtc { get; private set; }
 
     public ArticleStatus Status { get; private set; }
 
-    public TimeSpan? ReadOn { get; private set; }
+    public TimeSpan ReadOnTimeSpan { get; private set; }
 
-    public int GetReadOnInMinutes => Convert.ToInt32(ReadOn?.TotalMinutes);
+    public int GetReadOnInMinutes => Convert.ToInt32(ReadOnTimeSpan.TotalMinutes);
 
     public static Article CreateDraft(string title, string body, string summary)
     {
@@ -43,6 +43,7 @@ public class Article : AggregateRootBase<ArticleId>
             Author = Author.CreateDefaultAuthor(),
             Body = body,
             Status = ArticleStatus.Draft,
+            ReadOnTimeSpan = GetReadOnTimeSpan(body),
             Summary = summary,
             Title = title,
         };
@@ -60,16 +61,19 @@ public class Article : AggregateRootBase<ArticleId>
 
     public void AddTags(IReadOnlyList<Tag> tags)
     {
-        foreach (var tag in tags)
-        {
-            _tags.Add(tag);
-        }
+        _tags.AddRange(tags);
     }
 
     private static TimeSpan GetReadOnTimeSpan(string body)
     {
-        var readingTime = Math.Round(((double)body.Split(" ").Length / 200) * 60);
-        return TimeSpan.FromSeconds(readingTime);
+        if (string.IsNullOrWhiteSpace(body))
+        {
+            return TimeSpan.Zero;
+        }
+
+        var words = body.Split(' ', '\t', '\n', '\r').Length;
+        var readingTimeMinutes = words / 200.0;
+        return TimeSpan.FromMinutes(readingTimeMinutes);
     }
 
     public void UpdateDraft(string title, string summary, string body)
@@ -77,6 +81,7 @@ public class Article : AggregateRootBase<ArticleId>
         Title = title;
         Body = body;
         Summary = summary;
+        ReadOnTimeSpan = GetReadOnTimeSpan(body);
     }
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
@@ -88,14 +93,14 @@ public class Article : AggregateRootBase<ArticleId>
     }
 
     public void Publish()
-    {
-        if (!_tags.Any())
+    { 
+        if (_tags.Count == 0)
         {
             throw new DraftTagsMissingException();
         }
 
         Status = ArticleStatus.Published;
-        ReadOn = GetReadOnTimeSpan(Body);
+        ReadOnTimeSpan = GetReadOnTimeSpan(Body);
         PublishedOnUtc = DateTime.UtcNow;
     }
 
@@ -103,11 +108,15 @@ public class Article : AggregateRootBase<ArticleId>
     {
         Status = ArticleStatus.Deleted;
     }
+
+    public void Like(Like like)
+    {
+        var item = _likes.FirstOrDefault(x => x == like);
+
+        if (item is null)
+        {
+            _likes.Add(like);
+        }
+    }
 }
 
-public enum ArticleStatus
-{
-    Draft = 1,
-    Published = 2,
-    Deleted
-}

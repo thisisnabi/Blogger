@@ -4,7 +4,7 @@ namespace Blogger.APIs.Endpoints.Articles.GetPopularArticles;
 
 public class GetPopularArticlesEndpoint : IEndpoint
 {
-    private const int SizeOfTopPopular = 7;
+    private const int SizeOfTopPopular = 5;
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
