@@ -16,6 +16,7 @@ This repository provides various resources to get you started with building your
 - [ ] Problem domain:
 - [ ] Ubiquitous Language
 - [ ] Domain objects
+- [x] Data Model
 - [ ] Aggregates
 - [ ] Repository
 - [ ] Factory
@@ -32,6 +33,11 @@ This repository provides various resources to get you started with building your
 - [x] Unit Tests (44 Passed)
 - [ ] Unit Tests (38 Coming)
 - [ ] Functional Tests (18 Coming)
+
+#### Data Model
+![image](https://github.com/thisisnabi/Blogger/assets/3371886/58468347-ea03-412f-b493-91572cda02ee)
+
+
 
 ## Contributing
 
