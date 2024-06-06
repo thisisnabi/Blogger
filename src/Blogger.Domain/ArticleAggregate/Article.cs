@@ -71,7 +71,7 @@ public class Article : AggregateRoot<ArticleId>
             return TimeSpan.Zero;
         }
 
-        var words = body.Split([ ' ', '\t', '\n', '\r' ], StringSplitOptions.RemoveEmptyEntries).Length;
+        var words = body.Split(' ', '\t', '\n', '\r').Length;
         var readingTimeMinutes = words / 200.0;
         return TimeSpan.FromMinutes(readingTimeMinutes);
     }
