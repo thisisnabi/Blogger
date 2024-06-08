@@ -1,4 +1,4 @@
-﻿namespace Blogger.UnitTests.BuldingBlocks;
+﻿namespace Blogger.UnitTests.BuildingBlocks;
 public class ValueObjectTests
 {
     [Fact]
