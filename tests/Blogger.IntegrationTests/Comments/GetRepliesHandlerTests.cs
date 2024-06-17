@@ -8,8 +8,6 @@ using Blogger.IntegrationTests.Fixtures;
 
 using FluentAssertions;
 
-using static Blogger.Application.ApplicationSettings;
-
 namespace Blogger.IntegrationTests.Comments;
 
 public class GetRepliesHandlerTests : IClassFixture<BloggerDbContextFixture>
