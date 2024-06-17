@@ -1,5 +1,5 @@
 ﻿namespace Blogger.Application.Articles;
-internal class ArticleService(IArticleRepository articleRepository) : IArticleService
+public class ArticleService(IArticleRepository articleRepository) : IArticleService
 {
     public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken)
     {

@@ -28,7 +28,7 @@ public class MakeCommentCommandHandler(
         await _commentRepository.CreateAsync(comment, cancellationToken);
         await _commentRepository.SaveChangesAsync(cancellationToken);
 
-        var content = EmailTemplates.ConfirmEngagementEmail;
+        var content = EmailTemplates.GetConfirmEngagementEmail( request.Client.FullName, approveLink.ToString());
         await emailService.SendAsync(request.Client.Email,
             ApplicationSettings.ApproveLink.ConfirmEmailSubject,
             content,

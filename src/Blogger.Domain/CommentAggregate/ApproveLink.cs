@@ -25,4 +25,9 @@ public class ApproveLink : ValueObject<ApproveLink>
 
     public static ApproveLink Create(string approvedId, DateTime expairedOn) =>
          new ApproveLink(approvedId, expairedOn);
+
+    public override string ToString()
+    {
+        return $"https://thisisnabi.dev/comments/approve?link={ApproveId}";
+    }
 }

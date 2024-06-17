@@ -1,5 +1,4 @@
-﻿using Blogger.Application.Articles.GetTags;
-using Blogger.Application.Articles.MakeDraft;
+﻿using Blogger.Application.Articles.MakeDraft;
 using Blogger.Domain.ArticleAggregate;
 using Blogger.Infrastructure.Persistence.Repositories;
 using Blogger.IntegrationTests.Fixtures;
