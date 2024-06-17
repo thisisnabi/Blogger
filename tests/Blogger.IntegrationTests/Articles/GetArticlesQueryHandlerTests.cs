@@ -1,10 +1,8 @@
 ﻿using Blogger.Application.Articles.GetArticles;
 using Blogger.Domain.ArticleAggregate;
-using System.Reflection.Metadata;
-
-using Blogger.IntegrationTests.Fixtures;
-using Blogger.Application.Articles.GetArticle;
 using Blogger.Infrastructure.Persistence.Repositories;
+using Blogger.IntegrationTests.Fixtures;
+
 using FluentAssertions;
 
 namespace Blogger.IntegrationTests.Articles;
@@ -73,7 +71,7 @@ public class GetArticlesQueryHandlerTests : IClassFixture<BloggerDbContextFixtur
         articleRepository.Add(article_2);
         await articleRepository.SaveChangesAsync(CancellationToken.None);
 
-        var request = new GetArticlesQuery { PageNumber = 1, PageSize = 10, Title= "Title 1" };
+        var request = new GetArticlesQuery { PageNumber = 1, PageSize = 10, Title = "Title 1" };
 
         // Act
         var response = await _sut.Handle(request, CancellationToken.None);
