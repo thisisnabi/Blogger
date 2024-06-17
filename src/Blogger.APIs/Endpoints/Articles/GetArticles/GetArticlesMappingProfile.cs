@@ -8,7 +8,8 @@ public class GetArticlesMappingProfile : IRegister
     {
         config.ForType<GetArticlesRequest, GetArticlesQuery>()
                    .Map(x => x.PageNumber, src => src.Page)
-                   .Map(x => x.PageSize, src => src.Size);
+                   .Map(x => x.PageSize, src => src.Size)
+                   .Map(x => x.Title, src => src.Title);
 
         config.ForType<GetArticlesQueryResponse, GetArticlesResponse>()
                     .Map(x => x.ArticleId, src => src.ArticleId.ToString())

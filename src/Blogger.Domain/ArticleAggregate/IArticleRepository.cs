@@ -12,7 +12,7 @@ public interface IArticleRepository
     
     Task<Article?> GetArticleByIdAsync(ArticleId articleId, CancellationToken cancellationToken);
     
-    Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize,string title, CancellationToken cancellationToken);
 
     Task<IReadOnlyCollection<Article>> GetPopularArticlesAsync(int size, CancellationToken cancellationToken);
 

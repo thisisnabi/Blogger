@@ -35,10 +35,11 @@ public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepo
                                         .FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
     }
      
-    public async Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Article>> GetLatestArticlesAsync(int pageNumber, int pageSize, string title, CancellationToken cancellationToken)
     {
         var articles = await bloggerDbContext.Articles
                                         .Where(x => x.Status == ArticleStatus.Published)
+                                        .Where(x => x.Title.Contains(title))
                                         .OrderByDescending(x => x.PublishedOnUtc)
                                         .Skip((pageNumber - 1) * pageSize).Take(pageSize)
                                         .ToListAsync(cancellationToken);

@@ -1,5 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Articles.GetArticles;
+﻿using Blogger.Application.Articles.GetArticles;
 
 namespace Blogger.APIs.Endpoints.Articles.GetArticles;
 
