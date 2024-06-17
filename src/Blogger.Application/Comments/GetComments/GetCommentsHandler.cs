@@ -3,14 +3,13 @@
 namespace Blogger.Application.Comments.GetComments;
 
 public class GetCommentsHandler(ICommentRepository commentRepository)
-    : IRequestHandler<GetCommentsQuery, IReadOnlyList<GetCommentsQueryResponse>>
+    : IRequestHandler<GetCommentsQuery, IReadOnlyCollection<GetCommentsQueryResponse>>
 {
     private readonly ICommentRepository _commentRepository = commentRepository;
 
-    public async Task<IReadOnlyList<GetCommentsQueryResponse>> Handle(GetCommentsQuery request, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<GetCommentsQueryResponse>> Handle(GetCommentsQuery request, CancellationToken cancellationToken)
     {
         var comments = await _commentRepository.GetApprovedArticleCommentsAsync(request.ArticleId, cancellationToken);
-        return comments.Select(x => (GetCommentsQueryResponse)x)
-                       .ToImmutableList();
+        return [.. comments.Select(x => (GetCommentsQueryResponse)x)];
     }
 }

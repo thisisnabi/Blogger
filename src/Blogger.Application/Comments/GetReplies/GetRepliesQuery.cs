@@ -2,4 +2,4 @@
 
 namespace Blogger.Application.Comments.GetReplies;
 public record GetRepliesQuery(CommentId CommentId)
-    : IRequest<IReadOnlyList<GetRepliesQueryResponse>>;
+    : IRequest<IReadOnlyCollection<GetRepliesQueryResponse>>;

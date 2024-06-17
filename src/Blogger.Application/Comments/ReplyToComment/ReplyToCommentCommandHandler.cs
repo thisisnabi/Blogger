@@ -17,7 +17,6 @@ public class ReplyToCommentCommandHandler(
         var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
 
         var Reply = comment.ReplyComment(request.Client, request.Content, approveLink);
-
         await commentRepository.SaveChangesAsync(cancellationToken);
 
         var content = EmailTemplates.GetConfirmEngagementEmail(request.Client.FullName, approveLink.ToString());

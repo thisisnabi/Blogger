@@ -7,7 +7,7 @@ public class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepo
         return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.ApproveLink.ApproveId == link, cancellationToken);
     }
 
-    public async Task<IReadOnlyList<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken)
     {
         var que = await bloggerDbContext.Comments.Where(x => x.ArticleId.Slug == articleId.Slug)
                                                  .Where(c => c.IsApproved)
@@ -16,11 +16,14 @@ public class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepo
         return que.ToImmutableList();
     }
      
-    public async Task<IReadOnlyList<Reply>> GetApprovedRepliesAsync(CommentId commentId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Reply>> GetApprovedRepliesAsync(CommentId commentId, CancellationToken cancellationToken)
     {
-        var comment = await bloggerDbContext.Comments.FirstAsync(x => x.IsApproved && x.Id == commentId, cancellationToken);
-
-        return comment.Replies.ToImmutableList();
+        var replies = await bloggerDbContext.Comments
+                                             .AsNoTracking()
+                                             .Where(x => x.IsApproved && x.Id == commentId)
+                                             .SelectMany(x => x.Replies.Where(x => x.IsApproved))
+                                             .ToListAsync(cancellationToken);
+        return [.. replies];
     }
 
 
