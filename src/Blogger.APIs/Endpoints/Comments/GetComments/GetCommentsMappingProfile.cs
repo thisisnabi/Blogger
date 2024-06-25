@@ -10,6 +10,7 @@ public class GetCommentsMappingProfile : IRegister
         config.ForType<GetCommentsRequest, GetCommentsQuery>()
                    .Map(x => x.ArticleId, src => ArticleId.Create(src.ArticleId));
 
-        config.ForType<GetCommentsResponse, GetCommentsQueryResponse>();
+        config.ForType<GetCommentsQueryResponse, GetCommentsResponse>()
+                    .Map(x => x.Id, src => src.CommentId.ToString());
     }
 }

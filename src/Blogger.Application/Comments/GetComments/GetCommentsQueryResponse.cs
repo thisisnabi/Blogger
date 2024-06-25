@@ -2,9 +2,9 @@
 
 namespace Blogger.Application.Comments.GetComments;
 
-public record GetCommentsQueryResponse(string FullName, DateTime CreatedOnUtc, string Content)
+public record GetCommentsQueryResponse(CommentId CommentId,string FullName, DateTime CreatedOnUtc, string Content)
 {
 
     public static explicit operator GetCommentsQueryResponse(Comment comment)
-        => new GetCommentsQueryResponse(comment.Client.FullName, comment.CreatedOnUtc, comment.Content);
+        => new GetCommentsQueryResponse(comment.Id,comment.Client.FullName, comment.CreatedOnUtc, comment.Content);
 }
