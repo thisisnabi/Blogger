@@ -8,5 +8,7 @@ public class EmailSettings
 
     public int SmtpPort { get; set; }
 
-    public string AppPassword { get; set; } = null!;
+    public string UserName { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
 }

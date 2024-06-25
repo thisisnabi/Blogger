@@ -14,7 +14,7 @@ public class EmailService(IOptions<EmailSettings> options) : IEmailService
         using var smtpClient = new SmtpClient(_emailSettings.SmtpHost, _emailSettings.SmtpPort)
         {
             EnableSsl = true,
-            Credentials = new NetworkCredential(_emailSettings.From, _emailSettings.AppPassword)
+            Credentials = new NetworkCredential(_emailSettings.UserName, _emailSettings.Password)
         };
 
         var mailMessage = new MailMessage
