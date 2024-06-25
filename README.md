@@ -31,7 +31,7 @@ This repository provides various resources to get you started with building your
 ### Tests
 
 - [x] Unit Tests (44 Passed)
-- [ ] Unit Tests (38 Coming)
+- [x] Integration Tests (38 Coming)
 - [ ] Functional Tests (18 Coming)
 
 #### Data Model
