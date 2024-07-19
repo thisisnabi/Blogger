@@ -66,4 +66,10 @@ public class Comment : AggregateRoot<CommentId>
 
         return reply.Id;
     }
+
+    public void RaiseMakeCommentEvent()
+    {
+        var makeCommnetEvent = new MakeCommentEvent { CommentId = Id };
+        AddEvent(makeCommnetEvent);
+    }
 }

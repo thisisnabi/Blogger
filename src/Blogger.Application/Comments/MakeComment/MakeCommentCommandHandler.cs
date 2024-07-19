@@ -25,8 +25,13 @@ public class MakeCommentCommandHandler(
         var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
 
         var comment = Comment.Create(request.ArticleId, request.Client, request.Content, approveLink);
+        comment.RaiseMakeCommentEvent();
+
         await _commentRepository.CreateAsync(comment, cancellationToken);
         await _commentRepository.SaveChangesAsync(cancellationToken);
+
+
+        
 
         var content = EmailTemplates.GetConfirmEngagementEmail( request.Client.FullName, approveLink.ToString());
         await emailService.SendAsync(request.Client.Email,
