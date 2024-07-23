@@ -20,6 +20,6 @@ public class Tag : ValueObject<Tag>
 
     public override string ToString()
     {
-        return Value.ToString();
+        return Value;
     }
 }
