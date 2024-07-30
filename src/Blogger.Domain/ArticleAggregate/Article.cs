@@ -86,8 +86,7 @@ public class Article : AggregateRoot<ArticleId>
 
     public void UpdateTags(IReadOnlyList<Tag> tags)
     {
-        if (_tags is not null)
-            _tags.Clear();
+        _tags.Clear();
 
         AddTags(tags);
     }
