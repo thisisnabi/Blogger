@@ -6,7 +6,7 @@ public class SubscriberIdTests
 {
     [Fact]
 
-    public void CreateUniqeId_ShouldThrowInvalidEmailAddressException_WhenHaveIncorrectEmail()
+    public void CreateUniqueId_ShouldThrowInvalidEmailAddressException_WhenHaveIncorrectEmail()
     {
         // act
         var func = () => SubscriberId.CreateUniqueId("invalidData");
@@ -18,7 +18,7 @@ public class SubscriberIdTests
     [Theory]
     [InlineData("thisisnabi.dev@gmail.com")]
     [InlineData("thisisnabi@outlook.com")]
-    public void CreateUniqeId_ShouldReturnSubscriberId_WhenHaveCorrectEmail(string emailAddress)
+    public void CreateUniqueId_ShouldReturnSubscriberId_WhenHaveCorrectEmail(string emailAddress)
     {
         // arrange
         var subId = SubscriberId.CreateUniqueId(emailAddress);
