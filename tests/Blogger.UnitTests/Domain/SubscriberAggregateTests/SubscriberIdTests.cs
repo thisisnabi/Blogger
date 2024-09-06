@@ -5,7 +5,6 @@ namespace Blogger.UnitTests.Domain.SubscriberAggregateTests;
 public class SubscriberIdTests
 {
     [Fact]
-
     public void CreateUniqueId_ShouldThrowInvalidEmailAddressException_WhenHaveIncorrectEmail()
     {
         // act

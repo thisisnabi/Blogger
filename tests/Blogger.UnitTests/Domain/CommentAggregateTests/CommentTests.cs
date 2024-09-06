@@ -5,81 +5,72 @@ namespace Blogger.UnitTests.Domain.CommentAggregateTests;
 
 public class CommentTests
 {
+    #region [Tests]
+
     [Fact]
     public void Create_ShouldInitializeCorrectly()
     {
         // Arrange
         var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
         var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("approve-link", DateTime.UtcNow.AddDays(30));
 
         // Act
-        var comment = Comment.Create(articleId, client, content, approveLink);
+        var comment = SetupCommentData("approve-link", content);
 
         // Assert
         comment.Should().NotBeNull();
-        comment.ArticleId.Should().Be(articleId);
-        comment.Client.Should().Be(client);
-        comment.Content.Should().Be(content);
-        comment.CreatedOnUtc.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
-        comment.IsApproved.Should().BeFalse();
-        comment.ApproveLink.Should().Be(approveLink);
-        comment.Replies.Should().BeEmpty();
+        comment.commentResponse.ArticleId.Should().Be(articleId);
+        comment.commentResponse.Client.Should().Be(comment.client);
+        comment.commentResponse.Content.Should().Be(content);
+        comment.commentResponse.CreatedOnUtc.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
+        comment.commentResponse.IsApproved.Should().BeFalse();
+        comment.commentResponse.ApproveLink.Should().Be(comment.approveLink);
+        comment.commentResponse.Replies.Should().BeEmpty();
     }
 
     [Fact]
     public void Approve_ShouldSetIsApprovedToTrue()
     {
-        // Arrange
-        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
+        // Arrange       
         var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("approve-link", DateTime.UtcNow.AddDays(30));
+        var comment = SetupCommentData("approve-link", content);
 
-        var comment = Comment.Create(articleId, client, content, approveLink);
         // Act
-        comment.Approve();
+        comment.commentResponse.Approve();
 
         // Assert
-        comment.IsApproved.Should().BeTrue();
+        comment.commentResponse.IsApproved.Should().BeTrue();
     }
 
     [Fact]
     public void ReplyComment_ShouldAddReplyToApprovedComment()
     {
         // Arrange
-        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
         var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("approve-link", DateTime.UtcNow.AddDays(30));
-        var comment = Comment.Create(articleId, client, content, approveLink);
+        var comment = SetupCommentData("reply-approve-link", content);
 
         // Act
-        comment.Approve();
-        var reply = comment.ReplyComment(client, content, approveLink);
+        comment.commentResponse.Approve();
+        var reply = comment.commentResponse.ReplyComment(comment.client, content, comment.approveLink);
 
         // Assert
         reply.Should().NotBeNull();
         reply.Content.Should().Be(content);
-        reply.Client.Should().Be(client);
-        reply.ApproveLink.Should().Be(approveLink);
-        comment.Replies.Should().ContainSingle();
-        comment.Replies.First().Should().Be(reply);
+        reply.Client.Should().Be(comment.client);
+        reply.ApproveLink.Should().Be(comment.approveLink);
+        comment.commentResponse.Replies.Should().ContainSingle();
+        comment.commentResponse.Replies.First().Should().Be(reply);
     }
 
     [Fact]
     public void ReplyComment_ShouldThrowExceptionIfCommentNotApproved()
     {
         // Arrange
-        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
-        var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("approve-link", DateTime.UtcNow.AddDays(30));
-        var comment = Comment.Create(articleId, client, content, approveLink);
+        string content = "This is a reply.";
+        var comment = SetupCommentData("approve-link", content);
 
         // Act
-        Action act = () => comment.ReplyComment(client, "This is a reply.", approveLink);
+        Action act = () => comment.commentResponse.ReplyComment(comment.client, content, comment.approveLink);
 
         // Assert
         act.Should().Throw<UnapprovedCommentException>();
@@ -89,16 +80,13 @@ public class CommentTests
     public void ApproveReply_ShouldSetReplyAsApproved()
     {
         // Arrange
-        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
-        var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("reply-approve-link", DateTime.UtcNow.AddDays(30));
-        var comment = Comment.Create(articleId, client, content, approveLink);
+        string content = "This is a reply.";
+        var comment = SetupCommentData("reply-approve-link", content);
 
         // Act
-        comment.Approve();
-        var reply = comment.ReplyComment(client, "This is a reply.", approveLink);
-        var replyId = comment.ApproveReply("reply-approve-link");
+        comment.commentResponse.Approve();
+        var reply = comment.commentResponse.ReplyComment(comment.client, content, comment.approveLink);
+        var replyId = comment.commentResponse.ApproveReply("reply-approve-link");
 
         // Assert
         replyId.Should().Be(reply.Id);
@@ -109,18 +97,36 @@ public class CommentTests
     public void ApproveReply_ShouldThrowExceptionIfLinkIsInvalid()
     {
         // Arrange
-        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
-        var client = Client.Create("nabi", "thisisnabi@outlook.com");
-        var content = "This is a test comment.";
-        var approveLink = ApproveLink.Create("approve-link", DateTime.UtcNow.AddDays(30));
-        var comment = Comment.Create(articleId, client, content, approveLink);
-        comment.Approve();
-        comment.ReplyComment(client, "This is a reply.", approveLink);
+        string content = "This is a reply.";
+        var comment = SetupCommentData("approve-link", content);
+        comment.commentResponse.Approve();
+        comment.commentResponse.ReplyComment(comment.client, content, comment.approveLink);
 
         // Act
-        Action act = () => comment.ApproveReply("invalid-link");
+        Action act = () => comment.commentResponse.ApproveReply("invalid-link");
 
         // Assert
         act.Should().Throw<InvalidReplyApprovalLinkException>();
     }
+
+    #endregion [Tests]
+
+    #region [Private Method]
+
+    /// <summary>
+    /// Data setup method to use across the comment test class  
+    /// </summary>
+    /// <param name="link">Approve link</param>
+    /// <param name="content">Content to use</param>
+    /// <returns>Return Comment, Client & Approve link</returns>
+    private static (Comment commentResponse, Client client, ApproveLink approveLink) SetupCommentData(string link, string content)
+    {
+        var articleId = ArticleId.CreateUniqueId("this-is-nabi");
+        var client = Client.Create("nabi", "thisisnabi@outlook.com");
+        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddDays(30));
+        var comment = Comment.Create(articleId, client, content, approveLink);
+        return (comment, client, approveLink);
+    }
+
+    #endregion
 }
