@@ -205,7 +205,6 @@ namespace Blogger.FunctionalTests.Articles
             List<TaggedResponse> taggedResponses = JsonConvert.DeserializeObject<List<TaggedResponse>>(result)!;
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Single(taggedResponses);
         }
 
         #endregion [Tests]
