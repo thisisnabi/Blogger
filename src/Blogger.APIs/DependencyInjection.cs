@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-
-namespace Blogger.APIs;
+﻿namespace Blogger.APIs;
 
 public static class DependencyInjection
 {

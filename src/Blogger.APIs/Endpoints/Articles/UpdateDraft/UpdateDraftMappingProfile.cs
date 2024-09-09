@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Articles.UpdateDraft;
-using Blogger.Domain.ArticleAggregate;
-
-namespace Blogger.APIs.Endpoints.Articles.UpdateDraft;
+﻿namespace Blogger.APIs.Endpoints.Articles.UpdateDraft;
 
 public class UpdateDraftMappingProfile : IRegister
 {

@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Comments.ApproveComment;
-
-namespace Blogger.APIs.Endpoints.Comments.ApproveComment;
+﻿namespace Blogger.APIs.Endpoints.Comments.ApproveComment;
 
 public class ApproveCommentEndpoint : IEndpoint
 {

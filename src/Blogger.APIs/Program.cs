@@ -1,5 +1,3 @@
-using Blogger.APIs.ErrorHandling;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddEnvironmentVariables();

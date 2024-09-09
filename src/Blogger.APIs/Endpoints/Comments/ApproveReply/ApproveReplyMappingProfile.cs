@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Comments.ApproveReply;
-using Blogger.Domain.CommentAggregate;
-
-namespace Blogger.APIs.Endpoints.Comments.ApproveReply;
+﻿namespace Blogger.APIs.Endpoints.Comments.ApproveReply;
 
 public class ApproveReplyMappingProfile : IRegister
 {

@@ -1,9 +1,4 @@
-﻿using Blogger.BuildingBlocks.Domain;
-
-
-using Microsoft.AspNetCore.Diagnostics;
-
-namespace Blogger.APIs.ErrorHandling;
+﻿namespace Blogger.APIs.ErrorHandling;
 
 public sealed class GlobalExceptionHandler : IExceptionHandler
 {

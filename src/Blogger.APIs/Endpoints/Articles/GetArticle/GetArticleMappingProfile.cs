@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Articles.GetArticle;
-using Blogger.Domain.ArticleAggregate;
-
-namespace Blogger.APIs.Endpoints.Articles.GetArticle;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetArticle;
 
 public class GetArticleMappingProfile : IRegister
 {

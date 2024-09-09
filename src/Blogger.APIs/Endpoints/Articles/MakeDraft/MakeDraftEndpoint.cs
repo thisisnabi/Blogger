@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Articles.MakeDraft;
-
-namespace Blogger.APIs.Endpoints.Articles.MakeDraft;
+﻿namespace Blogger.APIs.Endpoints.Articles.MakeDraft;
 
 public class MakeCommentEndpoint : IEndpoint
 {

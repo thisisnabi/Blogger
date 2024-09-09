@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Articles.GetTaggedArticles;
-
-namespace Blogger.APIs.Endpoints.Articles.GetTaggedArticles;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetTaggedArticles;
 
 public class GetTaggedArticlesEndpoint : IEndpoint
 {

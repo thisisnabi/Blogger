@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Articles.GetArticles;
-
-namespace Blogger.APIs.Endpoints.Articles.GetArticles;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetArticles;
 
 public class GetArticlesEndpoint : IEndpoint
 {

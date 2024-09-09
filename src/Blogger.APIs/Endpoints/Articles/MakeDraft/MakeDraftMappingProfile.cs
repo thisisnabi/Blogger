@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Articles.MakeDraft;
-using Blogger.Domain.ArticleAggregate;
-
-namespace Blogger.APIs.Endpoints.Articles.MakeDraft;
+﻿namespace Blogger.APIs.Endpoints.Articles.MakeDraft;
 
 public class MakeDraftMappingProfile : IRegister
 {
