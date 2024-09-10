@@ -1,25 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Xunit;
-using System.Threading.Tasks;
 using Blogger.FunctionalTests.Helper;
-using Blogger.Domain.ArticleAggregate;
-using Blogger.APIs.Endpoints.Articles.CreateArticle;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 
 namespace Blogger.FunctionalTests.Articles
 {
-    public class ArticleApisTests
+    public class ArticleApisTests : IClassFixture<WebApplicationFactory<Program>>
     {
+        private readonly WebApplicationFactory<Program> _factory;
         private readonly HttpClient _httpClient;
-
-        public ArticleApisTests()
+        public ArticleApisTests(WebApplicationFactory<Program> factory)
         {
-            _httpClient = new HttpClient { BaseAddress = new System.Uri("http://localhost:5138/") };
+            _factory = factory;
+            _httpClient = _factory.CreateClient();
         }
 
         #region [Tests]
@@ -207,6 +202,8 @@ namespace Blogger.FunctionalTests.Articles
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
+
+
         #endregion [Tests]
 
 
@@ -261,7 +258,7 @@ namespace Blogger.FunctionalTests.Articles
                 Tags = ["dotnet-core", "architecture", "technology"]
             };
         }
-        
+
         #endregion [Private Method]
 
     }
