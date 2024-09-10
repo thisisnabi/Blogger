@@ -47,7 +47,7 @@ public class ApproveCommentCommandHandlerTests : IClassFixture<BloggerDbContextF
     {
         // Arrange
         var link = new LinkGenerator().Generate();
-        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var command = new ApproveCommentCommand(approveLink.ApproveId);
         var dbContext = _fixture.BuildDbContext(Guid.NewGuid().ToString());

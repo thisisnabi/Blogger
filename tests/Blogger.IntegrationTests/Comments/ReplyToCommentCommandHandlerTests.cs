@@ -53,7 +53,7 @@ public class ReplyToCommentCommandHandlerTests : IClassFixture<BloggerDbContextF
     {
         // Arrange
         var link = new LinkGenerator().Generate();
-        var approvelink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approvelink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var articleId = ArticleId.Create("this-is-nabi");
         var client = Client.Create("Nabi Karampour", "thisisnabi@outlook.com");
