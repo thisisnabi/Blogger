@@ -5,7 +5,7 @@ This document serves as a guide for building a blog application using Clean Arch
 > Here you can see UI for this api project, <a href='https://github.com/thisisnabi/Blogger.UI'>Blogger.UI</a>
 
 ## Give a Star! ⭐
-If you find this `Blogger` valuable and believe in the importance of CQRD, Clean Architecture, Domain-Driven Design, consider showing your support by giving this repository a star!
+If you find this `Blogger` valuable and believe in the importance of CQRS, Clean Architecture, Domain-Driven Design, consider showing your support by giving this repository a star!
  
 ## Getting Started
 
