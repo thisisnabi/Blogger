@@ -25,6 +25,10 @@ app.UseCors("AllowOrigin");
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapEndpoints(); 
+app.MapEndpoints();
 
 app.Run();
+
+
+// Make the implicit Program class public so test projects can access it
+public partial class Program() { }

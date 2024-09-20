@@ -11,7 +11,7 @@ If you find this `Blogger` valuable and believe in the importance of CQRS, Clean
 
 This repository provides various resources to get you started with building your blog application:
 
-> Cooming soon
+> Coming soon
 ### Index
 - [ ] Problem domain:
 - [ ] Ubiquitous Language
