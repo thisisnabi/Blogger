@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Articles.GetArchive;
-
-namespace Blogger.APIs.Endpoints.Articles.GetArchive;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetArchive;
 
 public class GetArchiveEndpoint : IEndpoint
 {

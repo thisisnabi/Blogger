@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Comments.GetComments;
-using Blogger.Domain.ArticleAggregate;
-
-namespace Blogger.APIs.Endpoints.Comments.GetComments;
+﻿namespace Blogger.APIs.Endpoints.Comments.GetComments;
 
 public class GetCommentsMappingProfile : IRegister
 {

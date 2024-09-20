@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Articles.PublishDraft;
-
-namespace Blogger.APIs.Endpoints.Articles.PublishDraft;
+﻿namespace Blogger.APIs.Endpoints.Articles.PublishDraft;
 
 public class PublishDraftEndpoint : IEndpoint
 {

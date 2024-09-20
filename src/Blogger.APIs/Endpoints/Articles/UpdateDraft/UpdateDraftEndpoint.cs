@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Articles.UpdateDraft;
-
-namespace Blogger.APIs.Endpoints.Articles.UpdateDraft;
+﻿namespace Blogger.APIs.Endpoints.Articles.UpdateDraft;
 
 public class UpdateDraftEndpoint : IEndpoint
 {

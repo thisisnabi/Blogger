@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Comments.ApproveComment;
-
-namespace Blogger.APIs.Endpoints.Comments.ApproveComment;
+﻿namespace Blogger.APIs.Endpoints.Comments.ApproveComment;
 
 public class ApproveCommentMappingProfile : IRegister
 {

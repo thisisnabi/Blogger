@@ -1,8 +1,4 @@
-﻿using Blogger.Application.Comments.MakeComment;
-using Blogger.Domain.ArticleAggregate;
-using Blogger.Domain.CommentAggregate;
-
-namespace Blogger.APIs.Endpoints.Comments.MakeComment;
+﻿namespace Blogger.APIs.Endpoints.Comments.MakeComment;
 
 public class MakeCommentMappingProfile : IRegister
 {

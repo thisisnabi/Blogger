@@ -1,8 +1,4 @@
-﻿using Blogger.Application.Articles.CreateArticle;
-using Blogger.Domain.ArticleAggregate;
-using System.Collections.Immutable;
-
-namespace Blogger.APIs.Endpoints.Articles.CreateArticle;
+﻿namespace Blogger.APIs.Endpoints.Articles.CreateArticle;
 
 public class CreateArticleMappingProfile : IRegister
 {

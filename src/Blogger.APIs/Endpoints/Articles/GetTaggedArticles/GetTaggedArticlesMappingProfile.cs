@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Articles.GetTaggedArticles;
-using Blogger.Domain.ArticleAggregate;
-
-namespace Blogger.APIs.Endpoints.Articles.GetTaggedArticles;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetTaggedArticles;
 
 public class GetTaggedArticlesMappingProfile : IRegister
 {

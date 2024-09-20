@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Comments.GetComments;
-
-namespace Blogger.APIs.Endpoints.Comments.GetComments;
+﻿namespace Blogger.APIs.Endpoints.Comments.GetComments;
 
 public class GetCommentsEndpoint : IEndpoint
 {

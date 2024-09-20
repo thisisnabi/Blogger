@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Articles.GetTags;
-
-namespace Blogger.APIs.Endpoints.Articles.GetTags;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetTags;
 
 public class GetTagsEndpoint : IEndpoint
 {

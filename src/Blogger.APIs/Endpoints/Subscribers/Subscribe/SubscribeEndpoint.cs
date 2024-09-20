@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Subscribers.Subscribe;
-
-namespace Blogger.APIs.Endpoints.Subscribers.Subscribe;
+﻿namespace Blogger.APIs.Endpoints.Subscribers.Subscribe;
 
 public class SubscribeEndpoint : IEndpoint
 {

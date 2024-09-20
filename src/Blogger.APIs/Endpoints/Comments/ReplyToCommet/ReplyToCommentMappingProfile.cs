@@ -1,7 +1,4 @@
-﻿using Blogger.Application.Comments.ReplyToComment;
-using Blogger.Domain.CommentAggregate;
-
-namespace Blogger.APIs.Endpoints.Comments.ReplyToCommet;
+﻿namespace Blogger.APIs.Endpoints.Comments.ReplyToCommet;
 
 public class ReplyToCommentMappingProfile : IRegister
 {

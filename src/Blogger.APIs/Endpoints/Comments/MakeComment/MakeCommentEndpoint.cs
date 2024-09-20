@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Comments.MakeComment;
-
-namespace Blogger.APIs.Endpoints.Comments.MakeComment;
+﻿namespace Blogger.APIs.Endpoints.Comments.MakeComment;
 
 public class MakeCommentEndpoint : IEndpoint
 {

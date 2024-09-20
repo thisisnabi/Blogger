@@ -22,7 +22,7 @@ public class MakeCommentCommandHandler(
         }
 
         var link = _linkGenerator.Generate();
-        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var comment = Comment.Create(request.ArticleId, request.Client, request.Content, approveLink);
         comment.RaiseMakeCommentEvent();

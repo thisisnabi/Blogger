@@ -1,5 +1,4 @@
-﻿using Blogger.Application.Subscribers.Subscribe;
-using Blogger.Domain.SubscriberAggregate;
+﻿using Blogger.Domain.SubscriberAggregate;
 
 namespace Blogger.APIs.Endpoints.Subscribers.Subscribe;
 

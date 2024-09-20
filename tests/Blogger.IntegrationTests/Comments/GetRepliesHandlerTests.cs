@@ -43,7 +43,7 @@ public class GetRepliesHandlerTests : IClassFixture<BloggerDbContextFixture>
         var articleId_1 = ArticleId.Create("this-is-nabi");
 
         var link = new LinkGenerator().Generate();
-        var approveLinkComment = Domain.CommentAggregate.ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approveLinkComment = Domain.CommentAggregate.ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var client1 = Client.Create("Nabi Karampour 1", "thisisnabi@outlook.com");
         var client2 = Client.Create("Nabi Karampour 2", "thisisnabi@outlook.com");

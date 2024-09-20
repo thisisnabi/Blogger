@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Comments.GetReplies;
-
-namespace Blogger.APIs.Endpoints.Comments.GetReplies;
+﻿namespace Blogger.APIs.Endpoints.Comments.GetReplies;
 
 public class GetRepliesEndpoint : IEndpoint
 {

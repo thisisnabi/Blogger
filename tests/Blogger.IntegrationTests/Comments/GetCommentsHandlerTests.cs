@@ -49,7 +49,7 @@ public class GetCommentsHandlerTests : IClassFixture<BloggerDbContextFixture>
         var articleId_2 = ArticleId.Create("this-is-nabi_2");
 
         var link = new LinkGenerator().Generate();
-        var approveLinkComment = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approveLinkComment = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var client1 = Client.Create("Nabi Karampour 1", "thisisnabi@outlook.com");
         var client2 = Client.Create("Nabi Karampour 2", "thisisnabi@outlook.com");

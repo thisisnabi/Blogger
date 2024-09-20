@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Comments.ReplyToComment;
-
-namespace Blogger.APIs.Endpoints.Comments.ReplyToCommet;
+﻿namespace Blogger.APIs.Endpoints.Comments.ReplyToCommet;
 
 public class ReplyToCommentEndpoint : IEndpoint
 {

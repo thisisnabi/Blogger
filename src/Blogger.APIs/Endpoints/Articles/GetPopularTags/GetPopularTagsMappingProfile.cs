@@ -1,6 +1,4 @@
-﻿using Blogger.Application.Articles.GetPopularTags;
-
-namespace Blogger.APIs.Endpoints.Articles.GetPopularTags;
+﻿namespace Blogger.APIs.Endpoints.Articles.GetPopularTags;
 
 public class GetPopularTagsMappingProfile : IRegister
 {

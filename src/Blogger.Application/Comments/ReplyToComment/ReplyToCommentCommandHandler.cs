@@ -14,7 +14,7 @@ public class ReplyToCommentCommandHandler(
         if (comment is null) throw new NotFoundCommentException();
 
         var link = linkGenerator.Generate();
-        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpairationOnHours));
+        var approveLink = ApproveLink.Create(link, DateTime.UtcNow.AddHours(ApplicationSettings.ApproveLink.ExpirationOnHours));
 
         var Reply = comment.ReplyComment(request.Client, request.Content, approveLink);
         await commentRepository.SaveChangesAsync(cancellationToken);

@@ -1,7 +1,4 @@
-﻿using Blogger.APIs.Endpoints;
-using Blogger.Application.Comments.ApproveReply;
-
-namespace Blogger.APIs.Endpoints.Comments.ApproveReply;
+﻿namespace Blogger.APIs.Endpoints.Comments.ApproveReply;
 
 public class ApproveReplyEndpoint : IEndpoint
 {
