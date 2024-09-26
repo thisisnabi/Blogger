@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 
+using Blogger.BuildingBlocks.Domain;
 using Blogger.Domain.ArticleAggregate.Models;
 
 namespace Blogger.Infrastructure.Persistence.Repositories;
 
 public class ArticleRepository(BloggerDbContext bloggerDbContext) : IArticleRepository
 {
+    public IUnitOfWork UnitOfWork => bloggerDbContext;
+
     public Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken) =>
          bloggerDbContext.Articles.AnyAsync(x => x.Id == articleId, cancellationToken);
 

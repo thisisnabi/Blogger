@@ -2,7 +2,7 @@
 using Blogger.Domain.ArticleAggregate;
 
 namespace Blogger.Domain.CommentAggregate;
-public interface ICommentRepository
+public interface ICommentRepository:IRepository<Comment>
 {
     Task<Comment?> GetCommentByApproveLinkAsync(string link, CancellationToken cancellationToken);
     Task<IReadOnlyCollection<Comment>> GetApprovedArticleCommentsAsync(ArticleId articleId, CancellationToken cancellationToken);

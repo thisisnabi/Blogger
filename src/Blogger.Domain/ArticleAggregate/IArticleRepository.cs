@@ -2,7 +2,7 @@
 
 namespace Blogger.Domain.ArticleAggregate;
 
-public interface IArticleRepository
+public interface IArticleRepository:IRepository<Article>
 {
     Task<bool> HasIdAsync(ArticleId articleId, CancellationToken cancellationToken);
     

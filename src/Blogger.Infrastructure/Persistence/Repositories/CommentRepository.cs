@@ -1,7 +1,11 @@
-﻿ namespace Blogger.Infrastructure.Persistence.Repositories;
+﻿using Blogger.BuildingBlocks.Domain;
+
+namespace Blogger.Infrastructure.Persistence.Repositories;
 
 public class CommentRepository(BloggerDbContext bloggerDbContext) : ICommentRepository
 {
+    public IUnitOfWork UnitOfWork => bloggerDbContext;
+
     public Task<Comment?> GetCommentByApproveLinkAsync(string link, CancellationToken cancellationToken)
     {
         return bloggerDbContext.Comments.FirstOrDefaultAsync(x => x.ApproveLink.ApproveId == link, cancellationToken);

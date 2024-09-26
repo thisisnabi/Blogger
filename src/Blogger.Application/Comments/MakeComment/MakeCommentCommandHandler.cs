@@ -28,7 +28,8 @@ public class MakeCommentCommandHandler(
         comment.RaiseMakeCommentEvent();
 
         await _commentRepository.CreateAsync(comment, cancellationToken);
-        await _commentRepository.SaveChangesAsync(cancellationToken);
+       
+       await _commentRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
 
 
         

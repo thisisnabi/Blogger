@@ -7,6 +7,13 @@ public static class DependencyInjection
     {
         services.Configure<EmailSettings>(configuration.GetSection(nameof(EmailSettings)));
 
+        var application = typeof(IAssemblyMarker);
+
+        services.AddMediatR(configure =>
+        {
+            configure.RegisterServicesFromAssembly(application.Assembly);
+        });
+
         services.AddDbContext<BloggerDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString(BloggerDbContextSchema.DefaultConnectionStringName));

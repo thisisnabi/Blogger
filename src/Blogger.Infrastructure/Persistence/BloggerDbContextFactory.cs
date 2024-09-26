@@ -3,11 +3,15 @@
 namespace Blogger.Infrastructure.Persistence;
 public class BloggerDbContextFactory : IDesignTimeDbContextFactory<BloggerDbContext>
 {
+    public BloggerDbContextFactory(IServiceProvider serviceProvider)
+    {
+        ServiceProvider = serviceProvider;
+    }
+
+    public IServiceProvider ServiceProvider { get; }
+
     public BloggerDbContext CreateDbContext(string[] args)
     {
-        var optionBuilder = new DbContextOptionsBuilder<BloggerDbContext>();
-        optionBuilder.UseSqlServer("data source=.;initial catalog=thisisnabi.blogger;TrustServerCertificate=True;Trusted_Connection=True;");
-
-        return new BloggerDbContext(optionBuilder.Options);
+        return ServiceProvider.GetRequiredService<BloggerDbContext>();
     }
 }
