@@ -1,7 +1,9 @@
-﻿namespace Blogger.Infrastructure.Persistence.Repositories;
+﻿using Blogger.BuildingBlocks.Domain;
+
+namespace Blogger.Infrastructure.Persistence.Repositories;
 public class SubscriberRepository(BloggerDbContext bloggerDbContext) : ISubscriberRepository
 {
-
+    public IUnitOfWork UnitOfWork => bloggerDbContext;
     public async Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken)
     {
         await bloggerDbContext.Subscribers.AddAsync(subscriber, cancellationToken);

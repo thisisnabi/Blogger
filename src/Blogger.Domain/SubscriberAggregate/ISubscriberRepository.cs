@@ -1,7 +1,7 @@
 ﻿
 namespace Blogger.Domain.SubscriberAggregate;
 
-public interface ISubscriberRepository
+public interface ISubscriberRepository:IRepository<Subscriber>
 {
     Task CreateAsync(Subscriber subscriber, CancellationToken cancellationToken);
     Task<Subscriber?> FindByIdAsync(SubscriberId subscriberId);
